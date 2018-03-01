@@ -11,7 +11,7 @@
 
         <div class="right-align">
           <div class="filter-field"
-            [class.red-text]="(cartService.filters$ | async).location || (cartService.filters$ | async).vendor || (cartService.filters$ | async).onlymy"
+            [class.red-text]="(cartService.filters$ | async).location || (cartService.filters$ | async).vendor || (cartService.filters$ | async).onlymy  || (cartService.filters$ | async).price_max  || (cartService.filters$ | async).price_min"
             (click)="showFiltersModal()">
             <i class="fa fa-filter"></i>
             <span>Filters</span>

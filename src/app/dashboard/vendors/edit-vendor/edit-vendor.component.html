@@ -6,10 +6,21 @@
       <div class="img-container">
         <div class="img" *ngIf="vendor.logo" [ngStyle]="{ 'background-image': 'url(' + vendor.logo + ')' }"></div>
       </div>
+      <div class="text">
+        <div class="file-field uptracker-form">
+          <div class="label">Logo</div>
+          <div class="upload-link">
+            <input type="file"   (change)="uploadLogo($event)" />
+            <a>Upload</a>
+          </div>
+        </div>
+      </div>
     </div>
     <div class="col s8">
       <div class="ttl-box">
-        <div class="ttl">{{vendor.name}}</div>
+        <div class="ttl">
+          <input type="text"  [(ngModel)]="vendor.name">
+        </div>
       </div>
     </div>
   </div>

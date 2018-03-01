@@ -79,7 +79,10 @@ export class EditVendorComponent implements OnInit, AfterViewInit {
   public primaryLocation: any;
   public secondaryLocation: any;
   public secondaryLocationArr: any = [];
-  
+
+  public uploadName: string = '';
+  public logo: File;
+
   @ViewChild('secondary') secondaryLocationLink: ElementRef;
   @ViewChild('all') allLocationLink: ElementRef;
   @ViewChild('primary') primaryLocationLink: ElementRef;
@@ -442,6 +445,9 @@ export class EditVendorComponent implements OnInit, AfterViewInit {
       this.formData.append('documents[' + j + ']', this.oldFileArr[j]);
       j++;
     });
+
+
+    //TODO this dont work .. should be rewritten
     if (this.noAV) {
       this.vendorService.addAccountVendor(this.formData).subscribe(
         (res: any) => {
@@ -467,5 +473,17 @@ export class EditVendorComponent implements OnInit, AfterViewInit {
   goBackOneStep(): void {
     this.location.back();
   }
+
+    uploadLogo(file: any) {
+        this.uploadName = file.target.files[0].name;
+        let reader = new FileReader();
+
+        reader.onload = ($event: any) => {
+            this.logo = file.target.files[0];
+            this.vendor.logo = $event.target.result;
+        };
+
+        reader.readAsDataURL(file.target.files[0]);
+    }
   
 }

@@ -66,8 +66,10 @@ export class ShoppingListComponent implements OnInit, OnDestroy {
     .subscribe(([r, f]) => {
       let cart = _.filter(r, (item: any) => (
         (f.location == '' || f.location == item.location_name)
-        && (f.vendor == '' || f.vendor == item.selected_vendor.vendor_name))
-        && (!f.onlymy || this.userService.selfData.id == item.created_by)
+        && (f.vendor == '' || f.vendor == item.selected_vendor.vendor_name)
+        && (f.price_min == '' || (item.price && item.price >= +f.price_min) || (parseFloat(item.price_upper.slice(1)) >= +f.price_min) )
+        && (f.price_max == '' ||  (item.price && item.price <= +f.price_max) || (parseFloat(item.price_lower.slice(1)) <= +f.price_max) )
+        && (!f.onlymy || this.userService.selfData.id == item.created_by))
       );
       this.totalOrders = cart.filter((item:any)=>item.status).length;
       this.total = cart.length;
