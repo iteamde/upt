@@ -45,6 +45,16 @@ $tealish: #33c6d9;
         background-position: center center;
         background-size: contain;
         background-repeat: no-repeat;
+
+        &.file-field{
+          overflow: hidden;
+        }
+
+        input[type='file']{
+          margin-top: -29px;
+          height: auto;
+        }
+
       }
     }
 
