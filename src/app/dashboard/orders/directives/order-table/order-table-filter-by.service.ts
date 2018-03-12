@@ -3,18 +3,12 @@ import { Observable } from 'rxjs/Observable';
 import { ReplaySubject } from 'rxjs/ReplaySubject';
 import { OrderTableResetService } from './order-table-reset.service';
 
-export interface FilterBy {
-  listName: string;
-  value: {[key: string]: any};
-  type: 'update' | 'set';
-}
-
 @Injectable()
 export class OrderTableFilterByService {
 
   filterByObject$: Observable<{[listname: string]: {[key: string]: any}}>;
 
-  private filterBy$ = new ReplaySubject<FilterBy>(1);
+  private filterBy$ = new ReplaySubject<{listName: string, value: {[key: string]: any}}>(1);
 
   constructor(
     private orderTableResetService: OrderTableResetService
@@ -27,18 +21,10 @@ export class OrderTableFilterByService {
       if (!item) {
         return {} as {[listname: string]: {[key: string]: any}};
       }
-      switch (item.type) {
-        case 'update': {
-          const value = item.value;
-          const listName = item.listName;
-          const filter = value ? {...acc[listName], ...value} : {};
-          return { ...acc, [listName]: filter};
-        }
-        case 'set': {
-          return {...acc, [item.listName]: item.value};
-        }
-      }
-
+      const value = item.value;
+      const listName = item.listName;
+      const filter = value ? {...acc[listName], ...value} : {};
+      return { ...acc, [listName]: filter};
     }, {} as {listName: string, value: {[key: string]: any}})
     .startWith({})
     .shareReplay(1);
@@ -51,16 +37,7 @@ export class OrderTableFilterByService {
   onFilterByAlias(value, headerCol, listName: string) {
     this.filterBy$.next({
       listName,
-      type: 'update',
       value: {[headerCol.alias]: value }
-    });
-  }
-
-  setFilterBy(value, listName: string) {
-    this.filterBy$.next({
-      type: 'set',
-      listName,
-      value,
     });
   }
 }

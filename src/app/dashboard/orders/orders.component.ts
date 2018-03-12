@@ -8,7 +8,7 @@ import { Observable } from 'rxjs/Observable';
 import { BehaviorSubject } from 'rxjs/BehaviorSubject';
 import { Subject } from 'rxjs/Subject';
 
-import { map, filter, intersectionBy } from 'lodash';
+import { map } from 'lodash';
 
 import { PastOrderService } from '../../core/services/pastOrder.service';
 import { ModalWindowService } from '../../core/services/modal-window.service';
@@ -50,7 +50,6 @@ export class OrdersComponent implements OnInit, OnDestroy {
   public chips$;
 
   private filterItems$: Observable<any[]>;
-  private onChipsChange$ = new Subject<string[]>();
 
   constructor(
       public modal: Modal,
@@ -74,7 +73,6 @@ export class OrdersComponent implements OnInit, OnDestroy {
       this.orderTableFilterByService.getFilterByListName(tab)
     )
     .map((filterObj) => map(filterObj, (value, key) => ({value, key})))
-    .map((items) => filter(items, 'value'))
     .shareReplay(1);
 
     this.chips$ = this.filterItems$
@@ -83,21 +81,6 @@ export class OrdersComponent implements OnInit, OnDestroy {
 
   ngOnDestroy() {
     console.log('for unsubscribing');
-  }
-
-  addSubscribers() {
-    this.onChipsChange$
-    .withLatestFrom(this.filterItems$, this.activeTab$)
-    .subscribe(([chips, filterItems, tab]) => {
-      const chipsObj = chips.map((value) => ({value}));
-      const items = intersectionBy(filterItems, chipsObj, 'value');
-      const filter = items.reduce((acc, item) => ({...acc, [item.key]: item.value}), {});
-      this.orderTableFilterByService.setFilterBy(filter, tab);
-    });
-  }
-
-  onChipChange(chips) {
-    this.onChipsChange$.next(chips);
   }
 
   searchOrders(event) {

@@ -14,6 +14,7 @@ import { BootstrapModalModule } from 'angular2-modal/plugins/bootstrap';
 
 import { IterablePipe } from "./pipes/iterable/iterable.pipe";
 import { InputValueSearch } from "./pipes/input-value-search/input-value-search.pipe";
+import {CapitalizeFirstPipe} from "./pipes/capitilizeFirst/capitilizeFirst";
 import * as directives from "./index";
 import { TextMaskModule } from 'angular2-text-mask';
 import { AgmCoreModule } from "angular2-google-maps/core";
@@ -28,6 +29,7 @@ let directivesArr = [
 let pipesArr = [
   IterablePipe,
   InputValueSearch,
+  CapitalizeFirstPipe
 ];
 
 // resolvers
@@ -46,7 +48,6 @@ import { APP_DI_CONFIG } from '../../../env';
 import { NguiAutoCompleteModule } from '@ngui/auto-complete';
 import { PerfectScrollbarConfigInterface, PerfectScrollbarModule } from 'ngx-perfect-scrollbar';
 import { AddVendorModalComponent } from './modals/add-vendor-modal/add-vendor-modal.component';
-import { ChipsInputModule } from './components/chips-input/chips-input.module';
 import { ChipsModule } from './components/chips/chips.module';
 
 const modalsArr = [
@@ -108,7 +109,6 @@ const PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
     PerfectScrollbarModule,
 
     HasClassModule,
-    ChipsInputModule,
     ChipsModule,
 
     ...directivesArr,

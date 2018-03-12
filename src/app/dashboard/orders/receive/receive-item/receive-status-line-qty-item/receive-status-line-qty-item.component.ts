@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Input, Output } from '@angular/core';
+import { Component, Input } from '@angular/core';
 
 import { OrderItemStatusFormModel } from '../../models/order-item-status-form.model';
 
@@ -10,14 +10,6 @@ export class ReceiveStatusLineQtyItemComponent {
 
   @Input() item: OrderItemStatusFormModel = null;
 
-  @Input() lineThrough = false;
-
-  @Input() showEditIcon = false;
-
-  @Output() edit = new EventEmitter();
-
-  onEditClick(event) {
-    this.edit.emit(event);
-  }
+  @Input() lineThrough: boolean = false;
 
 }

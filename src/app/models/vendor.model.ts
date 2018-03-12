@@ -12,7 +12,6 @@ export class VendorModel {
   logo: string = null;
   name: string = null;
   phone: string = null;
-  custom: boolean = null;
   updated_at: string = null;
   vendor_id: string = null;
   po_number_prefix: any = null;

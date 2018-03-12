@@ -1,0 +1,319 @@
+<div class="close" (click)="dismissModal()"></div>
+<div class="inner edit-mode">
+
+  <div class="row">
+    <div class="col s10">
+      <div class="title">Add custom product</div>
+    </div>
+    <div class="col s2">
+      <button *ngIf="!isLastStep()" [disabled]="!canProceed()" class="uptracker-form-btn white-text waves-effect waves-light" (click)="nextStep()">
+        Next
+      </button>
+      <button *ngIf="isLastStep()" class="uptracker-form-btn white-text waves-effect waves-light" (click)="save()">
+        Save
+      </button>
+    </div>
+  </div>
+
+  <div *ngIf="checkStep(0)">
+    <div class="row uptracker-form">
+      <div class="col s12 m3 file-field">
+        <div class="img-container upload-link">
+          <div class="img" *ngIf="product?.image"
+               [ngStyle]="{ 'background-image': 'url(' + product?.image + ')' }"></div>
+          <input type="file" (change)="uploadLogo($event)" />
+        </div>
+      </div>
+      <div class="info-box col s12 m9">
+        <div class="ttl-box row input">
+          <div class="col s12">
+            <input class="ttl col s12 name-field" [(ngModel)]="product.name" type="text" placeholder="Type Name">
+          </div>
+          <div class="col s12">
+            <input class="ttl col s12 name-field" [(ngModel)]="product.proper_name" type="text" placeholder="Technical Name">
+          </div>
+        </div>
+        <div class="row checks">
+
+          <div class="col s4">
+            <div class="input-checkbox checkbox">
+              <label>Hazardous</label>
+              <input
+                type="checkbox"
+                class="checkbox-input"
+                [(ngModel)]="product.hazardous"
+                id="checkbox1"
+              />
+              <label for="checkbox1"></label>
+            </div>
+          </div>
+
+          <div class="col s4">
+            <div class="input-checkbox checkbox">
+              <label>Trackable</label>
+              <input
+                type="checkbox"
+                class="checkbox-input"
+                [(ngModel)]="product.trackable"
+                id="checkbox2"
+              />
+              <label for="checkbox2"></label>
+            </div>
+          </div>
+
+          <div class="col s4">
+            <div class="input-checkbox checkbox">
+              <label>Tax Exempt</label>
+              <input
+                type="checkbox"
+                class="checkbox-input"
+                [(ngModel)]="product.tax_exempt"
+                id="checkbox3"
+              />
+              <label for="checkbox3"></label>
+            </div>
+          </div>
+
+        </div>
+        <div class="row">
+
+          <div class="col input s4">
+            <label>Department</label>
+            <div class="select">
+              <select
+                [(ngModel)]="product.department"
+                materialize="material_select"
+                [materializeSelectOptions]="departmentCollection">
+                <option *ngFor="let item of departmentCollection" [value]="item">{{item}}</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="col input s4">
+            <label>Category</label>
+            <div class="select">
+              <select
+                [(ngModel)]="product.category"
+                materialize="material_select"
+                [materializeSelectOptions]="productCategoriesCollection">
+                <option *ngFor="let cat of productCategoriesCollection" [value]="cat">{{cat}}
+                </option>
+              </select>
+            </div>
+          </div>
+
+          <div class="col input s4">
+            <label>Accounting</label>
+            <div class="select">
+              <select
+                [(ngModel)]="product.account_category"
+                materialize="material_select"
+                [materializeSelectOptions]="productAccountingCollection">
+                <option *ngFor="let acc of productAccountingCollection" [value]="acc">{{acc}}
+                </option>
+              </select>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="clearfix"></div>
+  </div>
+
+  <div *ngIf="checkStep(1)">
+    <div class="row">
+      <div class="col s12">
+        <div class="title">
+          Does this product have any variants?
+          A product may have different versions of itself called variants-select the types.
+        </div>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col s1">
+        <div class="input-checkbox checkbox">
+          <input
+            type="checkbox"
+            class="checkbox-input"
+            [(ngModel)]="variants.color"
+            id="productColor"
+          />
+          <label for="productColor"></label>
+        </div>
+      </div>
+      <div class="col s2 select-title">
+        Color
+      </div>
+      <div class="col s1">
+        <div class="input-checkbox checkbox">
+          <input
+            type="checkbox"
+            class="checkbox-input"
+            [(ngModel)]="variants.length"
+            id="productLength"
+          />
+          <label for="productLength"></label>
+        </div>
+      </div>
+      <div class="col s2 select-title">
+          Length
+      </div>
+      <div class="col s1">
+        <div class="input-checkbox checkbox">
+          <input
+            type="checkbox"
+            class="checkbox-input"
+            [(ngModel)]="variants.size"
+            id="productSize"
+          />
+          <label for="productSize"></label>
+        </div>
+      </div>
+      <div class="col s2 select-title">
+          Size
+      </div>
+      <div class="col s1">
+        <div class="input-checkbox checkbox">
+          <input
+            type="checkbox"
+            class="checkbox-input"
+            [(ngModel)]="variants.strength"
+            id="productStrength"
+          />
+          <label for="productStrength"></label>
+        </div>
+      </div>
+      <div class="col s2 select-title">
+        Strength
+      </div>
+    </div>
+    <div class="row">
+      <div class="col s1">
+        <div class="input-checkbox checkbox">
+          <input
+            type="checkbox"
+            class="checkbox-input"
+            [(ngModel)]="variants.texture"
+            id="productTexture"
+          />
+          <label for="productTexture"></label>
+        </div>
+      </div>
+      <div class="col s2 select-title">
+        Texture
+      </div>
+      <div class="col s1">
+        <div class="input-checkbox checkbox">
+          <input
+            type="checkbox"
+            class="checkbox-input"
+            [(ngModel)]="variants.prescription"
+            id="productPrescription"
+          />
+          <label for="productPrescription"></label>
+        </div>
+      </div>
+      <div class="col s2 select-title">
+        Prescription
+      </div>
+      <div class="col s1">
+        <div class="input-checkbox checkbox">
+          <input
+            type="checkbox"
+            class="checkbox-input"
+            [(ngModel)]="variants.grit"
+            id="productGrit"
+          />
+          <label for="productGrit"></label>
+        </div>
+      </div>
+      <div class="col s2 select-title">
+        Grit
+      </div>
+      <div class="col s1">
+        <div class="input-checkbox checkbox">
+          <input
+            type="checkbox"
+            class="checkbox-input"
+            [(ngModel)]="variants.type"
+            id="productType"
+          />
+          <label for="productType"></label>
+        </div>
+      </div>
+      <div class="col s2 select-title">
+        Type
+      </div>
+    </div>
+  </div>
+
+  <div *ngIf="checkStep(2)">
+    <div class="row">
+      <div class="col s12">
+        {{product.name}}
+      </div>
+      <div class="col s12">
+        Variants
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col s12">
+        <div class="col s2" *ngFor="let variant of getVariants() | iterable">
+          {{variant.key | capitalizeFirst}}(s)
+          <div *ngFor="let v of productVariants[variant.key]" class="product-variant">
+            {{v | capitalizeFirst}}
+          </div>
+          <button class="bluebtn">
+            <fa [name]="'plus'"></fa>
+            Add
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div *ngIf="checkStep(3)">
+    <div class="row flex-center">
+      <div class="col s12">
+        {{product.name}}
+      </div>
+      <div class="col s12">
+        Vendors
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col s12">
+        <div class="title">
+          Which vendors do you get this product from?
+        </div>
+        <div class="col s8">
+          <input auto-complete
+                 placeholder="Search vendors"
+                 [min-chars] = '1'
+                 (ngModelChange) = 'selectedAutocompletedVendor($event)'
+                 [list-formatter] = '"vendor_name"'
+                 [ngModel] = "vendor.vendor_name"
+                 [tab-to-select] = 'false'
+                 name="vendor"
+                 required
+          />
+        </div>
+        <div class="col s2">
+          <button class="bluebtn">
+            <fa [name]="'plus'"></fa>
+            Add
+          </button>
+        </div>
+        <div class="col s2">
+          <button class="bluebtn">
+            <fa [name]="'plus'"></fa>
+            Custom vendor
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

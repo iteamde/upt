@@ -1,15 +1,24 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 
 import { DialogRef, ModalComponent, CloseGuard } from 'angular2-modal';
-import { ConfirmModalContext } from './confirm-modal-context';
+import { BSModalContext } from 'angular2-modal/plugins/bootstrap';
 
+export class ConfirmModalContext extends BSModalContext {
+  public title: string;
+  public content: any;
+  constructor(t, c) {
+   super();
+    this.title = t ? t : 'Please confirm:';
+    this.content = c ? c : 'Are You sure?';
+  }
+}
 
 @Component({
   selector: 'app-confirm-modal',
   templateUrl: './confirm-modal.component.html',
   styleUrls: ['./confirm-modal.component.scss']
 })
-export class ConfirmModalComponent implements CloseGuard, ModalComponent<ConfirmModalContext> {
+export class ConfirmModalComponent implements OnInit, CloseGuard, ModalComponent<ConfirmModalContext> {
   context: ConfirmModalContext;
 
   constructor(
@@ -19,11 +28,14 @@ export class ConfirmModalComponent implements CloseGuard, ModalComponent<Confirm
     dialog.setCloseGuard(this);
   }
 
+  ngOnInit() {
+  }
+
   dismissModal() {
     this.dialog.dismiss();
   }
 
-  closeModal(data) {
+  closeModal(data = { success: true }) {
     this.dialog.close(data);
   }
 

@@ -7,7 +7,6 @@ import { Observable } from 'rxjs/Observable';
 import { PastOrderService } from '../../../core/services/pastOrder.service';
 import { AllOrdersListService } from '../services/all-orders-list.service';
 import { OrderItem } from '../models/order-item';
-import { OrderListType } from '../models/order-list-type';
 
 @Component({
   selector: 'app-all-orders-list',
@@ -18,10 +17,10 @@ import { OrderListType } from '../models/order-list-type';
 export class AllOrdersListComponent implements OnInit, OnDestroy {
   public subscribers: any = {};
 
-  public listName: string = OrderListType.all;
+  public listName: string = 'all';
   public tableHeader: any = [
     {name: 'Order #', className: 's1', alias: 'po_number', filterBy: true, },
-    {name: 'Product Name', className: 's2', alias: 'item_name', filterBy: true, wrap: 2, },
+    {name: 'Product Name', className: 's2', alias: 'item_name', filterBy: true, },
     {name: 'Status', className: 's1', alias: 'status', filterBy: true, showChevron: true, },
     {name: 'Location', className: 's1', alias: 'location_name', filterBy: true, },
     {name: 'Placed', className: 's1', alias: 'placed_date', filterBy: true, },

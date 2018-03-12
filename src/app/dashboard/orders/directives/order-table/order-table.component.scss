@@ -18,14 +18,4 @@
   .cursor-default {
     cursor: default;
   }
-  .col-content-wrapper {
-    text-overflow: ellipsis;
-    overflow: hidden;
-    white-space: nowrap;
-  }
-  .col-wrap-multiline {
-    overflow: hidden;
-    display: -webkit-box;
-    -webkit-box-orient: vertical;
-  }
 }

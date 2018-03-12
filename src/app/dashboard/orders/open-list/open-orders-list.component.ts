@@ -6,7 +6,6 @@ import { BehaviorSubject } from 'rxjs/BehaviorSubject';
 import { Observable } from 'rxjs/Observable';
 import { OpenOrdersListService } from '../services/open-orders-list.service';
 import { OrderItem } from '../models/order-item';
-import { OrderListType } from '../models/order-list-type';
 
 @Component({
   selector: 'app-open-orders-list',
@@ -17,11 +16,11 @@ import { OrderListType } from '../models/order-list-type';
 export class OpenOrdersListComponent implements OnInit, OnDestroy {
   public subscribers: any = {};
 
-  public listName: string = OrderListType.open;
+  public listName: string = 'open';
 
   public tableHeaderOpen: any = [
     {name: 'Order #', className: 's1', alias: 'po_number', filterBy: true, },
-    {name: 'Product Name', className: 's2', alias: 'item_name', filterBy: true, wrap: 2, },
+    {name: 'Product Name', className: 's2', alias: 'item_name', filterBy: true, },
     {name: 'Status', className: 's1', alias: 'status', filterBy: true, showChevron: true, },
     {name: 'Location', className: 's1', alias: 'location_name', filterBy: true, },
     {name: 'Placed', className: 's1', alias: 'placed_date', filterBy: true, },
