@@ -12,7 +12,7 @@ export class AddProductFromVendorComponent implements OnInit {
   public vendors: any = [];
   public selectAll: boolean;
   public item: any = {};
-  public variants: any = [{}, {}];
+  public variants: any = [{},{}];
 
   constructor() { }
 

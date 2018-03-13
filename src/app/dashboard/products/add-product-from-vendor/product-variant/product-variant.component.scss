@@ -1,0 +1,38 @@
+
+:host{
+
+    input{
+        margin: 0;
+        box-sizing:border-box;
+    }
+    input[type="checkbox"]{
+        
+    }
+    input[type="text"]{
+        height:25px;
+        border:1px solid grey;
+        border-radius:5px;
+        background-color:#fff;
+        text-transform:capitalize;
+        padding-left:5px;
+        &:focus{
+            border-color:#33c6d9;
+        }
+    }
+    .item{
+        padding:20px 0;
+    }
+    .new-product-vendor{
+        box-sizing: border-box;
+        margin:20px 0;
+    }
+    .row-input{
+        input{
+            width:70px;
+        }
+    }
+    .edit-vendor{
+        margin-top:10px;
+    }
+
+}

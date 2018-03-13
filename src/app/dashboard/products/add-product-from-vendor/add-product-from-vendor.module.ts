@@ -8,6 +8,9 @@ import { AppSharedModule } from '../../../shared/shared.module';
     AddProductFromVendorComponent,
     ProductVariantComponent
   ],
+  exports:[
+    AddProductFromVendorComponent
+  ],
   imports: [
     AppSharedModule
   ],
