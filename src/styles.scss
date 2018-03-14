@@ -734,9 +734,10 @@ button {
     cursor: pointer;
 
     input:hover {
+      /*
       overflow: hidden;
       text-indent: 5000px;
-
+      */
       & + a {
         text-decoration: underline;
       }
