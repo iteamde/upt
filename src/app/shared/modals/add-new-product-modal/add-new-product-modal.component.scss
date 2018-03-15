@@ -51,4 +51,44 @@
     color: #fff;
     border-radius: 5px;
   }
+  textarea {
+    border: 1px solid $light-grey;
+    border-radius:5px;
+    padding: 5px;
+    resize: none;
+    height:auto;
+    &:focus{
+      border-color: $tealish;
+      outline:none;
+    }
+  }
+  .fa-question-circle {
+    margin-left:5px;
+    color: $tealish;
+    &:hover{
+      cursor: pointer;
+    }
+  }
+  .checkbox-container {
+    display:inline-block;
+    position: relative;
+    label{
+      margin-right:10px;
+    }
+    .fa-question-circle {
+      position: absolute;
+      top:-3px;
+      right:-1px;
+    }
+  }
+  .technical-name-container{
+    position: relative;
+    .fa-question-circle {
+      position: absolute;
+      top:calc(50% + 4px);
+      right:5px;
+      transform:translateY(-50%);
+      font-size:26px;
+    }
+  }
 }

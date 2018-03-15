@@ -6,10 +6,12 @@
       <div class="title">Add custom product</div>
     </div>
     <div class="col s2">
-      <button *ngIf="!isLastStep()" [disabled]="!canProceed()" class="uptracker-form-btn white-text waves-effect waves-light" (click)="nextStep()">
+      <button *ngIf="!isLastStep()" [disabled]="!canProceed()" 
+        class="uptracker-form-btn white-text waves-effect waves-light" (click)="nextStep()">
         Next
       </button>
-      <button *ngIf="isLastStep()" class="uptracker-form-btn white-text waves-effect waves-light" (click)="save()">
+      <button *ngIf="isLastStep()" 
+        class="uptracker-form-btn white-text waves-effect waves-light" (click)="save()">
         Save
       </button>
     </div>
@@ -27,17 +29,26 @@
       <div class="info-box col s12 m9">
         <div class="ttl-box row input">
           <div class="col s12">
-            <input class="ttl col s12 name-field" [(ngModel)]="product.name" type="text" placeholder="Type Name">
+            <input class="ttl col s12 name-field" 
+              [(ngModel)]="product.name" type="text" placeholder="Type Name">
           </div>
           <div class="col s12">
-            <input class="ttl col s12 name-field" [(ngModel)]="product.proper_name" type="text" placeholder="Technical Name">
+            <div class="technical-name-container">
+              <input class="ttl col s12 name-field" 
+                [(ngModel)]="product.proper_name" type="text" placeholder="Technical Name">
+              <i class="fa fa-question-circle " aria-hidden="true"></i>
+              <div class="clearfix"></div>
+            </div>
+            <div class="checkbox-container">
           </div>
         </div>
         <div class="row checks">
 
           <div class="col s4">
             <div class="input-checkbox checkbox">
-              <label>Hazardous</label>
+              <div class="checkbox-container">
+                <label>Hazardous</label><i class="fa fa-question-circle " aria-hidden="true"></i>
+              </div>
               <input
                 type="checkbox"
                 class="checkbox-input"
@@ -50,7 +61,9 @@
 
           <div class="col s4">
             <div class="input-checkbox checkbox">
-              <label>Trackable</label>
+              <div class="checkbox-container">
+                <label>Trackable</label><i class="fa fa-question-circle " aria-hidden="true"></i>
+              </div>
               <input
                 type="checkbox"
                 class="checkbox-input"
@@ -63,7 +76,9 @@
 
           <div class="col s4">
             <div class="input-checkbox checkbox">
-              <label>Tax Exempt</label>
+              <div class="checkbox-container">
+                <label>Tax Exempt</label><i class="fa fa-question-circle " aria-hidden="true"></i>
+              </div>
               <input
                 type="checkbox"
                 class="checkbox-input"
@@ -103,7 +118,7 @@
           </div>
 
           <div class="col input s4">
-            <label>Accounting</label>
+            <label>Accounting</label><i class="fa fa-question-circle " aria-hidden="true"></i>
             <div class="select">
               <select
                 [(ngModel)]="product.account_category"
@@ -113,6 +128,27 @@
                 </option>
               </select>
             </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col s6">
+            <div class="text">
+              <div class="file-field">
+                <div class="upload-link">
+                  <input type="file" (change)="changeListener($event)" />
+                  <a href="javascript:void(0)">Attech File</a>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="col s6 pricing-rule">     
+            <a href="javascript:void(0)">Pricing Rule</a><i class="fa fa-question-circle " aria-hidden="true"></i>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col s12">
+            <p>Notes / Comments</p>
+            <textarea rows="6" cols="" name="comment" placeholder=""></textarea>
           </div>
         </div>
       </div>

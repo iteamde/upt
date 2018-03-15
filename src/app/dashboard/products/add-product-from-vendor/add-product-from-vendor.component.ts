@@ -15,10 +15,31 @@ export class AddProductFromVendorComponent implements OnInit {
   public item: any = {};
   public variants: any = [{},{}];
 
+  
+
   //all variables after this comment are only for test
   currentVariant={
     custom_attr:[]
   }
+
+  exampleMy=[{
+    id:1,
+    name: "First",
+    package_type:'Firstbag',
+    unit_type:'Firstbag1',
+    units_per_package:'Firstbag2',
+    price_range:'First100-200'
+  },
+  {
+    id:2,
+    name: "Second",
+    package_type:'Secondbag',
+    unit_type:'Secondbag1',
+    units_per_package:'Secondbag2',
+    price_range:'Second100-200'
+
+  }
+]
   variationArrs = {
     package_type: ['one', 'two'],
     unit_type: ['one', 'two'],

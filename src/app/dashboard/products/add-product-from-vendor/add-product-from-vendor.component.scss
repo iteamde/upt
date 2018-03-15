@@ -927,5 +927,16 @@ i.fa-eye-slash {
       cursor:pointer;
     }
   }
-}
+ }
+ .technical-name-container{
+  position: relative;
+  .fa-question-circle {
+    position: absolute;
+    top:calc(50% + 4px);
+    right:5px;
+    transform:translateY(-50%);
+    font-size:26px;
+  }
+ }
+
 }
