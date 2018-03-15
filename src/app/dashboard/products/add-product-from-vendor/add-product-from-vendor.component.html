@@ -65,11 +65,11 @@
       Select All
     </div>
     <div class="col s2 book-price center-align">
-      <p>Book Price $</p>
+      <p>Book Price $<i class="fa fa-question-circle " aria-hidden="true"></i></p>
       <input (click)="$event.stopPropagation();" type="text" class="yourprice" [(ngModel)]="item.book_price" >
     </div>
     <div class="col s2 your-price center-align">
-      <p>Your Price $</p>
+      <p>Your Price $<i class="fa fa-question-circle " aria-hidden="true"></i></p>
       <input (click)="$event.stopPropagation();" type="text" class="yourprice" [(ngModel)]="item.your_price" >
     </div>
     <div class="col s2 club-price center-align">

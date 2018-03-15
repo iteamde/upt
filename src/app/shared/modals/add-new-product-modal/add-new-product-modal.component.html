@@ -301,7 +301,7 @@
           <div *ngFor="let v of productVariants[variant.key]" class="product-variant">
             {{v | capitalizeFirst}}
           </div>
-          <button class="bluebtn">
+          <button class="bluebtn waves-light waves-effect">
             <fa [name]="'plus'"></fa>
             Add
           </button>
@@ -326,7 +326,7 @@
           Which vendors do you get this product from?
         </div>
         <div class="col s8">
-          <input auto-complete
+          <input type="text" auto-complete
                  placeholder="Search vendors"
                  [min-chars] = '1'
                  (ngModelChange) = 'selectedAutocompletedVendor($event)'
@@ -338,13 +338,13 @@
           />
         </div>
         <div class="col s2">
-          <button class="bluebtn">
+          <button class="bluebtn waves-light waves-effect">
             <fa [name]="'plus'"></fa>
             Add
           </button>
         </div>
         <div class="col s2">
-          <button class="bluebtn">
+          <button class="bluebtn waves-light waves-effect">
             <fa [name]="'plus'"></fa>
             Custom vendor
           </button>
