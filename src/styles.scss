@@ -972,6 +972,12 @@ button {
 /*** Modal
 **************************************************/
 
+
+.modal-open{
+  overflow: hidden;
+}
+
+
 modal-overlay {
   position: absolute !important;
 }

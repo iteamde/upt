@@ -45,6 +45,10 @@ export class ProductService extends ModelService {
   marketplaceData$: Observable<any>;
   
   public requestParams: any;
+
+
+
+  public callOnScroll$:any = new BehaviorSubject(false);
   
   constructor(
     public injector: Injector,
@@ -68,6 +72,7 @@ export class ProductService extends ModelService {
   }
   
   onInit() {
+
     
     this.marketplaceData$ = Observable.combineLatest(
       this.getMarketplaceData$,

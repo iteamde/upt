@@ -3,7 +3,7 @@
   [title]="'Add Product:'">
 </app-search-filter-header>
 
-<div class="list is-tiles-view">
+<div class="list is-tiles-view" (scroll)="onScroll($event)">
   <div class="title">
     Global Market Place
     <br>

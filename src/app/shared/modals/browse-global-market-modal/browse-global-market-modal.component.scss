@@ -9,6 +9,11 @@
     text-align: center;
   }
 
+/*experiment*/ .is-tiles-view {
+/*experiment*/  overflow-y: scroll; 
+/*experiment*/  height:300px;
+/*experiment*/ }
+
   .list {
     border-right:1px solid $light-grey;
     padding-right: 2%;

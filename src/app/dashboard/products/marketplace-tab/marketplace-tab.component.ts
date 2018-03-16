@@ -1,4 +1,4 @@
-import { Component, HostListener, Input, OnDestroy, OnInit } from '@angular/core';
+import { Component, HostListener, Input, OnDestroy, OnInit} from '@angular/core';
 
 import { DestroySubscribers } from 'ngx-destroy-subscribers';
 import * as _ from 'lodash';
@@ -62,6 +62,7 @@ export class MarketplaceTabComponent implements OnInit {
 
   ngOnInit() {
 
+    this.productService.callOnScroll$.subscribe(res=>this.infiniteScroll$.next(res));
 
     this.products$ = Observable
     .combineLatest(
