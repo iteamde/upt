@@ -64,6 +64,7 @@ export class InventoryComponent implements OnInit, OnDestroy, AfterViewInit {
 
   ngOnInit() {
 
+
     this.products$ = Observable
     .combineLatest(
       this.inventoryService.collection$,

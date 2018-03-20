@@ -5,6 +5,7 @@ import { BSModalContext } from 'angular2-modal/plugins/bootstrap';
 import { BrowseGlobalMarketModalComponent } from '../browse-global-market-modal/browse-global-market-modal.component';
 import { AddNewProductModalComponent } from '../add-new-product-modal/add-new-product-modal.component';
 
+
 export class AddMarketProductModalContext extends BSModalContext {
 
 }
@@ -43,6 +44,7 @@ export class AddMarketProductModalComponent implements OnInit {
       .open(BrowseGlobalMarketModalComponent, this.modalWindowService.overlayConfigFactoryWithParams({}, true, 'big'));
   }
 
+  // inventoryItems: [p];
   openAddNewProductModal() {
     this.dismissModal();
     this.modal

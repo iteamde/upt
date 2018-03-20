@@ -5,7 +5,15 @@ import { DialogRef } from 'angular2-modal';
 import { BSModalContext } from 'angular2-modal/plugins/bootstrap';
 import { DestroySubscribers } from 'ngx-destroy-subscribers';
 
+//import { InventoryService } from "../../../core/services/inventory.service";
+
+import { Modal} from 'angular2-modal';
+import { ModalWindowService } from '../../../core/services/modal-window.service';
+import { AddInventoryModal } from '../../../dashboard/inventory/add-inventory/add-inventory-modal.component';
+
+
 import * as _ from 'lodash';
+
 
 export class AddNewProductModalContext extends BSModalContext {
 
@@ -44,7 +52,11 @@ export class AddNewProductModalComponent implements OnInit {
 
   constructor(
     private accountService: AccountService,
-    public dialog: DialogRef<AddNewProductModalContext>
+    public dialog: DialogRef<AddNewProductModalContext>,
+    public modal: Modal,
+    public modalWindowService: ModalWindowService,
+    //public inventoryService: InventoryService
+
   ) {
 
   }
@@ -68,6 +80,7 @@ export class AddNewProductModalComponent implements OnInit {
 
   nextStep() {
     this.step++;
+    console.log(this.step)
   }
 
   isLastStep() {
@@ -107,4 +120,20 @@ export class AddNewProductModalComponent implements OnInit {
     reader.onload = ($event: any) => this.product.image = $event.target.result;
     reader.readAsDataURL(file.target.files[0]);
   }
+
+    openAddProductModalMy() {
+        this.dismissModal();
+        this.modal
+            .open(AddInventoryModal, this.modalWindowService.overlayConfigFactoryWithParams({'inventoryItems': []}))
+            .then((resultPromise) => {
+                resultPromise.result.then(
+                    (res) => {
+                        //this.inventoryService.getNextInventory(0, this.searchKey, this.sortBy);
+                    },
+                    (err) => {
+                    }
+                );
+            });
+    }
+
 }

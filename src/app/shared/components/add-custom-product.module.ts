@@ -3,9 +3,10 @@ import { AppSharedModule } from '../shared.module';
 import { AddCustomProductComponent } from './add-custom-product.component';
 import { ScannerModule } from '../../dashboard/scanner/scanner.module';
 
+
 @NgModule({
   declarations: [
-    AddCustomProductComponent,
+    AddCustomProductComponent
   ],
   exports: [AddCustomProductComponent],
   imports: [

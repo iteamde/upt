@@ -111,6 +111,8 @@ export class AddInventoryModal implements OnInit, OnDestroy, CloseGuard, ModalCo
   public innerPack: string = '';
   public  wildcardConsumableUnit: string = 'Item';
 
+  myPath: string = '';
+
   constructor(
     public zone: NgZone,
     public dialog: DialogRef<AddInventoryModalContext>,
@@ -124,9 +126,14 @@ export class AddInventoryModal implements OnInit, OnDestroy, CloseGuard, ModalCo
   ) {
     this.context = dialog.context;
     dialog.setCloseGuard(this);
+    // this.context.inventoryItems[0]
   }
 
   ngOnInit() {
+
+    console.log(window.location.pathname, this.newInventory);
+    this.myPath = window.location.pathname;
+
     this.typeIn$
     .debounceTime(500)
     .switchMap((key: string) => {
@@ -663,7 +670,7 @@ export class AddInventoryModal implements OnInit, OnDestroy, CloseGuard, ModalCo
 
   nextTab() {
     if (this.step1.nativeElement.className == 'active')
-      this.step2.nativeElement.click();
+       this.step2.nativeElement.click();
     else if (this.step2.nativeElement.className == 'active')
       this.step3.nativeElement.click();
     else if (this.step3.nativeElement.className == 'active'
@@ -681,7 +688,7 @@ export class AddInventoryModal implements OnInit, OnDestroy, CloseGuard, ModalCo
       this.step3.nativeElement.click();
     else if (this.step3.nativeElement.className == 'active')
       this.step2.nativeElement.click();
-    else this.step1.nativeElement.click();
+      else this.step1.nativeElement.click();
   }
 
   selectTab(location) {

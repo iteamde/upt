@@ -8,6 +8,7 @@ import { CustomProductModel } from '../../../models/custom-product.model';
 import { ReplaySubject } from 'rxjs/ReplaySubject';
 
 
+
 export class AddCustomProductModalContext extends BSModalContext {
   public text: any;
 }
@@ -29,6 +30,7 @@ export class AddCustomProductModalComponent implements OnInit, CloseGuard {
   constructor(
     public productService: ProductService,
     public dialog: DialogRef<AddCustomProductModalContext>,
+
   ) {
     dialog.setCloseGuard(this);
   }
@@ -80,5 +82,6 @@ export class AddCustomProductModalComponent implements OnInit, CloseGuard {
     this.addCustomProduct$.next(newCustomProduct);
     
   }
+
   
 }

@@ -14,9 +14,11 @@ import { ModalModule } from 'angular2-modal';
 import { DashboardModule } from './dashboard/dashboard.module';
 import { OnboardModule } from './onboard/onboard.module';
 
+
+
 @NgModule({
   declarations: [
-    AppComponent,
+    AppComponent
   ],
   imports: [
     ModalModule.forRoot(),

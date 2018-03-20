@@ -15,6 +15,7 @@ import { AddCustomProductModalComponent } from '../../../shared/modals/add-custo
 import { ReplaySubject } from 'rxjs/ReplaySubject';
 import { AddMarketProductModalComponent } from '../../../shared/modals/add-market-product-modal/add-market-product-modal.component';
 
+
 @Component({
   selector: 'app-marketplace-tab',
   templateUrl: './marketplace-tab.component.html',
@@ -252,5 +253,7 @@ export class MarketplaceTabComponent implements OnInit {
       );
     });
   }
+
+
 }
 
