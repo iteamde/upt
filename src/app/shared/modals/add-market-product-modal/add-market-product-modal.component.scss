@@ -3,6 +3,7 @@
 :host /deep/ {
 
   .title {
+    margin-top: 0;
     text-align: center;
   }
 
@@ -19,7 +20,7 @@
   }
 
   .uptracker-form-btn, .uptracker-form-btn.tealish {
-    height: 35px;
+    height: 30px;
     width: 100%;
     line-height: 20px;
     min-width: 80px;

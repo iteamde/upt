@@ -1,0 +1,36 @@
+<div class="close" (click)="dismissModal()"></div>
+<div class="row">
+
+  <div class="col s4 center-align offset-s4">
+    <div class="title">Add custom product</div>
+  </div>
+  <div class="col s2 right-align">
+    <button class="uptracker-form-btn back-btn tealish tealish-text waves-effect waves-light"
+            (click)="stepAction(-1); $event.stopPropagation()" *ngIf="!checkStep(1)">
+      <fa name="chevron-left"></fa>
+      Back
+    </button>
+  </div>
+
+  <div class="col s2 right-align">
+    <button *ngIf="!checkStep(2)"
+            class="uptracker-form-btn white-text waves-effect waves-light" (click)="stepAction(1)">
+      Next
+    </button>
+    <button *ngIf="checkStep(2)"
+            class="uptracker-form-btn white-text waves-effect waves-light" (click)="save()">
+      <fa name="plus"></fa>
+      Add
+    </button>
+  </div>
+</div>
+
+<app-add-product-from-vendor-step1
+  *ngIf="checkStep(1)"
+  [product]="product">
+</app-add-product-from-vendor-step1>
+
+<app-add-product-from-vendor-step2
+  *ngIf="checkStep(2)"
+  [product]="product">
+</app-add-product-from-vendor-step2>

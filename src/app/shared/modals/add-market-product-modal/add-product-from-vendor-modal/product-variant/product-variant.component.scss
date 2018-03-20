@@ -1,0 +1,49 @@
+@import "../../../../../../colors";
+:host{
+
+  input{
+    margin: 0;
+    box-sizing:border-box;
+  }
+
+  input[type="text"]{
+    height:25px;
+    border:1px solid $light-grey;
+    border-radius:5px;
+    background-color: $white;
+    padding-left:5px;
+    &:focus{
+      border-color: $tealish;
+    }
+  }
+  .item{
+    padding:20px 0;
+  }
+  .new-product-vendor{
+    box-sizing: border-box;
+    margin:20px 0;
+  }
+  .row-input{
+    input{
+      width:70px;
+    }
+  }
+  .edit-vendor{
+    margin-top:10px;
+  }
+
+  @media (max-width: 800px) {
+    .uptracker-form-btn,
+    .bluebtn {
+      min-width: 50px;
+    }
+
+    input[type="text"] {
+      width: 40px !important;
+    }
+  }
+
+}
+
+
+
