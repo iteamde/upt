@@ -15,6 +15,9 @@
         Next
         <fa name="chevron-right "></fa>
       </button>
+      <p>{{context.selectedProduct | json}}</p>
+      <p style="font-size: 10px;">{{items.length}} , {{step2.className}} , {{newInventory.inventory_by}}, {{newInventory | json}}</p>
+
       <button (click)="saveAdded()"
         class="uptracker-form-btn save-btn white-text tealish waves-effect waves-light right"
         *ngIf="step4.className == 'active'"

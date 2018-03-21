@@ -112,6 +112,7 @@ export class AddInventoryModal implements OnInit, OnDestroy, CloseGuard, ModalCo
   public innerPack: string = '';
   public  wildcardConsumableUnit: string = 'Item';
 
+  public myVarFor = true;
   constructor(
     public zone: NgZone,
     public dialog: DialogRef<AddInventoryModalContext>,

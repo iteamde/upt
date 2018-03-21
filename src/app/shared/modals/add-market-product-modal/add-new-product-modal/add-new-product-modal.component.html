@@ -2,6 +2,7 @@
 <div class="inner edit-mode">
 
   <div class="row">
+    <div>{{product | json}}</div>
     <div class="col s4 center-align offset-s4">
       <div class="title">Add custom product</div>
     </div>
@@ -403,7 +404,7 @@
           Outer package type
           <div class="select ultra-low-height">
             <select
-              [(ngModel)]="product.outer_package_type"
+              [(ngModel)]="product.package_type"
               #outer_package_type="ngModel"
               materialize="material_select"
               [materializeSelectOptions]="variationArrs.outer_package_type">
@@ -431,12 +432,12 @@
           Consumable unit
           <div class="select ultra-low-height">
             <select
-              [(ngModel)]="product.consumable_unit"
+              [(ngModel)]="product.consumable_unit_type"
               #consumable_unit="ngModel"
               materialize="material_select"
-              [materializeSelectOptions]="variationArrs.consumable_unit">
+              [materializeSelectOptions]="variationArrs.consumable_unit_type">
               <option value="">Type</option>
-              <option *ngFor="let item of variationArrs.consumable_unit" [value]="item">{{item}}
+              <option *ngFor="let item of variationArrs.consumable_unit_type" [value]="item">{{item}}
               </option>
             </select>
           </div>

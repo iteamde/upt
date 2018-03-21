@@ -52,11 +52,14 @@ export class AddNewProductModalComponent implements OnInit {
   };
 
   //dummy values
+
   public variationArrs = {
     outer_package_type: ['Box', 'two'],
     inner_package: ['Type', 'two'],
-    consumable_unit: ['Type', 'two']
+    consumable_unit_type: ['Type', 'two']
   };
+
+
 
   constructor(
     private accountService: AccountService,
@@ -72,7 +75,11 @@ export class AddNewProductModalComponent implements OnInit {
     this.departmentCollection$ = this.accountService.getDepartments().take(1);
     this.productAccountingCollection$ = this.accountService.getProductAccounting().take(1);
     this.productCategoriesCollection$ = this.accountService.getProductCategories().take(1);
+
+
   }
+
+
 
   addSubscribers() {
     this.subscribers.departmenCollectiontSubscription = this.departmentCollection$
@@ -131,31 +138,71 @@ export class AddNewProductModalComponent implements OnInit {
   }
 
   openAddInventoryModal() {
-    const prod = {
+    /*  const prod = {
+          catalog_number: ["030-090", "030-090"],
+          category: "Lab",
+          checked: false,
+          consumable_unit: {
+              properties: {
+                  unit_type: "Discs",
+                  qty: 10
+              }
+          },
+          department: "clinic",
+          images: [],
+          inventory_by: [
+              {type: "Package", label: "Box", value: "package", qty: 10},
+              {type: "Sub Package", label: "", value: "sub_package", qty: null},
+              {type: "Consumable Unit", label: "Disks", value: "consumable_unit", qty: 1}
+          ],
+          name: this.product.name,
+          notActive: false,
+          package_type: "Box",
+          product_id: null,
+          sub_package: {
+              properties: {
+                  qty: null,
+                  unit_type: ''
+              }
+          },
+          suggest: {
+              input: ["Bioplast", "4mm", "Round", "Red", "American Orthodontics", "Great Lakes Orthodontic"]
+          },
+          tags: ["Red", "American Orthodontics", "Great Lakes Orthodontic"],
+          ups: '',
+          variant_id: null,
+          vendors: [
+              {vendor_name: "American Orthodontics", vendor_id: "582f4fdd06e55c3aab564023"},
+              {vendor_name: "Great Lakes Orthodontic", vendor_id: "582f4fdf06e55c3aab564037"}
+          ]
+
+      };
+  */
+    let prod = {
       catalog_number: ["030-090", "030-090"],
       category: "Lab",
       checked: false,
       consumable_unit: {
         properties: {
-          unit_type: "Discs",
+          unit_type: this.product.consumable_unit_type,
           qty: 10
         }
       },
       department: "clinic",
       images: [],
       inventory_by: [
-        {type: "Package", label: "Box", value: "package", qty: 10},
-        {type: "Sub Package", label: "", value: "sub_package", qty: null},
-        {type: "Consumable Unit", label: "Disks", value: "consumable_unit", qty: 1}
+        {type: "Package", label: this.product.package_type, value: "package", qty: 10},
+        {type: "Sub Package", label: this.product.inner_package, value: "sub_package", qty: 1},
+        {type: "Consumable Unit", label: this.product.consumable_unit_type, value: "consumable_unit", qty: 1}
       ],
       name: this.product.name,
       notActive: false,
-      package_type: "Box",
+      package_type: this.product.package_type,
       product_id: null,
       sub_package: {
         properties: {
-          qty: null,
-          unit_type: ''
+          unit_type: this.product.inner_package,
+          qty: 10
         }
       },
       suggest: {
@@ -171,8 +218,9 @@ export class AddNewProductModalComponent implements OnInit {
 
     };
     this.modal.open(AddInventoryModal, this.modalWindowService
-      .overlayConfigFactoryWithParams({'selectedProduct': this.product, 'modalMode': true}, true, 'big'))
+      .overlayConfigFactoryWithParams({'selectedProduct': {...prod}, 'modalMode': true}, true, 'big'))
       .then((resultPromise) => resultPromise.result.then((inventory) => {
+
         this.product.inventory_group = inventory;
         this.setStep(6);
       }));
