@@ -10,6 +10,6 @@ export class SlFilters {
     this.vendor = '';
     this.onlymy = false;
     this.minPrice = 0;
-    this.maxPrice =  0;
+    this.maxPrice =  +Infinity;
   }
 }

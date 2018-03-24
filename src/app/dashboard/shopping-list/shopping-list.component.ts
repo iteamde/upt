@@ -68,14 +68,14 @@ export class ShoppingListComponent implements OnInit, OnDestroy {
         (f.location == '' || f.location == item.location_name)
         && (f.vendor == '' || f.vendor == item.selected_vendor.vendor_name))
         && (!f.onlymy || this.userService.selfData.id == item.created_by)
-
-
+        && (( parseInt(item.price_lower.substring(1)) >= f.minPrice ) && (parseInt(item.price_upper.substring(1)) <= f.maxPrice))
       );
       this.totalOrders = cart.filter((item:any)=>item.status).length;
       this.total = cart.length;
       this.checkSelectAllItems(r);
       this.updateCart(cart);
       this.changed = [];
+      console.log("hbfryyr", r, r.price_lower)
     });
 
   }
