@@ -6,6 +6,10 @@ import { DestroySubscribers } from 'ngx-destroy-subscribers';
 import { Observable } from 'rxjs/Rx';
 import * as _ from 'lodash';
 
+import noUiSlider from 'materialize-css/extras/noUiSlider/nouislider';
+
+import wNumb from 'materialize-css/extras/noUiSlider/nouislider';
+
 import { UserService, AccountService } from '../../../core/services/index';
 import { SlFilters } from '../../../models/slfilters.model';
 
@@ -14,6 +18,9 @@ export class ProductFilterModalContext extends BSModalContext {
   public currentFilters: SlFilters;
   public callback = function(a:any){};
 }
+
+
+
 
 @Component({
   selector: 'app-product-filter-modal',
@@ -26,7 +33,8 @@ export class ProductFilterModal implements OnInit, ModalComponent<ProductFilterM
   context: ProductFilterModalContext;
   public filter:SlFilters = new SlFilters;
 
-
+ x;
+ y;
   constructor(
       public dialog: DialogRef<ProductFilterModalContext>,
       public userService: UserService,
@@ -36,8 +44,35 @@ export class ProductFilterModal implements OnInit, ModalComponent<ProductFilterM
     this.filter = this.context.currentFilters;
   }
 
-  ngOnInit(){
+  ngOnInit() {
+    this.createSlider();
+
   }
+
+  createSlider() {
+    // console.log("FUNCTION THAT MAKE SLIDER", noUiSlider);
+    const slider = document.getElementById('test-slider') as noUiSlider.Instance;
+     noUiSlider.create(slider, {
+      start: [20, 80],
+      connect: true,
+      step: 1,
+      orientation: 'horizontal', // 'horizontal' or 'vertical'
+      range: {
+        'min': 0,
+        'max': 100
+      }
+    });
+    // const x = slider.noUiSlider.get();
+    // console.log( "ITS VALUE", x);
+    slider.noUiSlider.on('update', function(){
+      console.log(slider.noUiSlider.get());
+      this.x = slider.noUiSlider.get()[0];
+      this.y = slider.noUiSlider.get()[1];
+      console.log(this.x, this.y);
+    });
+  }
+
+
 
   dismissModal(){
     this.dialog.dismiss();
