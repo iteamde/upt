@@ -52,7 +52,7 @@ export class ProductFilterModal implements OnInit, ModalComponent<ProductFilterM
     // console.log("FUNCTION THAT MAKE SLIDER", noUiSlider);
     const slider = document.getElementById('test-slider') as noUiSlider.Instance;
      noUiSlider.create(slider, {
-      start: [20.5, 80.5],
+      start: [0, 100],
       connect: true,
       step: 0.5,
       orientation: 'horizontal', // 'horizontal' or 'vertical'
@@ -66,6 +66,9 @@ export class ProductFilterModal implements OnInit, ModalComponent<ProductFilterM
       console.log(this);
       this.minPrice = arrOfPrice[0]
       this.maxPrice = arrOfPrice[1];
+
+      this.filter.minPrice = arrOfPrice[0]
+      this.filter.maxPrice = arrOfPrice[1];
       console.log(this.minPrice, this.maxPrice);
     });
   }

@@ -44,8 +44,8 @@ export class ShoppingListComponent implements OnInit, OnDestroy {
   public changed: any = [];
   public selectedProducts: any = [];
   public totalOrders: number;
-  
-  
+
+
   constructor(
     public modal: Modal,
     public modalWindowService: ModalWindowService,
@@ -54,11 +54,11 @@ export class ShoppingListComponent implements OnInit, OnDestroy {
     public accountService: AccountService,
   ) {
   }
-  
+
   ngOnInit() {
     //TODO remove
     this.accountService.dashboardLocation$.next(this.accountService.dashboardLocation);
-     
+
     Observable.combineLatest(
       this.cartService.collection$,
       this.cartService.filters$,
@@ -68,6 +68,8 @@ export class ShoppingListComponent implements OnInit, OnDestroy {
         (f.location == '' || f.location == item.location_name)
         && (f.vendor == '' || f.vendor == item.selected_vendor.vendor_name))
         && (!f.onlymy || this.userService.selfData.id == item.created_by)
+
+
       );
       this.totalOrders = cart.filter((item:any)=>item.status).length;
       this.total = cart.length;
@@ -75,14 +77,14 @@ export class ShoppingListComponent implements OnInit, OnDestroy {
       this.updateCart(cart);
       this.changed = [];
     });
-    
+
   }
   ngOnDestroy() {
     console.log('for unsubscribing')
   }
-  
+
   addSubscribers() {
-    
+
     this.subscribers.selectAllListSubscription =
       this.selectAll$
       .switchMap(select => {
@@ -96,8 +98,8 @@ export class ShoppingListComponent implements OnInit, OnDestroy {
         })
       })
       .subscribe(cart => this.saveItem());
-  
-    
+
+
     this.subscribers.removeItemsSubscriber = this.deleteChecked$
     .switchMap(() =>
       this.cartService.collection$.first()
@@ -111,7 +113,7 @@ export class ShoppingListComponent implements OnInit, OnDestroy {
       },
       (err) => console.log(err)
     );
-  
+
     this.subscribers.removeCurrentProductSubscribtion = this.deleteCurrentProduct$
     .switchMap((product: any) => this.cartService.removeItems([product]))
     .subscribe((res:any) => {
@@ -120,7 +122,7 @@ export class ShoppingListComponent implements OnInit, OnDestroy {
       },
       (err) => console.log(err)
     );
-    
+
     this.subscribers.updateItemSubscription = this.updateItem$
     .switchMap(() => this.cart$.first())
     .map((items: any) => {
@@ -136,9 +138,9 @@ export class ShoppingListComponent implements OnInit, OnDestroy {
       },
       (err: any) => console.error(err)
     );
-    
+
   }
-  
+
   viewProductModal(product) {
     this.modal
     .open(ViewProductModal, this.modalWindowService.overlayConfigFactoryWithParams({product: product}))
@@ -152,7 +154,7 @@ export class ShoppingListComponent implements OnInit, OnDestroy {
       );
     });
   }
-  
+
   viewSettingsModal() {
     this.modal
     .open(ShoppingListSettingsModal, this.modalWindowService.overlayConfigFactoryWithParams({}, true))
@@ -166,7 +168,7 @@ export class ShoppingListComponent implements OnInit, OnDestroy {
       );
     });
   }
-  
+
   addProduct() {
     this.modal
     .open(AddProductModal, this.modalWindowService.overlayConfigFactoryWithParams({}))
@@ -180,17 +182,17 @@ export class ShoppingListComponent implements OnInit, OnDestroy {
       );
     });
   }
-  
+
   editProductModal(product = null) {
     this.modal.open(EditProductModal, this.modalWindowService.overlayConfigFactoryWithParams({product: product}));
   }
-  
+
   searchFilter(event) {
     // replace forbidden characters
     let value = event.target.value.replace(/([.?*+^$[\]\\(){}|-])/g, "\\$1");
     this.searchKey$.next(value);
   }
-  
+
   showFiltersModal() {
     Observable.combineLatest(
       this.cartService.collection$,
@@ -220,7 +222,7 @@ export class ShoppingListComponent implements OnInit, OnDestroy {
       });
     });
   }
-  
+
   changePriceModal(item = {}) {
     //TODO
     this.modal
@@ -235,47 +237,47 @@ export class ShoppingListComponent implements OnInit, OnDestroy {
       );
     });
   }
-  
+
   updateVendor(product, vendor) {
     product.selected_vendor = vendor;
     product.selected_vendor.id = vendor.vendor_id;
     product.selected_vendor.price = vendor.book_price;
     this.changeRow(product);
   }
-  
+
   saveItem(item: any = {}) {
     this.updateItem$.next('');
-    
+
   };
-  
+
   changeRow(item) {
     this.changed[item['id']] = true;
     this.saveItem(item);
   }
-  
+
   selectAllFunc(selectAll) {
     this.selectAll$.next(!selectAll);
   }
-  
+
   applyFilters(data: SlFilters) {
     this.cartService.filters$.next(data);
   }
-  
+
   deleteCheckedProducts() {
     this.deleteChecked$.next('');
   }
-  
+
   deleteCurrentProduct(product) {
     this.deleteCurrentProduct$.next(product);
   }
-  
+
   updateCart(data) {
     this.cart$.next(data);
   }
-  
+
   checkSelectAllItems(items) {
     let checkedItemsArr = _.filter(items, 'status');
     this.selectAll = (checkedItemsArr.length === items.length);
   }
-  
+
 }

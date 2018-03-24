@@ -1,3 +1,4 @@
+
 <div class="products content">
   <div class="row">
     <div class="list col m8 s12">
@@ -58,6 +59,7 @@
         </div>
       </div>
       <div class="item row" *ngFor="let product of (cart$ | async); let i=index">
+        <p>{{(cart$ | async) | json}}</p>
         <div class="col s4">
           <div class="row">
             <div class="col s2">
