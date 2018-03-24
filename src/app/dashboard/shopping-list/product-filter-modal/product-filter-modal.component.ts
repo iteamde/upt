@@ -33,8 +33,8 @@ export class ProductFilterModal implements OnInit, ModalComponent<ProductFilterM
   context: ProductFilterModalContext;
   public filter:SlFilters = new SlFilters;
 
- x;
- y;
+ public minPrice;
+ public maxPrice;
   constructor(
       public dialog: DialogRef<ProductFilterModalContext>,
       public userService: UserService,
@@ -46,29 +46,27 @@ export class ProductFilterModal implements OnInit, ModalComponent<ProductFilterM
 
   ngOnInit() {
     this.createSlider();
-
   }
 
   createSlider() {
     // console.log("FUNCTION THAT MAKE SLIDER", noUiSlider);
     const slider = document.getElementById('test-slider') as noUiSlider.Instance;
      noUiSlider.create(slider, {
-      start: [20, 80],
+      start: [20.5, 80.5],
       connect: true,
-      step: 1,
+      step: 0.5,
       orientation: 'horizontal', // 'horizontal' or 'vertical'
       range: {
         'min': 0,
         'max': 100
       }
     });
-    // const x = slider.noUiSlider.get();
-    // console.log( "ITS VALUE", x);
-    slider.noUiSlider.on('update', function(){
-      console.log(slider.noUiSlider.get());
-      this.x = slider.noUiSlider.get()[0];
-      this.y = slider.noUiSlider.get()[1];
-      console.log(this.x, this.y);
+    slider.noUiSlider.on('update', () => {
+      const arrOfPrice = slider.noUiSlider.get();
+      console.log(this);
+      this.minPrice = arrOfPrice[0]
+      this.maxPrice = arrOfPrice[1];
+      console.log(this.minPrice, this.maxPrice);
     });
   }
 
