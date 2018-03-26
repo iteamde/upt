@@ -63,7 +63,7 @@ export class ShoppingListComponent implements OnInit, OnDestroy {
       this.cartService.filters$,
     )
     .subscribe(([r, f]) => {
-      console.log("CART =====" , r);
+      //console.log("CART =====" , r);
       let cart = _.filter(r, (item: any) => (
         (f.location == '' || f.location == item.location_name)
         && (f.vendor == '' || f.vendor == item.selected_vendor.vendor_name))
@@ -76,14 +76,14 @@ export class ShoppingListComponent implements OnInit, OnDestroy {
 
       console.log('CART', cart);
 
-      cart.forEach((item,index)=>{
-        console.log("ITEM", item);
-        console.log("ITEM_VENDORS", item.vendors);
+      cart.forEach((item)=>{
+        //console.log("ITEM", item);
+        //console.log("ITEM_VENDORS", item.vendors);
         item.filteredVendors = item.vendors;
         item.filteredVendors = _.filter(item.vendors, (item:any)=> {
-          console.log("PASS ITEM", item);
+          //console.log("PASS ITEM", item);
           return (((item.lowest_price ? item.lowest_price : item.book_price) >= f.someRange[0])
-                 && ((item.lowest_price ? item.lowest_price : item.book_price) <= f.someRange[1])) ;
+                 && ((item.lowest_price ? item.lowest_price : item.book_price) <= f.someRange[1]));
         })
       })
 
