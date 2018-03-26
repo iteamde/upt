@@ -8,6 +8,7 @@ import * as _ from 'lodash';
 
 import { UserService, AccountService } from '../../../core/services/index';
 import { SlFilters } from '../../../models/slfilters.model';
+import { NouiFormatter } from "ng2-nouislider";
 
 export class ProductFilterModalContext extends BSModalContext {
   public vendors: any;
@@ -27,6 +28,10 @@ export class ProductFilterModal implements OnInit, ModalComponent<ProductFilterM
   public filter:SlFilters = new SlFilters;
 
 
+
+
+
+
   constructor(
       public dialog: DialogRef<ProductFilterModalContext>,
       public userService: UserService,
@@ -36,7 +41,12 @@ export class ProductFilterModal implements OnInit, ModalComponent<ProductFilterM
     this.filter = this.context.currentFilters;
   }
 
+
+
+
   ngOnInit(){
+
+
   }
 
   dismissModal(){
@@ -56,4 +66,29 @@ export class ProductFilterModal implements OnInit, ModalComponent<ProductFilterM
     this.filter = new SlFilters;
     this.triggerFilterChange();
   }
+
+
+
+  /*
+  @ViewChild('slider', { read: ElementRef }) slider: ElementRef;
+  someKeyboardConfig: any = {
+    connect: [true, true, true],
+    tooltips: [new MyFormatter, new MyFormatter],
+    start: [24, 34],
+    step: 1,
+    range: {
+      min: 0,
+      max: 100
+    }
+  }
+}
+export class MyFormatter implements NouiFormatter {
+  to(value: number): string {
+    let output = "$" + value;
+    return output;
+  }
+  from(value: string): number {
+    return Number(value.split(" ")[0]);
+  }
+ */
 }

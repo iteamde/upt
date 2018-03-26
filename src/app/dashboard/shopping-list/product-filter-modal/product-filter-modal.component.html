@@ -1,3 +1,8 @@
+<p>{{filter | json}}</p>
+<nouislider #slider [connect]="true"  [min]="0" [max]="1000" [step]="1" [(ngModel)]="filter.someRange"
+            ></nouislider>
+<p>{{filter.someRange[0]}}</p>
+<p>{{filter.someRange[1]}}</p>
 <div class="inner">
   <div class="row title center-align">Shopping List Filters</div>
   <div class="row">

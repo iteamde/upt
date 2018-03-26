@@ -2,13 +2,15 @@ import { NgModule } from '@angular/core';
 
 import { ProductFilterModal } from './product-filter-modal.component';
 import { AppSharedModule } from '../../../shared/shared.module';
+import { NouisliderModule } from 'ng2-nouislider';
 
 @NgModule({
   declarations: [
     ProductFilterModal
   ],
   imports: [
-    AppSharedModule
+    AppSharedModule,
+    NouisliderModule
   ],
   providers: [],
   // IMPORTANT:
