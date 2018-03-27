@@ -68,9 +68,15 @@ export class ShoppingListComponent implements OnInit, OnDestroy {
         (f.location == '' || f.location == item.location_name)
         && (f.vendor == '' || f.vendor == item.selected_vendor.vendor_name))
         && (!f.onlymy || this.userService.selfData.id == item.created_by)
-        && (((item.price ? item.price : parseFloat(item.price_lower.slice(1))) >= f.someRange[0])
-          && (((item.price ? item.price : parseFloat(item.price_upper.slice(1))) <= f.someRange[1])))
-        //&& (( parseFloat(item.price_lower.substring(1)) >= f.someRange[0] ) && (parseFloat(item.price_upper.substring(1)) <= f.someRange[1]))
+        && (item.price >0 ? ((item.price >= f.someRange[0]) && (item.price <= f.someRange[1])) :
+            (((parseFloat(item.price_lower.slice(1))>= f.someRange[0]) && (parseFloat(item.price_lower.slice(1)) <= f.someRange[1])) ||
+              ((parseFloat(item.price_upper.slice(1))>= f.someRange[0]) && (parseFloat(item.price_upper.slice(1)) <= f.someRange[1]))
+            ))
+
+
+        //&& (((item.price ? item.price : parseFloat(item.price_lower.slice(1))) >= f.someRange[0])
+        //  && (((item.price ? item.price : parseFloat(item.price_upper.slice(1))) <= f.someRange[1])))
+
       );
 
 
