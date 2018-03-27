@@ -28,10 +28,6 @@ export class ProductFilterModal implements OnInit, ModalComponent<ProductFilterM
   public filter:SlFilters = new SlFilters;
 
 
-
-
-
-
   constructor(
       public dialog: DialogRef<ProductFilterModalContext>,
       public userService: UserService,

@@ -68,11 +68,10 @@ export class ShoppingListComponent implements OnInit, OnDestroy {
         (f.location == '' || f.location == item.location_name)
         && (f.vendor == '' || f.vendor == item.selected_vendor.vendor_name))
         && (!f.onlymy || this.userService.selfData.id == item.created_by)
-        && (item.price >0 ? ((item.price >= f.someRange[0]) && (item.price <= f.someRange[1])) :
-            (((parseFloat(item.price_lower.slice(1))>= f.someRange[0]) && (parseFloat(item.price_lower.slice(1)) <= f.someRange[1])) ||
-              ((parseFloat(item.price_upper.slice(1))>= f.someRange[0]) && (parseFloat(item.price_upper.slice(1)) <= f.someRange[1]))
+        && (item.price > 0 ? ((item.price >= f.someRange[0]) && (item.price <= f.someRange[1])) :
+            (((parseFloat(item.price_lower.slice(1)) >= f.someRange[0]) && (parseFloat(item.price_lower.slice(1)) <= f.someRange[1])) ||
+              ((parseFloat(item.price_upper.slice(1)) >= f.someRange[0]) && (parseFloat(item.price_upper.slice(1)) <= f.someRange[1]))
             ))
-
 
         //&& (((item.price ? item.price : parseFloat(item.price_lower.slice(1))) >= f.someRange[0])
         //  && (((item.price ? item.price : parseFloat(item.price_upper.slice(1))) <= f.someRange[1])))
@@ -85,7 +84,7 @@ export class ShoppingListComponent implements OnInit, OnDestroy {
       cart.forEach((item: any)=>{
         //console.log("ITEM", item);
         //console.log("ITEM_VENDORS", item.vendors);
-        //item.filteredVendors = item.vendors;
+        item.filteredVendors = item.vendors;
         item.filteredVendors = _.filter(item.vendors, (item:any)=> {
           //console.log("PASS ITEM", item);
           return (((item.lowest_price ? item.lowest_price : item.book_price) >= f.someRange[0])
@@ -93,20 +92,36 @@ export class ShoppingListComponent implements OnInit, OnDestroy {
         })
       })
 
-
-      cart.forEach((item: any) => {
-        if(item.selected_vendor.vendor_name == 'Auto') {
-          let max = 0;
-          let min = Infinity;
-          item.filteredVendors.forEach((item: any) => {
-            max = Math.max(item.book_price, max);
-            min = Math.min(item.book_price, min);
+      // double cart.forEach just for easy read
+      cart.forEach((item_out: any) => {
+        if(item_out.selected_vendor.vendor_name == 'Auto') {
+          let maxVendorPrice = 0;
+          let minVendorPrice = Infinity;
+          item_out.filteredVendors.forEach((item: any) => {
+            maxVendorPrice = Math.max(item.book_price, maxVendorPrice);
+            minVendorPrice = Math.min(item.book_price, minVendorPrice);
           })
-          item.price_lower = '$' + min.toFixed(2);
-          item.price_upper = '$' + max.toFixed(2);
-          console.log("MAX_PRICE", max);
-          console.log("MIN_PRICE", min);
+
+          item_out.price_lower = '$' + minVendorPrice.toFixed(2);
+          item_out.price_upper = '$' + maxVendorPrice.toFixed(2);
+          console.log("MAX_PRICE", maxVendorPrice);
+          console.log("MIN_PRICE", minVendorPrice);
         }
+      })
+
+      // double cart.forEach just for easy read
+      // FIND MAX AND MIN PRICE OF VENDORS AND PRICE FOR RANGE
+      let maxAllVendorPrice = 0;
+      let minAllVendorPrice = Infinity;
+      cart.forEach((item_out: any) => {
+          item_out.filteredVendors.forEach((item: any) => {
+            maxAllVendorPrice = Math.max(item.book_price, maxAllVendorPrice, item_out.price);
+            minAllVendorPrice = Math.min(item.book_price, minAllVendorPrice, item_out.price);
+            console.log(item_out.price);
+          })
+          console.log("MAX_PRICE_ALLVANDOR", maxAllVendorPrice);
+          console.log("MIN_PRICE_ALLVANDOR", minAllVendorPrice);
+
       })
 
 
