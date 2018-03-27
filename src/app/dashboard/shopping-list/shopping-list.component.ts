@@ -82,15 +82,31 @@ export class ShoppingListComponent implements OnInit, OnDestroy {
 
       console.log('CART', cart);
 
-      cart.forEach((item)=>{
+      cart.forEach((item: any)=>{
         //console.log("ITEM", item);
         //console.log("ITEM_VENDORS", item.vendors);
-        item.filteredVendors = item.vendors;
+        //item.filteredVendors = item.vendors;
         item.filteredVendors = _.filter(item.vendors, (item:any)=> {
           //console.log("PASS ITEM", item);
           return (((item.lowest_price ? item.lowest_price : item.book_price) >= f.someRange[0])
                  && ((item.lowest_price ? item.lowest_price : item.book_price) <= f.someRange[1]));
         })
+      })
+
+
+      cart.forEach((item: any) => {
+        if(item.selected_vendor.vendor_name == 'Auto') {
+          let max = 0;
+          let min = Infinity;
+          item.filteredVendors.forEach((item: any) => {
+            max = Math.max(item.book_price, max);
+            min = Math.min(item.book_price, min);
+          })
+          item.price_lower = '$' + min.toFixed(2);
+          item.price_upper = '$' + max.toFixed(2);
+          console.log("MAX_PRICE", max);
+          console.log("MIN_PRICE", min);
+        }
       })
 
 
