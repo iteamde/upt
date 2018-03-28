@@ -45,6 +45,7 @@ export class ShoppingListComponent implements OnInit, OnDestroy {
   public selectedProducts: any = [];
   public totalOrders: number;
 
+  public maxmin: number[] =[1,2];
 
   constructor(
     public modal: Modal,
@@ -63,7 +64,7 @@ export class ShoppingListComponent implements OnInit, OnDestroy {
       this.cartService.filters$,
     )
     .subscribe(([r, f]) => {
-      //console.log("CART =====" , r);
+      console.log("CART =====" , r);
       let cart = _.filter(r, (item: any) => (
         (f.location == '' || f.location == item.location_name)
         && (f.vendor == '' || f.vendor == item.selected_vendor.vendor_name))
@@ -72,12 +73,7 @@ export class ShoppingListComponent implements OnInit, OnDestroy {
             (((parseFloat(item.price_lower.slice(1)) >= f.someRange[0]) && (parseFloat(item.price_lower.slice(1)) <= f.someRange[1])) ||
               ((parseFloat(item.price_upper.slice(1)) >= f.someRange[0]) && (parseFloat(item.price_upper.slice(1)) <= f.someRange[1]))
             ))
-
-        //&& (((item.price ? item.price : parseFloat(item.price_lower.slice(1))) >= f.someRange[0])
-        //  && (((item.price ? item.price : parseFloat(item.price_upper.slice(1))) <= f.someRange[1])))
-
       );
-
 
       console.log('CART', cart);
 
@@ -93,15 +89,15 @@ export class ShoppingListComponent implements OnInit, OnDestroy {
       })
 
       // double cart.forEach just for easy read
+      // SHOW PRICE RANGE like  $0.38-$35.69 WHEN Vendor = AUTO
       cart.forEach((item_out: any) => {
         if(item_out.selected_vendor.vendor_name == 'Auto') {
           let maxVendorPrice = 0;
-          let minVendorPrice = Infinity;
+          let minVendorPrice = 100000000;
           item_out.filteredVendors.forEach((item: any) => {
             maxVendorPrice = Math.max(item.book_price, maxVendorPrice);
             minVendorPrice = Math.min(item.book_price, minVendorPrice);
           })
-
           item_out.price_lower = '$' + minVendorPrice.toFixed(2);
           item_out.price_upper = '$' + maxVendorPrice.toFixed(2);
           console.log("MAX_PRICE", maxVendorPrice);
@@ -109,20 +105,22 @@ export class ShoppingListComponent implements OnInit, OnDestroy {
         }
       })
 
-      // double cart.forEach just for easy read
       // FIND MAX AND MIN PRICE OF VENDORS AND PRICE FOR RANGE
       let maxAllVendorPrice = 0;
-      let minAllVendorPrice = Infinity;
-      cart.forEach((item_out: any) => {
-          item_out.filteredVendors.forEach((item: any) => {
-            maxAllVendorPrice = Math.max(item.book_price, maxAllVendorPrice, item_out.price);
-            minAllVendorPrice = Math.min(item.book_price, minAllVendorPrice, item_out.price);
-            console.log(item_out.price);
-          })
-          console.log("MAX_PRICE_ALLVANDOR", maxAllVendorPrice);
-          console.log("MIN_PRICE_ALLVANDOR", minAllVendorPrice);
-
+      let minAllVendorPrice = 1000000000;
+      r.forEach((item_out: any) => {
+        item_out.filteredVendors.forEach((item: any) => {
+          maxAllVendorPrice = Math.max(parseFloat(item.book_price.toFixed(2)),
+            maxAllVendorPrice, parseFloat((parseFloat(item_out.price_lower.slice(1))).toFixed(2)));
+          minAllVendorPrice = Math.min(parseFloat(item.book_price.toFixed(2)),
+            minAllVendorPrice, parseFloat((parseFloat(item_out.price_upper.slice(1))).toFixed(2)));
+          console.log(item_out.price);
+        })
+        this.maxmin[0] = minAllVendorPrice;
+        this.maxmin[1] = maxAllVendorPrice;
+        console.log("MAX-MIN-ARRAY", this.maxmin);
       })
+
 
 
       this.totalOrders = cart.filter((item:any)=>item.status).length;
@@ -130,10 +128,6 @@ export class ShoppingListComponent implements OnInit, OnDestroy {
       this.checkSelectAllItems(r);
       this.updateCart(cart);
       this.changed = [];
-      //console.log("ITEMS", r);
-      //console.log("ITEMS PRICE", parseInt(r[0].price_lower.substring(1)), parseInt(r[0].price_upper.substring(1)));
-      //console.log("FILTER PRICE", f.someRange[0], f.someRange[1]);
-      //console.log("FILTER Boolean", (( parseInt(r[0].price_lower.substring(1)) >= f.someRange[0] ) && (parseInt(r[0].price_upper.substring(1)) <= f.someRange[1])))
     });
 
   }
@@ -265,6 +259,7 @@ export class ShoppingListComponent implements OnInit, OnDestroy {
       this.modal
       .open(ProductFilterModal, this.modalWindowService.overlayConfigFactoryWithParams({
         vendors: vendors,
+        maxmin: this.maxmin,
         currentFilters: filters,
         callback: this.applyFilters.bind(this)
       }, true))

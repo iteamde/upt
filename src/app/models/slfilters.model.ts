@@ -8,6 +8,6 @@ export class SlFilters {
     this.location = '';
     this.vendor = '';
     this.onlymy = false;
-    this.someRange = [0,100000];
+    this.someRange = [0,1000000];
   }
 }
