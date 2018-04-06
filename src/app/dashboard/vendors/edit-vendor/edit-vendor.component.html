@@ -32,7 +32,7 @@
       <input id="city" placeholder="{{placeholder.address}}" class="validate col s12" [(ngModel)]="generalVendor.address.city" name="city"
              #city="ngModel" type="text">
       <div [hidden]="city.valid || city.pristine" class="error red-text left-align">
-        Address is required.
+        City is required.
       </div>
     </div>
     <div class="col s12 m4">
@@ -103,7 +103,7 @@
       <input id="state" placeholder="{{placeholder.address}}" class="validate col s12" [(ngModel)]="generalVendor.address.state" name="state"
              #state="ngModel" type="text">
       <div [hidden]="state.valid || state.pristine" class="error red-text left-align">
-        Address is required.
+        State is required.
       </div>
     </div>
   </div>
