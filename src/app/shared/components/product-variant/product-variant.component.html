@@ -1,0 +1,176 @@
+<div class="row">
+  <div class="col s8">
+    <div class="vendor-title">
+      {{vendor.vendor_name}}
+    </div>
+  </div>
+  <div class="col s4 right-align">
+    <a (click)="addPackage()">+ Add Packaging</a>
+  </div>
+</div>
+<div class="row package" *ngFor="let package of packages; let i = index">
+  <div class="row">
+    <div class="col s11 sub-title">
+      {{product.package_type}} <span *ngIf="product.package_type">of</span>
+      {{product.sub_package.properties.qty}} {{product.sub_package.properties.unit_type}} <span *ngIf="product.sub_package.properties.unit_type">of</span>
+      {{product.consumableUnitQty}} {{product.consumable_unit.properties.unit_type}} in tcu
+    </div>
+    <div class="col s1 right-align">
+      <fa name="times-circle" (click)="deletePackage(i)"></fa>
+    </div>
+  </div>
+  <div class="col m4 l2">
+    <div class="ttl">Outer Package</div>
+    <div class="row relative">
+      <div class="col s12 flex">
+        <div class="input search">
+          <input class="caret" auto-complete
+                 placeholder="Type"
+                 [source]="observableSourceOuterPackage.bind(this)"
+                 (input) = 'onSearchOuterPackage($event)'
+                 (blur)="updateOuterPackege($event)"
+                 (ngModelChange) = 'selectedAutocompledOuterPackage($event)'
+                 [list-formatter] = '"unit_name"'
+                 [tab-to-select] = 'false'
+                 name="package_type"
+                 [(ngModel)] = 'outerPack'
+                 required
+          >
+        </div>
+        <div class="label">=</div>
+      </div>
+    </div>
+  </div>
+  <div class="col m4 l3">
+    <div class="ttl">Inner Package ?</div>
+    <div class="row relative">
+      <div class="col s3">
+        <div class="input">
+          <input [(ngModel)]="product.sub_package.properties.qty"
+                 type="text" placeholder="Qty"
+                 [required] = "product.sub_package.properties.unit_type"
+                 name="qty"
+                 #qty="ngModel"
+          >
+        </div>
+      </div>
+      <div class="col s9 flex">
+        <div class="input search">
+          <input class="caret" auto-complete
+                 placeholder="Type"
+                 [source]="observableSourceInnerPackage.bind(this)"
+                 (input) = 'onSearchInnerPackage($event)'
+                 (blur)="updateInnerPackege($event)"
+                 (ngModelChange) = 'selectedAutocompledInnerPackage($event)'
+                 [list-formatter] = '"plural_unit_name"'
+                 [tab-to-select] = 'false'
+                 name="sub_package_type"
+                 [(ngModel)] = 'innerPack'
+          >
+        </div>
+        <div class="label">=</div>
+      </div>
+    </div>
+  </div>
+  <div class="col m4 l3">
+    <div class="ttl">
+      Consumable Units Per Inner/Outer
+    </div>
+    <div class="row relative">
+      <div class="col s3">
+        <div class="input">
+          <input [(ngModel)]="product.consumableUnitQty" type="text" placeholder="Qty"
+                 name="qty2"
+                 #qty2="ngModel"
+                 required>
+        </div>
+      </div>
+      <div class="col s9">
+        <div class="input search" [class.dirty]="packDirty"
+             [class.valid]="product.consumable_unit.properties.unit_type">
+          <input auto-complete
+                 placeholder="Type"
+                 [source]="observableSourceConsPackage.bind(this)"
+                 (input) = 'onSearchConsPackage($event)'
+                 (ngModelChange) = 'selectedAutocompledConsPackage($event)'
+                 [ngModel] = "product.consumable_unit.properties.unit_type"
+                 [list-formatter] = '"unit_name"'
+                 [tab-to-select] = 'false'
+                 name="cons_package_type"
+                 [disabled] = "(packageType && packageType.consumable_unit)"
+                 required
+          >
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="col m12 l3 offset-l1">
+    <div class="ttl">
+      Default Package Pricing
+    </div>
+    <div class="row relative">
+      <div class="col s4">
+        <app-price-input [placeholder]="'List $'" [(ngModel)]="product.book_price"></app-price-input>
+      </div>
+      <div class="col s4">
+        <app-price-input [placeholder]="'Our $'" [(ngModel)]="product.your_price"></app-price-input>
+      </div>
+      <div class="col s4">
+        <app-price-input [placeholder]="'Club $'" [(ngModel)]="product.club_price"></app-price-input>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="row">
+  <div class="col s6 flex">
+    <div class="input-checkbox">
+      <input type="checkbox" class="checkbox-input" [(ngModel)]="selected.all" (change)="selectAll()" id="{{vendor.vendor_name}}+'selectAll'"/>
+      <label for="{{vendor.vendor_name}}+'selectAll'"></label>
+    </div>
+
+    Product Variant Name
+  </div>
+  <div class="col s6">
+    <div class="col s3">
+      Catalog #
+    </div>
+    <div class="col s3">
+      List $
+    </div>
+    <div class="col s3">
+      Our $
+    </div>
+    <div class="col s3">
+      Club $
+    </div>
+  </div>
+</div>
+<div class="row" *ngFor='let variant of vendor.variants; let i = index'>
+  <div class="col s6 flex">
+    <div class="input-checkbox">
+      <input type="checkbox" class="checkbox-input" [(ngModel)]="selected[variant.name]" id={{vendor.vendor_name+variant.name+i}}/>
+      <label for={{vendor.vendor_name+variant.name+i}}></label>
+    </div>
+
+    <input  type="text" [(ngModel)]="variant.name">
+  </div>
+
+  <div class="col s6">
+    <div class="col s3 row-input">
+      <input type="text" [(ngModel)]="variant.catalog_number" placeholder="Catalog #">
+    </div>
+
+    <div class="col s3 row-input">
+      <app-price-input [placeholder]="'List $'" [(ngModel)]="variant.book_price"></app-price-input>
+    </div>
+
+    <div class="col s3 row-input">
+      <app-price-input [placeholder]="'Our $'" [(ngModel)]="variant.your_price"></app-price-input>
+    </div>
+
+    <div class="col s3 row-input">
+      <app-price-input [placeholder]="'Club $'" [(ngModel)]="variant.club_price"></app-price-input>
+    </div>
+  </div>
+</div>
+

@@ -1,0 +1,288 @@
+<div class="inner edit-mode">
+
+  <div class="row">
+    <div class="col s2">
+      <div class="close fa fa-chevron-left" (click)="goBack()" *ngIf="checkStep(0)"></div>
+      <button class="uptracker-form-btn back-btn tealish tealish-text waves-effect waves-light"
+              (click)="stepAction(-1); $event.stopPropagation()" *ngIf="!checkStep(0)">
+        <fa name="chevron-left"></fa>
+        Back
+      </button>
+    </div>
+    <div class="col s8 center-align">
+      <div class="main-title">Add custom product</div>
+    </div>
+    <div class="col s2 right-align">
+      <button *ngIf="!checkStep(2) && !checkStep(3)" [disabled]="!canProceed()"
+              class="uptracker-form-btn white-text waves-effect waves-light" (click)="stepAction(1)">
+        Next
+      </button>
+      <button *ngIf="checkStep(2) && !checkStep(3)"
+              class="uptracker-form-btn white-text waves-effect waves-light" (click)="onSubmit()">
+        Save
+      </button>
+    </div>
+  </div>
+
+  <div class="row uptracker-form" *ngIf="checkStep(0)">
+    <div class="col s12 m3 center-align">
+      <div class="col s12">
+        <div class="img-container">
+          <div class="img" *ngIf="logoPreview" [ngStyle]="{ 'background-image': 'url(' + logoPreview + ')' }">
+            <div class="del-img-btn" (click)="logoPreview = ''">
+              <i class="material-icons">delete</i>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col s12">
+        <div>
+          Vendor logo
+        </div>
+        <div>
+          Please upload a JPG or PNG max size 10 MB
+        </div>
+        <div class="input add-attachment">
+          <div class="file-field">
+            <div class="upload-link">
+              <input type="file" accept="image/*" (change)="uploadLogo($event)"/>
+              <a>Upload a logo</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="info-box col s12 m9">
+      <div class="ttl-box row input">
+        <div class="col s12">
+          <input class="ttl col s12 name-field"
+                 [(ngModel)]="product.name" (change)="setTechName(product.name)" type="text" placeholder="Type Name">
+        </div>
+        <div class="col s12">
+          <div class="technical-name-container">
+            <input class="ttl col s12 name-field"
+                   [(ngModel)]="product.technical_name" type="text" placeholder="Technical Name">
+            <fa [name]="'question-circle'" (click)="openHelperModal()"></fa>
+            <div class="clearfix"></div>
+          </div>
+          <div class="checkbox-container">
+          </div>
+        </div>
+        <div class="row checks">
+
+          <div class="col s4">
+            <div class="input-checkbox checkbox">
+              <input
+                type="checkbox"
+                class="checkbox-input"
+                [(ngModel)]="product.hazardous"
+                id="hazardous"
+              />
+              <label for="hazardous"></label>
+              <div class="checkbox-container">
+                <label>Hazardous</label>
+              </div>
+            </div>
+          </div>
+
+          <div class="col s4">
+            <div class="input-checkbox checkbox">
+              <input
+                type="checkbox"
+                class="checkbox-input"
+                [(ngModel)]="product.trackable"
+                id="trackable"
+              />
+              <label for="trackable"></label>
+              <div class="checkbox-container">
+                <label>Trackable</label>
+              </div>
+            </div>
+          </div>
+
+          <div class="col s4">
+            <div class="input-checkbox checkbox">
+              <input
+                type="checkbox"
+                class="checkbox-input"
+                [(ngModel)]="product.tax_exempt"
+                id="tax_exempt"
+              />
+              <label for="tax_exempt"></label>
+              <div class="checkbox-container">
+                <label>Tax Exempt</label><fa [name]="'question-circle'" (click)="openHelperModal()"></fa>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col input s12 m4">
+            <label>Department</label>
+            <div class="select">
+              <select
+                [(ngModel)]="product.department"
+                materialize="material_select"
+                [materializeSelectOptions]="departmentCollection">
+                <option *ngFor="let item of departmentCollection" [value]="item">{{item}}</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="col input s12 m4">
+            <label>Category</label>
+            <div class="select">
+              <select
+                [(ngModel)]="product.category"
+                materialize="material_select"
+                [materializeSelectOptions]="productCategoriesCollection">
+                <option *ngFor="let cat of productCategoriesCollection" [value]="cat">{{cat}}
+                </option>
+              </select>
+            </div>
+          </div>
+
+          <div class="col input s12 m4">
+            <label>Accounting</label><fa [name]="'question-circle'" (click)="openHelperModal()"></fa>
+            <div class="select">
+              <select
+                [(ngModel)]="product.accounting_category"
+                materialize="material_select"
+                [materializeSelectOptions]="productAccountingCollection">
+                <option *ngFor="let acc of productAccountingCollection" [value]="acc">{{acc}}
+                </option>
+              </select>
+            </div>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="col s12">
+            <div class="file-list">
+              <div class="item" *ngFor="let file of fileArr">
+                <a href="{{file.uri}}" target="_blank" *ngIf="file.uri">
+                  <img src="/assets/img/icon-info.svg" alt="" /> {{file.name}}
+                </a>
+                <div class="tip" *ngIf="!file.uri">
+                  <img src="/assets/img/icon-info.svg" alt="" /> {{file.name}}
+                </div>
+                <div class="clearfix"></div>
+              </div>
+            </div>
+            <div class="text">
+              <div class="file-field">
+                <div class="upload-link">
+                  <input type="file" (change)="changeListener($event)" />
+                  <a>Attach File</a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col s12">
+        <p>Notes / Comments</p>
+        <textarea rows="6" cols="" name="comment" placeholder="" [(ngModel)]="product.notes"></textarea>
+      </div>
+    </div>
+    <div class="clearfix"></div>
+  </div>
+
+  <ng-container *ngIf="checkStep(1)">
+    <div class="row center-align">
+      <div class="col s12 title">
+        {{product.name}}
+      </div>
+      <div class="col s12 title">
+        Variants
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col s12 flex">
+        <div class="col s4 m2" *ngFor="let attribute of productAttributes; let index = index;">
+          <div class="wrap">
+            <div class="select">
+              <select [(ngModel)]="attribute.name"
+                      materialize="material_select"
+                      [materializeSelectOptions]="availableAttributes">
+                <option [value]="attribute.name">{{ attribute.name | capitalizeFirst}}</option>
+                <option *ngFor="let attr of availableAttributes; let i = index; trackBy:trackByIndex;"  [value]="attr">{{ attr | capitalizeFirst }}</option>
+              </select>
+            </div>
+            <div *ngFor="let attr of productAttributes[index].values; let i = index; trackBy:trackByIndex;" class="product-variant">
+              <input type="text" [(ngModel)]="productAttributes[index].values[i]">
+              <fa name="times-circle" (click)="deleteItem(attribute.values, i)"></fa>
+            </div>
+            <div class="product-variant">
+              <input type="text" [(ngModel)]="newProductAttributes.name" placeholder="Add another {{newProductAttributes.name | capitalizeFirst}}">
+              <fa name="plus-circle" (click)="addAttribute(newProductAttributes)"></fa>
+            </div>
+            <fa name="times-circle" class="hide-by-opacity" (click)="deleteItem(variant, index)"></fa>
+          </div>
+        </div>
+        <div class="col s4 m2">
+          <div class="wrap">
+            <div class="select">
+              <input class="overlay-input" type="text" placeholder="Attribute name" [(ngModel)]="newAttribute">
+              <select [(ngModel)]="newAttribute"
+                      materialize="material_select"
+                      [materializeSelectOptions]="availableAttributes"
+                      (ngModelChange)="onProductAttributeSelect($event)">
+                <option [value]="newAttribute">{{ newAttribute | capitalizeFirst}}</option>
+                <option *ngFor="let attr of availableAttributes; let i = index; trackBy:trackByIndex;" [value]="attr">{{ attr | capitalizeFirst }}</option>
+              </select>
+              <fa name="plus-circle" class="add-section" (click)="addSection(newAttribute)"></fa>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </ng-container>
+
+  <ng-container *ngIf="checkStep(2)">
+    <div class="row">
+      <div class="col s10">
+        <app-vendor-search (vendorChosen)="onVendorChosen($event)"></app-vendor-search>
+      </div>
+      <div class="col s2 right-align">
+        <button class="bluebtn waves-light waves-effect">
+          <fa [name]="'plus'"></fa>
+          Add Vendor
+        </button>
+      </div>
+    </div>
+
+    <app-product-variant
+      *ngFor="let vendor of vendorVariants; let i = index"
+      [vendor]="vendor"
+      (vendorDelete)="onVendorDelete(i)">
+    </app-product-variant>
+  </ng-container>
+
+  <div class="container" *ngIf="checkStep(3)">
+    <div class="row">
+      <div class="col s12 title center-align">
+        The Custom Product has been successfully created! Would you like to inventory this product?
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="s12 center-align buttons-group">
+        <button class="uptracker-form-btn back-btn tealish tealish-text waves-effect waves-light"
+                (click)="stepAction(1); $event.stopPropagation()">
+          No
+        </button>
+        <button class="uptracker-form-btn back-btn tealish tealish-text waves-effect waves-light"
+                (click)="stepAction(2); $event.stopPropagation()" *ngIf="!checkStep(0)">
+          Yes, Create new
+        </button>
+        <button class="uptracker-form-btn back-btn tealish tealish-text waves-effect waves-light"
+                (click)="stepAction(2); $event.stopPropagation()" *ngIf="!checkStep(0)">
+          Yes, Add to Existing
+        </button>
+      </div>
+    </div>
+  </div>
+</div>

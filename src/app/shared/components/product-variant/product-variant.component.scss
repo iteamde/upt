@@ -1,0 +1,92 @@
+@import "../../../../colors";
+:host /deep/ {
+
+  input{
+    margin: 0 !important;
+    box-sizing:border-box;
+  }
+
+  .bluebtn {
+    margin: 0;
+  }
+
+  .vendor-title {
+    height: 24px;
+    font-family: Ubuntu;
+    font-size: 20px;
+    font-weight: bold;
+    font-style: normal;
+    font-stretch: normal;
+    line-height: normal;
+    letter-spacing: normal;
+    color: $black;
+  }
+
+  .sub-title {
+    height: 22px;
+    font-family: Ubuntu;
+    font-size: 18px;
+    font-weight: bold;
+    font-style: normal;
+    font-stretch: normal;
+    line-height: normal;
+    letter-spacing: normal;
+    color: $dark;
+  }
+
+  input[type="text"]{
+    height:30px;
+    border:1px solid $light-grey;
+    border-radius:5px;
+    background-color: $white;
+    padding-left:5px;
+    &:focus{
+      border-color: $tealish;
+    }
+  }
+
+  .flex {
+    display: flex;
+    align-items: center;
+    flex-wrap: nowrap;
+  }
+
+  .label {
+    padding-left: 10px;
+    font-size: 20px;
+  }
+
+  .input-checkbox {
+    padding-right: 10px;
+  }
+
+
+  @media (max-width: 800px) {
+    .uptracker-form-btn,
+    .bluebtn {
+      min-width: 50px;
+    }
+  }
+//////////
+ .package:hover {
+    fa[name="times-circle"] {
+      opacity: 1;
+    }
+  }
+
+  fa[name="times-circle"]{
+    font-size: 16px;
+    cursor: pointer;
+    color: $mid-grey;
+    opacity: 0;
+    transition: all .3s;
+  }
+
+  .ttl {
+    padding-left: 0.75rem;
+    padding-bottom: 7px;
+  }
+}
+
+
+

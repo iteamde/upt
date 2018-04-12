@@ -14,7 +14,7 @@ import {PhoneMaskService} from '../../../core/services/phone-mask.service';
 import * as _ from 'lodash';
 
 export class AddVendorModalContext extends BSModalContext {
-
+  modalMode: boolean;
 }
 
 @Component({
@@ -131,8 +131,9 @@ export class AddVendorModalComponent implements OnInit {
 
     this.vendorService.addAccountVendor(this.formData).subscribe(
       (res: any) => {
-        this.router.navigate(['/vendors/edit/' + res.id]);
-        return this.dismissModal();
+        this.dialog.context.modalMode ?
+          this.dialog.close(res) :
+          this.router.navigate(['/vendors/edit/' + res.id]) && this.dismissModal();
       }
     );
 

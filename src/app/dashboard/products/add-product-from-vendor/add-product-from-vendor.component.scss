@@ -1,0 +1,102 @@
+@import "../../../../colors";
+
+:host /deep/ {
+
+  .title {
+    margin-top: 0;
+    font-size: 18px;
+    font-family: Ubuntu;
+  }
+
+  .main-title{
+    height: 34px;
+    font-size: 28px;
+    font-weight: bold;
+    font-style: normal;
+    font-stretch: normal;
+    line-height: normal;
+    letter-spacing: normal;
+    text-align: left;
+    color: #000000;
+    font-family: Ubuntu;
+  }
+
+  .sub-title {
+    height: 29px;
+    font-family: Ubuntu;
+    font-size: 24px;
+    font-weight: bold;
+    font-style: normal;
+    font-stretch: normal;
+    line-height: normal;
+    letter-spacing: normal;
+    color: $dark;
+  }
+
+  .close {
+    transition: opacity .3s;
+    width: 40px;
+    height: 40px;
+    background-color: $tealish;
+    cursor: pointer;
+    font-size: 20px;
+    text-align: center;
+    border-radius: 20px;
+    color: #fff;
+    line-height: 40px;
+    padding-right: 3px;
+    &:hover {
+      opacity: .8;
+    }
+  }
+
+  .back {
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    width: 30px;
+    height: 30px;
+    color: white;
+    background: $tealish;
+    cursor: pointer;
+    border-radius: 50%;
+  }
+
+  .bluebtn {
+    padding: 0 10px;
+    font-size: 12px;
+    line-height: 28px;
+    height: 30px;
+    min-width: 80px;
+    background: $tealish;
+    color: $white;
+    border-radius: 5px;
+    margin-right:20px;
+    margin-top:-2px;
+    box-shadow:none;
+    border:none;
+  }
+
+  .uptracker-form-btn {
+    height: 30px;
+    line-height: 20px;
+    min-width: 100px;
+    background: $tealish;
+  }
+
+  .bluebtn:hover {
+    opacity: .8;
+    box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.16), 0 2px 10px 0 rgba(0, 0, 0, 0.12);
+  }
+
+  @media (max-width: 800px) {
+    .uptracker-form-btn,
+    .bluebtn {
+      min-width: 50px;
+    }
+
+    input[type="text"] {
+      min-width: 30px;
+    }
+  }
+}

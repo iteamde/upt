@@ -1,0 +1,17 @@
+<div class="row">
+  <div class="col s10">
+    <app-vendor-search (vendorChosen)="onVendorChosen($event)"></app-vendor-search>
+  </div>
+  <div class="col s2 right-align">
+    <button class="bluebtn waves-light waves-effect">
+      <fa [name]="'plus'"></fa>
+      Add Vendor
+    </button>
+  </div>
+</div>
+
+<app-product-variant
+  *ngFor="let vendor of vendorVariants; let i = index"
+  [vendor]="vendor"
+  (vendorDelete)="onVendorDelete(i)">
+</app-product-variant>

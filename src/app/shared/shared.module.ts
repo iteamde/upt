@@ -17,10 +17,15 @@ import { BootstrapModalModule } from 'angular2-modal/plugins/bootstrap';
 
 import { IterablePipe } from "./pipes/iterable/iterable.pipe";
 import { InputValueSearch } from "./pipes/input-value-search/input-value-search.pipe";
+import { CapitalizeFirstPipe } from "./pipes/capitilizeFirst/capitilizeFirst";
 import * as directives from "./index";
 import { TextMaskModule } from 'angular2-text-mask';
 import { AgmCoreModule } from "angular2-google-maps/core";
 import { GooglePlacesInputModule, HasClassModule } from "./directives";
+import { VendorSearchComponent } from "./components/vendor-search/vendor-search.component";
+import { PriceInputComponent } from "./components/price-input/price-input.component";
+import { FileAttachmentComponent } from "./components/file-attachment/file-attachment.component";
+import { ProductVariantComponent } from "./components/product-variant/product-variant.component";
 
 let directivesArr = [
   directives.IntlPhoneMaskDirective,
@@ -31,6 +36,14 @@ let directivesArr = [
 let pipesArr = [
   IterablePipe,
   InputValueSearch,
+  CapitalizeFirstPipe
+];
+
+let componentsArr = [
+  VendorSearchComponent,
+  PriceInputComponent,
+  FileAttachmentComponent,
+  ProductVariantComponent
 ];
 
 // resolvers
@@ -58,7 +71,7 @@ const modalsArr = [
   ChangePasswordUserModal,
   EditCommentModal,
   UniConfirmModal,
-  AddVendorModalComponent,
+  AddVendorModalComponent
 ];
 
 const PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
@@ -95,6 +108,7 @@ const PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
     ...directivesArr,
     ...pipesArr,
     ...modalsArr,
+    ...componentsArr
   ],
   exports: [
     BootstrapModalModule,
@@ -124,7 +138,8 @@ const PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
 
     ...directivesArr,
     ...pipesArr,
-    ...modalsArr
+    ...modalsArr,
+    ...componentsArr
   ],
   providers: [
     ...MAIN_RESOLVER_PROVIDERS,
