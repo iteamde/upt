@@ -47,6 +47,13 @@ export class ProductVariantComponent implements OnInit {
     return Observable.of(this.autocompletePackage).take(1);
   }
 
+  myListFormatter(data: any): string {
+    return '1 ' + data.unit_name;
+  }
+  myValueFormatter(data: any): string {
+    return '1 ' + data.unit_name;
+  }
+
   onSearchPackage(event) {
     this.autocompletePackage$.next(event.target.value);
   }

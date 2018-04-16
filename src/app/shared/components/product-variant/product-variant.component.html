@@ -26,9 +26,9 @@
                  placeholder="Type"
                  [source]="observableSourcePackage.bind(this)"
                  (input) = 'onSearchPackage($event)'
-                 [list-formatter] = '"unit_name"'
+                 [list-formatter] = 'myListFormatter'
+                 [value-formatter] = 'myValueFormatter'
                  [tab-to-select] = 'false'
-                 [select-value-of] = "'unit_name'"
                  name="package_type"
                  [(ngModel)] = 'package[0].label'
                  required
