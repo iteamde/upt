@@ -1,4 +1,3 @@
-import {ProductVariantsModel} from "./product-variants.model";
 import {PackageModel} from "./inventory.model";
 export class CustomProductModel {
   name: string = null;
@@ -14,14 +13,15 @@ export class CustomProductModel {
   mfg_number: string|number = '';
 
   image: string = null;
+  attachments: any[] = [];
   technical_name: string = null;
   hazardous: boolean = null;
   trackable: boolean = null;
   tax_exempt: boolean = null;
-  department: string = null;
+  department: string = 'Clinic';
   category: string = null;
   notes: string = null;
-  accounting_category: string = null;
+  accounting_category: string = 'Supplies: Clinical';
   vendor_variants: any[] = [];
   inventory_group: string = null;
 
@@ -32,4 +32,13 @@ export class CustomProductModel {
       }
     }
   }
+}
+
+export class CustomProductVariantModel {
+  catalog_number: number | string  = null;
+  list_price: string = null;
+  our_price: string = null;
+  club_price: string = 'N/A';
+  barcode: any = null;
+  enabled: boolean = false;
 }

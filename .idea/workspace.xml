@@ -2,18 +2,252 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="841e605e-ffbd-4c08-af30-f81e6b0e7918" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/app/models/product-variants.model.ts" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/app/dashboard/orders/classes/entities.service.ts" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/app/dashboard/orders/invoices-table/all-invoices-list/all-invoices-list.component.ts" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/app/dashboard/orders/invoices-table/all-invoices-list/all-invoices-list.module.ts" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/app/dashboard/orders/invoices-table/approval-invoices-list/approval-invoices-list.component.html" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/app/dashboard/orders/invoices-table/approval-invoices-list/approval-invoices-list.component.ts" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/app/dashboard/orders/invoices-table/approval-invoices-list/approval-invoices-list.module.ts" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/app/dashboard/orders/invoices-table/flagged-invoices-list/flagged-invoices-list.component.html" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/app/dashboard/orders/invoices-table/flagged-invoices-list/flagged-invoices-list.component.ts" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/app/dashboard/orders/invoices-table/flagged-invoices-list/flagged-invoices-list.module.ts" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/app/dashboard/orders/invoices-table/invoices-table.component.html" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/app/dashboard/orders/invoices-table/invoices-table.component.ts" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/app/dashboard/orders/invoices-table/invoices-table.module.ts" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/app/dashboard/orders/invoices-table/invoices-table.routing.ts" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/app/dashboard/orders/invoices-table/open-invoices-list/open-invoices-list.component.html" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/app/dashboard/orders/invoices-table/open-invoices-list/open-invoices-list.component.ts" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/app/dashboard/orders/invoices-table/open-invoices-list/open-invoices-list.module.ts" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/app/dashboard/orders/invoices-table/paid-invoices-list/paid-invoices-list.component.html" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/app/dashboard/orders/invoices-table/paid-invoices-list/paid-invoices-list.component.ts" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/app/dashboard/orders/invoices-table/paid-invoices-list/paid-invoices-list.module.ts" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/app/dashboard/orders/invoices-table/payment-invoices-list/payment-invoices-list.component.html" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/app/dashboard/orders/invoices-table/payment-invoices-list/payment-invoices-list.component.scss" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/app/dashboard/orders/invoices-table/payment-invoices-list/payment-invoices-list.component.ts" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/app/dashboard/orders/invoices-table/payment-invoices-list/payment-invoices-list.module.ts" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/app/dashboard/orders/invoices-table/services/all-invoices-list.service.ts" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/app/dashboard/orders/invoices-table/services/approval-invoices-list.service.ts" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/app/dashboard/orders/invoices-table/services/flagged-invoices-list.service.ts" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/app/dashboard/orders/invoices-table/services/index.ts" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/app/dashboard/orders/invoices-table/services/invoices-table.service.ts" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/app/dashboard/orders/invoices-table/services/open-invoices-list.service.ts" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/app/dashboard/orders/invoices-table/services/paid-invoices-list.service.ts" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/app/dashboard/orders/invoices-table/services/payment-invoices-list.service.ts" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/app/dashboard/orders/models/order.ts" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/app/dashboard/orders/order-items-table/all-order-items-list/all-order-items-list.component.html" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/app/dashboard/orders/order-items-table/all-order-items-list/all-order-items-list.component.scss" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/app/dashboard/orders/order-items-table/all-order-items-list/all-order-items-list.component.ts" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/app/dashboard/orders/order-items-table/all-order-items-list/all-order-items-list.module.ts" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/app/dashboard/orders/order-items-table/backordered-items-list/backordered-items-list.component.html" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/app/dashboard/orders/order-items-table/backordered-items-list/backordered-items-list.module.ts" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/app/dashboard/orders/order-items-table/closed-items-list/closed-items-list.component.html" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/app/dashboard/orders/order-items-table/closed-items-list/closed-items-list.module.ts" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/app/dashboard/orders/order-items-table/favorited-items-list/favorited-items-list.component.html" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/app/dashboard/orders/order-items-table/favorited-items-list/favorited-items-list.component.scss" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/app/dashboard/orders/order-items-table/favorited-items-list/favorited-items-list.module.ts" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/app/dashboard/orders/order-items-table/flagged-items-list/flagged-items-list.component.html" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/app/dashboard/orders/order-items-table/flagged-items-list/flagged-items-list.component.scss" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/app/dashboard/orders/order-items-table/flagged-items-list/flagged-items-list.module.ts" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/app/dashboard/orders/order-items-table/open-items-list/open-items-list.component.html" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/app/dashboard/orders/order-items-table/open-items-list/open-items-list.component.scss" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/app/dashboard/orders/order-items-table/open-items-list/open-items-list.component.ts" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/app/dashboard/orders/order-items-table/open-items-list/open-items-list.module.ts" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/app/dashboard/orders/order-items-table/order-items-table.component.html" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/app/dashboard/orders/order-items-table/order-items-table.component.scss" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/app/dashboard/orders/order-items-table/order-items-table.component.ts" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/app/dashboard/orders/order-items-table/order-items-table.module.ts" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/app/dashboard/orders/order-items-table/order-items-table.routing.ts" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/app/dashboard/orders/order-items-table/received-items-list/received-items-list.component.html" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/app/dashboard/orders/order-items-table/received-items-list/received-items-list.module.ts" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/app/dashboard/orders/order-items-table/reconciled-items-list/reconciled-items-list.component.html" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/app/dashboard/orders/order-items-table/reconciled-items-list/reconciled-items-list.component.scss" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/app/dashboard/orders/order-items-table/reconciled-items-list/reconciled-items-list.module.ts" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/app/dashboard/orders/order-items-table/services/all-items-list.service.ts" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/app/dashboard/orders/order-items-table/services/backordered-items-list.service.ts" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/app/dashboard/orders/order-items-table/services/closed-items-list.service.ts" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/app/dashboard/orders/order-items-table/services/flagged-items-list.service.ts" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/app/dashboard/orders/order-items-table/services/index.ts" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/app/dashboard/orders/order-items-table/services/open-items-list.service.ts" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/app/dashboard/orders/order-items-table/services/order-items-table.service.ts" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/app/dashboard/orders/order-items-table/services/received-items-list.service.ts" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/app/dashboard/orders/orders-table/all-orders-list/all-orders-list.component.scss" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/app/dashboard/orders/orders-table/backordered-orders-list/backordered-orders-list.component.scss" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/app/dashboard/orders/orders-table/backordered-orders-list/backordered-orders-list.component.ts" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/app/dashboard/orders/orders-table/backordered-orders-list/backordered-orders-list.module.ts" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/app/dashboard/orders/orders-table/closed-orders-list/closed-orders-list.component.scss" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/app/dashboard/orders/orders-table/closed-orders-list/closed-orders-list.component.ts" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/app/dashboard/orders/orders-table/closed-orders-list/closed-orders-list.module.ts" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/app/dashboard/orders/orders-table/favorited-orders-list/favorited-orders-list.component.scss" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/app/dashboard/orders/orders-table/favorited-orders-list/favorited-orders-list.component.ts" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/app/dashboard/orders/orders-table/favorited-orders-list/favorited-orders-list.module.ts" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/app/dashboard/orders/orders-table/flagged-orders-list/flagged-orders-list.component.scss" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/app/dashboard/orders/orders-table/flagged-orders-list/flagged-orders-list.component.ts" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/app/dashboard/orders/orders-table/flagged-orders-list/flagged-orders-list.module.ts" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/app/dashboard/orders/orders-table/open-orders-list/open-orders-list.component.scss" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/app/dashboard/orders/orders-table/orders-table.component.html" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/app/dashboard/orders/orders-table/orders-table.component.scss" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/app/dashboard/orders/orders-table/orders-table.component.ts" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/app/dashboard/orders/orders-table/orders-table.module.ts" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/app/dashboard/orders/orders-table/orders-table.routing.ts" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/app/dashboard/orders/orders-table/received-orders-list/received-orders-list.component.html" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/app/dashboard/orders/orders-table/received-orders-list/received-orders-list.component.scss" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/app/dashboard/orders/orders-table/received-orders-list/received-orders-list.component.ts" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/app/dashboard/orders/orders-table/received-orders-list/received-orders-list.module.ts" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/app/dashboard/orders/orders-table/reconciled-orders-list/reconciled-orders-list.component.scss" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/app/dashboard/orders/orders-table/reconciled-orders-list/reconciled-orders-list.component.ts" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/app/dashboard/orders/orders-table/reconciled-orders-list/reconciled-orders-list.module.ts" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/app/dashboard/orders/orders-table/services/all-orders-list.service.ts" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/app/dashboard/orders/orders-table/services/backordered-orders-list.service.ts" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/app/dashboard/orders/orders-table/services/closed-orders-list.service.ts" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/app/dashboard/orders/orders-table/services/favorited-orders-list.service.ts" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/app/dashboard/orders/orders-table/services/index.ts" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/app/dashboard/orders/orders-table/services/open-orders-list.service.ts" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/app/dashboard/orders/orders-table/services/orders-table.service.ts" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/app/dashboard/orders/orders-table/services/received-orders-list.service.ts" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/app/dashboard/orders/orders-table/services/reconciled-orders-list.service.ts" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/app/dashboard/orders/orders.service.ts" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/app/dashboard/orders/packing-slips-table/all-packing-slips-list/all-packing-slips-list.component.html" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/app/dashboard/orders/packing-slips-table/all-packing-slips-list/all-packing-slips-list.component.scss" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/app/dashboard/orders/packing-slips-table/all-packing-slips-list/all-packing-slips-list.component.ts" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/app/dashboard/orders/packing-slips-table/all-packing-slips-list/all-packing-slips-list.module.ts" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/app/dashboard/orders/packing-slips-table/packing-slips-table.component.html" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/app/dashboard/orders/packing-slips-table/packing-slips-table.component.scss" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/app/dashboard/orders/packing-slips-table/packing-slips-table.component.ts" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/app/dashboard/orders/packing-slips-table/packing-slips-table.module.ts" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/app/dashboard/orders/packing-slips-table/packing-slips-table.routing.ts" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/app/dashboard/orders/packing-slips-table/services/all-packing-slips-list.service.ts" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/app/dashboard/orders/packing-slips-table/services/index.ts" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/app/dashboard/orders/packing-slips-table/services/packing-slips-table.service.ts" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/app/shared/components/product-variant/product-variant.module.ts" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/app/shared/directives/only-numbers/only-numbers.directive.ts" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/app/shared/pipes/currency-usd/currency-usd.pipe.spec.ts" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/app/shared/pipes/currency-usd/currency-usd.pipe.ts" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/src/app/dashboard/orders/all-orders-list/all-orders-list.component.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/src/app/dashboard/orders/all-orders-list/all-orders-list.component.scss" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/src/app/dashboard/orders/all-orders-list/all-orders-list.component.ts" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/src/app/dashboard/orders/all-orders-list/all-orders-list.module.ts" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/src/app/dashboard/orders/backordered-list/backordered-list.component.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/src/app/dashboard/orders/backordered-list/backordered-list.component.scss" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/src/app/dashboard/orders/backordered-list/backordered-list.component.ts" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/src/app/dashboard/orders/backordered-list/backordered-list.module.ts" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/src/app/dashboard/orders/closed-list/closed-list.component.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/src/app/dashboard/orders/closed-list/closed-list.component.scss" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/src/app/dashboard/orders/closed-list/closed-list.component.ts" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/src/app/dashboard/orders/closed-list/closed-list.module.ts" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/src/app/dashboard/orders/favorited-list/favorited-list.component.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/src/app/dashboard/orders/favorited-list/favorited-list.component.scss" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/src/app/dashboard/orders/favorited-list/favorited-list.component.ts" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/src/app/dashboard/orders/favorited-list/favorited-list.module.ts" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/src/app/dashboard/orders/flagged-list/flagged-list.component.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/src/app/dashboard/orders/flagged-list/flagged-list.component.scss" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/src/app/dashboard/orders/flagged-list/flagged-list.component.ts" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/src/app/dashboard/orders/flagged-list/flagged-list.module.ts" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/src/app/dashboard/orders/open-list/open-orders-list.component.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/src/app/dashboard/orders/open-list/open-orders-list.component.scss" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/src/app/dashboard/orders/open-list/open-orders-list.component.ts" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/src/app/dashboard/orders/open-list/open-orders-list.module.ts" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/src/app/dashboard/orders/received-list/received-list.component.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/src/app/dashboard/orders/received-list/received-list.component.scss" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/src/app/dashboard/orders/received-list/received-list.component.ts" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/src/app/dashboard/orders/received-list/received-list.module.ts" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/src/app/dashboard/orders/reconciled-list/reconciled-list.component.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/src/app/dashboard/orders/reconciled-list/reconciled-list.component.scss" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/src/app/dashboard/orders/reconciled-list/reconciled-list.component.ts" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/src/app/dashboard/orders/reconciled-list/reconciled-list.module.ts" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/src/app/dashboard/orders/services/all-orders-list.service.ts" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/src/app/dashboard/orders/services/backordered-list.service.ts" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/src/app/dashboard/orders/services/closed-list.service.ts" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/src/app/dashboard/orders/services/favorited-list.service.ts" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/src/app/dashboard/orders/services/flagged-list.service.ts" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/src/app/dashboard/orders/services/index.ts" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/src/app/dashboard/orders/services/open-orders-list.service.ts" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/src/app/dashboard/orders/services/received-list.service.ts" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/src/app/models/product-attributes.model.ts" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/src/app/shared/components/file-attachment/file-attachment.component.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/src/app/shared/components/file-attachment/file-attachment.component.scss" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/src/app/shared/components/file-attachment/file-attachment.component.spec.ts" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/src/app/shared/components/file-attachment/file-attachment.component.ts" afterPath="" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/src/app/dashboard/orders/all-orders-list/all-orders-list.component.html" afterPath="$PROJECT_DIR$/src/app/dashboard/orders/orders-table/all-orders-list/all-orders-list.component.html" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/src/app/dashboard/orders/all-orders-list/all-orders-list.component.scss" afterPath="$PROJECT_DIR$/src/app/dashboard/orders/invoices-table/all-invoices-list/all-invoices-list.component.scss" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/src/app/dashboard/orders/all-orders-list/all-orders-list.component.ts" afterPath="$PROJECT_DIR$/src/app/dashboard/orders/orders-table/all-orders-list/all-orders-list.component.ts" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/src/app/dashboard/orders/all-orders-list/all-orders-list.module.ts" afterPath="$PROJECT_DIR$/src/app/dashboard/orders/orders-table/all-orders-list/all-orders-list.module.ts" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/src/app/dashboard/orders/backordered-list/backordered-list.component.html" afterPath="$PROJECT_DIR$/src/app/dashboard/orders/orders-table/backordered-orders-list/backordered-orders-list.component.html" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/src/app/dashboard/orders/backordered-list/backordered-list.component.scss" afterPath="$PROJECT_DIR$/src/app/dashboard/orders/order-items-table/backordered-items-list/backordered-items-list.component.scss" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/src/app/dashboard/orders/backordered-list/backordered-list.component.ts" afterPath="$PROJECT_DIR$/src/app/dashboard/orders/order-items-table/backordered-items-list/backordered-items-list.component.ts" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/src/app/dashboard/orders/closed-list/closed-list.component.html" afterPath="$PROJECT_DIR$/src/app/dashboard/orders/orders-table/closed-orders-list/closed-orders-list.component.html" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/src/app/dashboard/orders/closed-list/closed-list.component.scss" afterPath="$PROJECT_DIR$/src/app/dashboard/orders/order-items-table/closed-items-list/closed-items-list.component.scss" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/src/app/dashboard/orders/closed-list/closed-list.component.ts" afterPath="$PROJECT_DIR$/src/app/dashboard/orders/order-items-table/closed-items-list/closed-items-list.component.ts" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/src/app/dashboard/orders/favorited-list/favorited-list.component.html" afterPath="$PROJECT_DIR$/src/app/dashboard/orders/orders-table/flagged-orders-list/flagged-orders-list.component.html" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/src/app/dashboard/orders/favorited-list/favorited-list.component.scss" afterPath="$PROJECT_DIR$/src/app/dashboard/orders/invoices-table/approval-invoices-list/approval-invoices-list.component.scss" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/src/app/dashboard/orders/favorited-list/favorited-list.component.ts" afterPath="$PROJECT_DIR$/src/app/dashboard/orders/order-items-table/favorited-items-list/favorited-items-list.component.ts" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/src/app/dashboard/orders/flagged-list/flagged-list.component.html" afterPath="$PROJECT_DIR$/src/app/dashboard/orders/orders-table/favorited-orders-list/favorited-orders-list.component.html" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/src/app/dashboard/orders/flagged-list/flagged-list.component.scss" afterPath="$PROJECT_DIR$/src/app/dashboard/orders/invoices-table/flagged-invoices-list/flagged-invoices-list.component.scss" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/src/app/dashboard/orders/flagged-list/flagged-list.component.ts" afterPath="$PROJECT_DIR$/src/app/dashboard/orders/order-items-table/flagged-items-list/flagged-items-list.component.ts" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/src/app/dashboard/orders/open-list/open-orders-list.component.html" afterPath="$PROJECT_DIR$/src/app/dashboard/orders/orders-table/open-orders-list/open-orders-list.component.html" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/src/app/dashboard/orders/open-list/open-orders-list.component.scss" afterPath="$PROJECT_DIR$/src/app/dashboard/orders/invoices-table/invoices-table.component.scss" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/src/app/dashboard/orders/open-list/open-orders-list.component.ts" afterPath="$PROJECT_DIR$/src/app/dashboard/orders/orders-table/open-orders-list/open-orders-list.component.ts" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/src/app/dashboard/orders/open-list/open-orders-list.module.ts" afterPath="$PROJECT_DIR$/src/app/dashboard/orders/orders-table/open-orders-list/open-orders-list.module.ts" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/src/app/dashboard/orders/received-list/received-list.component.html" afterPath="$PROJECT_DIR$/src/app/dashboard/orders/orders-table/reconciled-orders-list/reconciled-orders-list.component.html" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/src/app/dashboard/orders/received-list/received-list.component.scss" afterPath="$PROJECT_DIR$/src/app/dashboard/orders/order-items-table/received-items-list/received-items-list.component.scss" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/src/app/dashboard/orders/received-list/received-list.component.ts" afterPath="$PROJECT_DIR$/src/app/dashboard/orders/order-items-table/received-items-list/received-items-list.component.ts" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/src/app/dashboard/orders/reconciled-list/reconciled-list.component.html" afterPath="$PROJECT_DIR$/src/app/dashboard/orders/invoices-table/all-invoices-list/all-invoices-list.component.html" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/src/app/dashboard/orders/reconciled-list/reconciled-list.component.scss" afterPath="$PROJECT_DIR$/src/app/dashboard/orders/invoices-table/open-invoices-list/open-invoices-list.component.scss" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/src/app/dashboard/orders/reconciled-list/reconciled-list.component.ts" afterPath="$PROJECT_DIR$/src/app/dashboard/orders/order-items-table/reconciled-items-list/reconciled-items-list.component.ts" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/src/app/dashboard/orders/services/favorited-list.service.ts" afterPath="$PROJECT_DIR$/src/app/dashboard/orders/order-items-table/services/favorited-items-list.service.ts" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/src/app/dashboard/orders/services/flagged-list.service.ts" afterPath="$PROJECT_DIR$/src/app/dashboard/orders/orders-table/services/flagged-orders-list.service.ts" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/src/app/shared/components/file-attachment/file-attachment.component.scss" afterPath="$PROJECT_DIR$/src/app/dashboard/orders/invoices-table/paid-invoices-list/paid-invoices-list.component.scss" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.angular-cli.json" afterPath="$PROJECT_DIR$/.angular-cli.json" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gitignore" afterPath="$PROJECT_DIR$/.gitignore" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/env.ts" afterPath="$PROJECT_DIR$/env.ts" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/app/core/services/pastOrder.service.ts" afterPath="$PROJECT_DIR$/src/app/core/services/pastOrder.service.ts" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/app/core/services/product.service.ts" afterPath="$PROJECT_DIR$/src/app/core/services/product.service.ts" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/app/core/services/restock.service.ts" afterPath="$PROJECT_DIR$/src/app/core/services/restock.service.ts" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/app/dashboard/dashboard.component.ts" afterPath="$PROJECT_DIR$/src/app/dashboard/dashboard.component.ts" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/app/dashboard/dashboard.module.ts" afterPath="$PROJECT_DIR$/src/app/dashboard/dashboard.module.ts" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/app/dashboard/dashboard.routing.ts" afterPath="$PROJECT_DIR$/src/app/dashboard/dashboard.routing.ts" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/app/dashboard/dashboard.template.html" afterPath="$PROJECT_DIR$/src/app/dashboard/dashboard.template.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/app/dashboard/orders/classes/order-list-base.service.ts" afterPath="$PROJECT_DIR$/src/app/dashboard/orders/classes/order-list-base.service.ts" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/app/dashboard/orders/directives/order-table/components/order-table-item-action/order-table-item-action.component.ts" afterPath="$PROJECT_DIR$/src/app/dashboard/orders/directives/order-table/components/order-table-item-action/order-table-item-action.component.ts" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/app/dashboard/orders/directives/order-table/order-table-on-void.service.ts" afterPath="$PROJECT_DIR$/src/app/dashboard/orders/directives/order-table/order-table-on-void.service.ts" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/app/dashboard/orders/directives/order-table/order-table.component.html" afterPath="$PROJECT_DIR$/src/app/dashboard/orders/directives/order-table/order-table.component.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/app/dashboard/orders/directives/order-table/order-table.component.ts" afterPath="$PROJECT_DIR$/src/app/dashboard/orders/directives/order-table/order-table.component.ts" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/app/dashboard/orders/models/order-list-type.ts" afterPath="$PROJECT_DIR$/src/app/dashboard/orders/models/order-list-type.ts" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/app/dashboard/orders/order/order.component.ts" afterPath="$PROJECT_DIR$/src/app/dashboard/orders/order/order.component.ts" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/app/dashboard/orders/orders.component.html" afterPath="$PROJECT_DIR$/src/app/dashboard/orders/orders.component.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/app/dashboard/orders/orders.component.scss" afterPath="$PROJECT_DIR$/src/app/dashboard/orders/orders.component.scss" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/app/dashboard/orders/orders.component.ts" afterPath="$PROJECT_DIR$/src/app/dashboard/orders/orders.component.ts" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/app/dashboard/orders/orders.module.ts" afterPath="$PROJECT_DIR$/src/app/dashboard/orders/orders.module.ts" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/app/dashboard/orders/orders.routing.ts" afterPath="$PROJECT_DIR$/src/app/dashboard/orders/orders.routing.ts" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/app/dashboard/products/add-new-product/add-new-product.component.html" afterPath="$PROJECT_DIR$/src/app/dashboard/products/add-new-product/add-new-product.component.html" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/app/dashboard/products/add-new-product/add-new-product.component.scss" afterPath="$PROJECT_DIR$/src/app/dashboard/products/add-new-product/add-new-product.component.scss" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/app/dashboard/products/add-new-product/add-new-product.component.ts" afterPath="$PROJECT_DIR$/src/app/dashboard/products/add-new-product/add-new-product.component.ts" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/app/dashboard/products/add-new-product/add-new-product.module.ts" afterPath="$PROJECT_DIR$/src/app/dashboard/products/add-new-product/add-new-product.module.ts" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/app/dashboard/products/add-product-from-vendor/add-product-from-vendor.module.ts" afterPath="$PROJECT_DIR$/src/app/dashboard/products/add-product-from-vendor/add-product-from-vendor.module.ts" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/app/dashboard/restock-floor/restock-floor.component.html" afterPath="$PROJECT_DIR$/src/app/dashboard/restock-floor/restock-floor.component.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/app/dashboard/restock-floor/restock-floor.component.ts" afterPath="$PROJECT_DIR$/src/app/dashboard/restock-floor/restock-floor.component.ts" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/app/dashboard/restock-floor/restock-floor.module.ts" afterPath="$PROJECT_DIR$/src/app/dashboard/restock-floor/restock-floor.module.ts" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/app/dashboard/restock-floor/restock-floor.routing.ts" afterPath="$PROJECT_DIR$/src/app/dashboard/restock-floor/restock-floor.routing.ts" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/app/dashboard/shopping-list/orders-preview/online-order-modal/online-order-modal.component.ts" afterPath="$PROJECT_DIR$/src/app/dashboard/shopping-list/orders-preview/online-order-modal/online-order-modal.component.ts" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/app/models/custom-product.model.ts" afterPath="$PROJECT_DIR$/src/app/models/custom-product.model.ts" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/app/models/inventory.model.ts" afterPath="$PROJECT_DIR$/src/app/models/inventory.model.ts" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/app/shared/components/price-input/price-input.component.html" afterPath="$PROJECT_DIR$/src/app/shared/components/price-input/price-input.component.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/app/shared/components/price-input/price-input.component.ts" afterPath="$PROJECT_DIR$/src/app/shared/components/price-input/price-input.component.ts" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/app/shared/components/product-variant/product-variant.component.html" afterPath="$PROJECT_DIR$/src/app/shared/components/product-variant/product-variant.component.html" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/app/shared/components/product-variant/product-variant.component.scss" afterPath="$PROJECT_DIR$/src/app/shared/components/product-variant/product-variant.component.scss" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/app/shared/components/product-variant/product-variant.component.ts" afterPath="$PROJECT_DIR$/src/app/shared/components/product-variant/product-variant.component.ts" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/app/shared/components/search-filter-header/search-filter-header.component.html" afterPath="$PROJECT_DIR$/src/app/shared/components/search-filter-header/search-filter-header.component.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/app/shared/components/search-filter-header/search-filter-header.component.scss" afterPath="$PROJECT_DIR$/src/app/shared/components/search-filter-header/search-filter-header.component.scss" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/app/shared/components/search-filter-header/search-filter-header.component.ts" afterPath="$PROJECT_DIR$/src/app/shared/components/search-filter-header/search-filter-header.component.ts" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/app/shared/components/search-filter-header/search-filter-header.module.ts" afterPath="$PROJECT_DIR$/src/app/shared/components/search-filter-header/search-filter-header.module.ts" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/app/shared/directives/index.ts" afterPath="$PROJECT_DIR$/src/app/shared/directives/index.ts" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/app/shared/modals/add-market-product-modal/add-market-product-modal.component.html" afterPath="$PROJECT_DIR$/src/app/shared/modals/add-market-product-modal/add-market-product-modal.component.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/app/shared/modals/add-market-product-modal/add-market-product-modal.component.ts" afterPath="$PROJECT_DIR$/src/app/shared/modals/add-market-product-modal/add-market-product-modal.component.ts" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/app/shared/modals/edit-user-modal/edit-user-modal.component.html" afterPath="$PROJECT_DIR$/src/app/shared/modals/edit-user-modal/edit-user-modal.component.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/app/shared/modals/edit-user-modal/edit-user-modal.component.scss" afterPath="$PROJECT_DIR$/src/app/shared/modals/edit-user-modal/edit-user-modal.component.scss" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/app/shared/modals/filters-modal/orders-page-filters/orders-page-filters.component.ts" afterPath="$PROJECT_DIR$/src/app/shared/modals/filters-modal/orders-page-filters/orders-page-filters.component.ts" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/app/shared/shared.module.ts" afterPath="$PROJECT_DIR$/src/app/shared/shared.module.ts" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/styles.scss" afterPath="$PROJECT_DIR$/src/styles.scss" />
     </list>
     <ignored path="upt.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -37,21 +271,11 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="sso.module.ts" pinned="false" current-in-tab="false">
+      <file leaf-file-name="sso.module.ts" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/app/auth/sso/sso.module.ts">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="105">
               <caret line="10" column="19" selection-start-line="10" selection-start-column="19" selection-end-line="10" selection-end-column="19" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="env.ts" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/env.ts">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="75">
-              <caret line="5" column="37" selection-start-line="5" selection-start-column="37" selection-end-line="5" selection-end-column="37" />
               <folding />
             </state>
           </provider>
@@ -79,9 +303,6 @@
   <component name="JsGulpfileManager">
     <detection-done>true</detection-done>
     <sorting>DEFINITION_ORDER</sorting>
-  </component>
-  <component name="NodeModulesDirectoryManager">
-    <handled-path value="$PROJECT_DIR$/node_modules" />
   </component>
   <component name="ProjectFrameBounds">
     <option name="y" value="23" />
@@ -113,7 +334,6 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <PATH>
@@ -146,75 +366,10 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="upt" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="upt" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="src" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="app" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="upt" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="upt" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="src" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="app" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="auth" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="upt" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="upt" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="src" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="app" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="auth" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="sso" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
         </subPane>
       </pane>
       <pane id="Scratches" />
+      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -247,16 +402,16 @@
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="16507000" />
+    <option name="totallyTimeSpent" value="16564000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="23" width="1440" height="812" extended-state="6" />
     <editor active="false" />
     <layout>
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.31007752" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Remote Host" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.3190272" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
-      <window_info id="npm" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3263889" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.32777777" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
@@ -266,7 +421,7 @@
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Remote Host" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="npm" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
       <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32952926" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
@@ -626,18 +781,17 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/app/auth/sso/sso.module.ts">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="105">
-          <caret line="10" column="19" selection-start-line="10" selection-start-column="19" selection-end-line="10" selection-end-column="19" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/env.ts">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="75">
           <caret line="5" column="37" selection-start-line="5" selection-start-column="37" selection-end-line="5" selection-end-column="37" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/app/auth/sso/sso.module.ts">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="105">
+          <caret line="10" column="19" selection-start-line="10" selection-start-column="19" selection-end-line="10" selection-end-column="19" />
           <folding />
         </state>
       </provider>

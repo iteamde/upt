@@ -48,6 +48,7 @@ export class ProductService extends ModelService {
   public requestParams: any;
 
   public selectedProduct: ProductModel;
+  public searchText: string;
 
   constructor(
     public injector: Injector,
@@ -270,7 +271,7 @@ export class ProductService extends ModelService {
   }
 
   addCustomProductDocument(data) {
-    return this.restangular.all('products').all('custom').all('documents').post(data).map(res => res.data);
+    return this.restangular.all('products').all('custom').all('documents').post(data);
   }
 
   autocompleteSearchProduct(keywords: string) {

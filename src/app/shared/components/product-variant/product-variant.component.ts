@@ -1,10 +1,15 @@
 import {Component, OnInit, Input, Output, EventEmitter} from '@angular/core';
-import {each, sortBy, times, every} from 'lodash';
+import {each, sortBy, map, every, clone} from 'lodash';
 import {BehaviorSubject} from 'rxjs/BehaviorSubject';
 import {InventoryService} from '../../../core/services/inventory.service';
 import {Observable} from 'rxjs';
 import {InventorySearchResults, PackageModel} from '../../../models/inventory.model';
 import {DestroySubscribers} from 'ngx-destroy-subscribers';
+import {CustomProductVariantModel} from "../../../models/custom-product.model";
+const dummyInventory = [
+  {type: 'Package', value: 'package'},
+  {type: 'Sub Package', value: 'sub_package'},
+  {type: 'Consumable Unit', value: 'consumable_unit'}];
 
 @Component({
   selector: 'app-product-variant',
@@ -21,8 +26,11 @@ export class ProductVariantComponent implements OnInit {
   public selected: any = {};
   public autocompletePackage$: BehaviorSubject<any> = new BehaviorSubject<any>({});
   public autocompletePackage: any = [];
+  public mainPrices: any = new CustomProductVariantModel();
+  /*public createdVariants = clone(this.vendor.variants);*/
 
   constructor(public inventoryService: InventoryService) {
+    console.log(this.vendor)
   }
 
   ngOnInit() {
@@ -44,7 +52,7 @@ export class ProductVariantComponent implements OnInit {
   }
 
   addPackage() {
-    const pack = times(3, () => new PackageModel());
+    const pack = map(dummyInventory, (inv) => new PackageModel(inv));
     this.vendor.inventory_by.push(pack);
   }
 
@@ -59,6 +67,14 @@ export class ProductVariantComponent implements OnInit {
     each(this.vendor.variants, (v) => {
       v.enabled = this.selected.all
     });
+  }
+
+  fillPrices(variant, prop, main) {
+    if (prop && main)
+      each(this.vendor.variants, (v) => v[prop] = variant[prop]);
+    if (prop == 'list_price' && main)
+      each(this.vendor.variants, (v) => v[prop] = v['our_price'] = variant[prop]);
+    variant.our_price = variant.list_price;
   }
 
   packageSummary(pack): string {
