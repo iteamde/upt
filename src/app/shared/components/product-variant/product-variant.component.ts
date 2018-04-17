@@ -28,7 +28,6 @@ export class ProductVariantComponent implements OnInit {
   public autocompletePackage: any = [];
   public mainPrices: any = new CustomProductVariantModel();
   /*public createdVariants = clone(this.vendor.variants);*/
-
   constructor(public inventoryService: InventoryService) {
     console.log(this.vendor)
   }
@@ -48,9 +47,6 @@ export class ProductVariantComponent implements OnInit {
   }
 
   myListFormatter(data: any): string {
-    return '1 ' + data.unit_name;
-  }
-  myValueFormatter(data: any): string {
     return '1 ' + data.unit_name;
   }
 
