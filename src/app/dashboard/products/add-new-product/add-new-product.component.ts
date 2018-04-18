@@ -91,7 +91,7 @@ export class AddNewProductComponent implements OnInit {
     this.cropperSettings1.rounded = false;
     this.cropperSettings1.keepAspect = false;
 
-    this.cropperSettings1.cropperDrawSettings.strokeColor = 'rgba(255,255,255,1)';
+    this.cropperSettings1.cropperDrawSettings.strokeColor = '#33c6d9';
     this.cropperSettings1.cropperDrawSettings.strokeWidth = 2;
 
     this.cropperSettings1.compressRatio = 1;
@@ -272,7 +272,6 @@ export class AddNewProductComponent implements OnInit {
   }
 
   fileChangeListener($event) {
-
     this.show = true;
     const formData = new FormData();
     const image: any = new Image();
@@ -283,7 +282,6 @@ export class AddNewProductComponent implements OnInit {
       image.src = loadEvent.target.result;
       console.log(image.src);
       this.cropper.setImage(image);
-
       formData.append('image', file);
       this.productService.addCustomProductImage(formData)
         .subscribe(url => this.product.image = url);
@@ -294,37 +292,37 @@ export class AddNewProductComponent implements OnInit {
 
 
   rotateBase64Image(base64data) {
-    var canvas: any = document.createElement('canvas');
 
-    var ctx = canvas.getContext("2d");
-
-    var angel = 0;
-    angel += 90;
-    var image = new Image();
+    const canvas: any = document.createElement('canvas');
+    canvas.setAttribute('width', 200);
+    canvas.setAttribute('height', 200);
+    const ctx = canvas.getContext("2d");
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+    ctx.moveTo(0,0);
+    canvas.width=canvas.width;
+    const image = new Image();
     image.src = base64data;
     image.onload =  () =>{
-      ctx.translate(image.width, image.height);
-      ctx.rotate(180 * Math.PI / 180);
-      ctx.drawImage(image, 0, 0);
-      console.log(canvas.toDataURL("image/jpeg"));
+      ctx.translate(canvas.width/2, canvas.height/2);
+      ctx.rotate(90* Math.PI / 180);
+      ctx.drawImage(image, -100,-100, canvas.width,canvas.height);
+      //console.log(canvas.toDataURL("image/jpeg"), canvas.width,canvas.height, image.width,image.height);
       this.data1.image = canvas.toDataURL("image/jpeg");
     };
-
 
   }
 
   saveBlob(dataURI){
-    var byteString = atob(dataURI.split(',')[1]);
-    var mimeString = dataURI.split(',')[0].split(':')[1].split(';')[0]
-    var ab = new ArrayBuffer(byteString.length);
-    var ia = new Uint8Array(ab);
-    for (var i = 0; i < byteString.length; i++) {
+    const byteString = atob(dataURI.split(',')[1]);
+    const mimeString = dataURI.split(',')[0].split(':')[1].split(';')[0]
+    const ab = new ArrayBuffer(byteString.length);
+    const ia = new Uint8Array(ab);
+    for (let i = 0; i < byteString.length; i++) {
       ia[i] = byteString.charCodeAt(i);
     }
-    var blob = new Blob([ab], { type: mimeString });
-
-    var formData = new FormData();
-    var croppedImage = blob;
+    const blob = new Blob([ab], { type: mimeString });
+    const formData = new FormData();
+    const croppedImage = blob;
     formData.append("image", croppedImage);
     this.productService.addCustomProductImage(formData)
       .subscribe(url => this.product.image = url);
@@ -332,3 +330,4 @@ export class AddNewProductComponent implements OnInit {
   }
 
 }
+

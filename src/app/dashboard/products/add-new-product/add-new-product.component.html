@@ -23,11 +23,12 @@
       </button>
     </div>
   </div>
-
   <div *ngIf="show">
     <img-cropper  #cropper [image]="data1" [settings]="cropperSettings1" (onCrop)="cropped($event)"></img-cropper>
-    <button (click)="show = false; saveBlob(data1.image)">save</button>
-    <p>{{data1.image}}</p>
+    <button class="uptracker-form-btn  waves-effect waves-light" style="color:#fff" (click) = "rotateBase64Image(data1.image)">Rotate logo</button>
+    <button class="uptracker-form-btn  waves-effect waves-light" style="color:#fff" (click)="show = false; saveBlob(data1.image)">
+      Save logo
+    </button>
   </div>
 
 
@@ -45,7 +46,6 @@
               <i class="material-icons">delete</i>
             </div>
           </div>
-          <button (click) = "rotateBase64Image(data1.image)">rotate</button>
         </div>
       </div>
       <div class="col s12">
