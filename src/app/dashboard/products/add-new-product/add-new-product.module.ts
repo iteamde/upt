@@ -4,9 +4,13 @@ import { AddNewProductComponent } from './add-new-product.component';
 import {AppSharedModule} from '../../../shared/shared.module';
 import {ProductVariantModule} from "../../../shared/components/product-variant/product-variant.module";
 
+import {ImageCropperComponent, CropperSettings} from 'ng2-img-cropper';
+
 @NgModule({
   declarations: [
     AddNewProductComponent,
+    ImageCropperComponent
+
   ],
   imports: [
     AppSharedModule,

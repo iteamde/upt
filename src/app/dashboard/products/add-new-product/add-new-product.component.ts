@@ -1,4 +1,4 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, OnInit, ViewChild} from '@angular/core';
 import { Observable } from 'rxjs/Observable';
 import { Modal} from 'angular2-modal';
 import { DestroySubscribers } from 'ngx-destroy-subscribers';
@@ -14,6 +14,8 @@ import {ProductVariantsModel} from '../../../models/product-variants.model';
 import {PackageModel} from '../../../models/inventory.model';
 import {ToasterService} from '../../../core/services/toaster.service';
 import {Router} from '@angular/router';
+
+import {ImageCropperComponent, CropperSettings, Bounds} from 'ng2-img-cropper';
 
 const dummyInventory = [
   {type: 'Package', value: 'package', qty: 1},
@@ -56,15 +58,50 @@ export class AddNewProductComponent implements OnInit {
     }
   ];
 
-  constructor(
-    private accountService: AccountService,
-    private productService: ProductService,
-    private modal: Modal,
-    private modalWindowService: ModalWindowService,
-    private location: Location,
-    private toasterService: ToasterService,
-    private router: Router
-  ) {
+
+  name: string;
+  data1: any;
+  cropperSettings1: CropperSettings;
+  croppedWidth: number;
+  croppedHeight: number;
+  show: boolean;
+  @ViewChild('cropper', undefined) cropper: ImageCropperComponent;
+
+  constructor(private accountService: AccountService,
+              private productService: ProductService,
+              private modal: Modal,
+              private modalWindowService: ModalWindowService,
+              private location: Location,
+              private toasterService: ToasterService,
+              private router: Router) {
+    this.name = 'Angular2';
+    this.cropperSettings1 = new CropperSettings();
+    this.cropperSettings1.width = 200;
+    this.cropperSettings1.height = 200;
+
+    this.cropperSettings1.croppedWidth = 200;
+    this.cropperSettings1.croppedHeight = 200;
+
+    this.cropperSettings1.canvasWidth = 500;
+    this.cropperSettings1.canvasHeight = 300;
+
+    this.cropperSettings1.minWidth = 10;
+    this.cropperSettings1.minHeight = 10;
+
+    this.cropperSettings1.rounded = false;
+    this.cropperSettings1.keepAspect = false;
+
+    this.cropperSettings1.cropperDrawSettings.strokeColor = 'rgba(255,255,255,1)';
+    this.cropperSettings1.cropperDrawSettings.strokeWidth = 2;
+
+    this.cropperSettings1.compressRatio = 1;
+    this.cropperSettings1.preserveSize = true;
+    this.cropperSettings1.noFileInput = true;
+
+    this.show = false;
+    this.data1 = {
+      image: ''
+    };
   }
 
   ngOnInit() {
@@ -90,37 +127,41 @@ export class AddNewProductComponent implements OnInit {
     let newVar = (arr) => {
       return {...new CustomProductVariantModel(), name: join(arr, ' ')}
     };
+
     function recursive() {
-      let r = [], arg = arguments, max = arg.length-1;
+      let r = [], arg = arguments, max = arg.length - 1;
+
       function helper(arr, i) {
-        for (let j=0, l=arg[i].length; j<l; j++) {
+        for (let j = 0, l = arg[i].length; j < l; j++) {
           let a = arr.slice(0); // clone arr
           a.push(arg[i][j]);
-          if (i==max)
+          if (i == max)
             r.push(newVar(a));
           else
-            helper(a, i+1);
+            helper(a, i + 1);
         }
       }
+
       helper([], 0);
       return r;
     }
+
     return recursive(...arr);
   }
 
   setTechName = (name) => this.product.technical_name = name;
 
-  uploadLogo(file: any) {
-    const reader = new FileReader();
-    const formData = new FormData();
-    reader.onload = ($event: any) => {
-      this.logoPreview = $event.target.result;
-      formData.append('image', file.target.files[0]);
-      this.productService.addCustomProductImage(formData)
-        .subscribe(url => this.product.image = url);
-    };
-    reader.readAsDataURL(file.target.files[0]);
-  }
+  // uploadLogo(file: any) {
+  //   const reader = new FileReader();
+  //   const formData = new FormData();
+  //   reader.onload = ($event: any) => {
+  //     this.logoPreview = $event.target.result;
+  //     formData.append('image', file.target.files[0]);
+  //     this.productService.addCustomProductImage(formData)
+  //       .subscribe(url => this.product.image = url);
+  //   };
+  //   reader.readAsDataURL(file.target.files[0]);
+  // }
 
   openHelperModal() {
     this.modal.open(HelpTextModal, this.modalWindowService
@@ -149,12 +190,13 @@ export class AddNewProductComponent implements OnInit {
       .subscribe(urls =>
         this.product.attachments = this.product.attachments.concat(urls))
   }
+
   removeFile(i) {
     this.product.attachments.splice(i, 1)
   }
 
   deleteItem = (variant, i) => {
-      variant.splice(i, 1);
+    variant.splice(i, 1);
   };
 
   deleteVariant = (i) => {
@@ -222,4 +264,71 @@ export class AddNewProductComponent implements OnInit {
   onVendorDelete(i) {
     this.product.vendor_variants.splice(i, 1);
   }
+
+
+  cropped(bounds: Bounds) {
+    this.croppedHeight = bounds.bottom - bounds.top;
+    this.croppedWidth = bounds.right - bounds.left;
+  }
+
+  fileChangeListener($event) {
+
+    this.show = true;
+    const formData = new FormData();
+    const image: any = new Image();
+    const file: File = $event.target.files[0];
+    console.log(file);
+    const myReader: FileReader = new FileReader();
+    myReader.onloadend = (loadEvent: any) => {
+      image.src = loadEvent.target.result;
+      console.log(image.src);
+      this.cropper.setImage(image);
+
+      formData.append('image', file);
+      this.productService.addCustomProductImage(formData)
+        .subscribe(url => this.product.image = url);
+    };
+    myReader.readAsDataURL(file);
+
+  }
+
+
+  rotateBase64Image(base64data) {
+    var canvas: any = document.createElement('canvas');
+
+    var ctx = canvas.getContext("2d");
+
+    var angel = 0;
+    angel += 90;
+    var image = new Image();
+    image.src = base64data;
+    image.onload =  () =>{
+      ctx.translate(image.width, image.height);
+      ctx.rotate(180 * Math.PI / 180);
+      ctx.drawImage(image, 0, 0);
+      console.log(canvas.toDataURL("image/jpeg"));
+      this.data1.image = canvas.toDataURL("image/jpeg");
+    };
+
+
+  }
+
+  saveBlob(dataURI){
+    var byteString = atob(dataURI.split(',')[1]);
+    var mimeString = dataURI.split(',')[0].split(':')[1].split(';')[0]
+    var ab = new ArrayBuffer(byteString.length);
+    var ia = new Uint8Array(ab);
+    for (var i = 0; i < byteString.length; i++) {
+      ia[i] = byteString.charCodeAt(i);
+    }
+    var blob = new Blob([ab], { type: mimeString });
+
+    var formData = new FormData();
+    var croppedImage = blob;
+    formData.append("image", croppedImage);
+    this.productService.addCustomProductImage(formData)
+      .subscribe(url => this.product.image = url);
+    console.log(blob);
+  }
+
 }

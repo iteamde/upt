@@ -24,15 +24,28 @@
     </div>
   </div>
 
+  <div *ngIf="show">
+    <img-cropper  #cropper [image]="data1" [settings]="cropperSettings1" (onCrop)="cropped($event)"></img-cropper>
+    <button (click)="show = false; saveBlob(data1.image)">save</button>
+    <p>{{data1.image}}</p>
+  </div>
+
+
   <div class="row uptracker-form" *ngIf="step == 0">
     <div class="col s12 m3 center-align">
       <div class="col s12">
         <div class="img-container">
-          <div class="img" *ngIf="logoPreview" [ngStyle]="{ 'background-image': 'url(' + logoPreview + ')' }">
-            <div class="del-img-btn" (click)="logoPreview = ''">
+          <!--<div class="img" *ngIf="logoPreview" [ngStyle]="{ 'background-image': 'url(' + logoPreview + ')' }">-->
+            <!--<div class="del-img-btn" (click)="logoPreview = ''">-->
+              <!--<i class="material-icons">delete</i>-->
+            <!--</div>-->
+          <!--</div>-->
+          <div class="img" *ngIf="data1.image" [ngStyle]="{ 'background-image': 'url(' + data1.image + ')' }">
+            <div class="del-img-btn" (click)="data1.image = ''">
               <i class="material-icons">delete</i>
             </div>
           </div>
+          <button (click) = "rotateBase64Image(data1.image)">rotate</button>
         </div>
       </div>
       <div class="col s12">
@@ -45,7 +58,9 @@
         <div class="input add-attachment">
           <div class="file-field">
             <div class="upload-link">
-              <input type="file" accept="image/*" (change)="uploadLogo($event)"/>
+              <!--<input type="file" accept="image/*" (change)="uploadLogo($event)"/>-->
+              <!--<a>Upload a logo</a>-->
+              <input type="file" (change)="fileChangeListener($event)">
               <a>Upload a logo</a>
             </div>
           </div>
