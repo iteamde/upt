@@ -60,11 +60,14 @@ export class AddNewProductComponent implements OnInit {
 
 
   name: string;
-  data1: any;
-  cropperSettings1: CropperSettings;
+  dataCropImg: any;
+  cropperSettings: CropperSettings;
   croppedWidth: number;
   croppedHeight: number;
-  show: boolean;
+  showEditArea: boolean;
+
+
+
   @ViewChild('cropper', undefined) cropper: ImageCropperComponent;
 
   constructor(private accountService: AccountService,
@@ -74,32 +77,32 @@ export class AddNewProductComponent implements OnInit {
               private location: Location,
               private toasterService: ToasterService,
               private router: Router) {
-    this.name = 'Angular2';
-    this.cropperSettings1 = new CropperSettings();
-    this.cropperSettings1.width = 200;
-    this.cropperSettings1.height = 200;
+    this.name = 'CropImg';
+    this.cropperSettings = new CropperSettings();
+    this.cropperSettings.width = 200;
+    this.cropperSettings.height = 200;
 
-    this.cropperSettings1.croppedWidth = 200;
-    this.cropperSettings1.croppedHeight = 200;
+    this.cropperSettings.croppedWidth = 200;
+    this.cropperSettings.croppedHeight = 200;
 
-    this.cropperSettings1.canvasWidth = 500;
-    this.cropperSettings1.canvasHeight = 300;
+    this.cropperSettings.canvasWidth = 500;
+    this.cropperSettings.canvasHeight = 300;
 
-    this.cropperSettings1.minWidth = 10;
-    this.cropperSettings1.minHeight = 10;
+    this.cropperSettings.minWidth = 10;
+    this.cropperSettings.minHeight = 10;
 
-    this.cropperSettings1.rounded = false;
-    this.cropperSettings1.keepAspect = false;
+    this.cropperSettings.rounded = false;
+    this.cropperSettings.keepAspect = false;
 
-    this.cropperSettings1.cropperDrawSettings.strokeColor = '#33c6d9';
-    this.cropperSettings1.cropperDrawSettings.strokeWidth = 2;
+    this.cropperSettings.cropperDrawSettings.strokeColor = '#33c6d9';
+    this.cropperSettings.cropperDrawSettings.strokeWidth = 2;
 
-    this.cropperSettings1.compressRatio = 1;
-    this.cropperSettings1.preserveSize = true;
-    this.cropperSettings1.noFileInput = true;
+    this.cropperSettings.compressRatio = 1;
+    this.cropperSettings.preserveSize = true;
+    this.cropperSettings.noFileInput = true;
 
-    this.show = false;
-    this.data1 = {
+    this.showEditArea = false;
+    this.dataCropImg = {
       image: ''
     };
   }
@@ -272,7 +275,7 @@ export class AddNewProductComponent implements OnInit {
   }
 
   fileChangeListener($event) {
-    this.show = true;
+    this.showEditArea = true;
     const formData = new FormData();
     const image: any = new Image();
     const file: File = $event.target.files[0];
@@ -280,7 +283,9 @@ export class AddNewProductComponent implements OnInit {
     const myReader: FileReader = new FileReader();
     myReader.onloadend = (loadEvent: any) => {
       image.src = loadEvent.target.result;
-      console.log(image.src);
+      this.cropperSettings.canvasWidth = 100;
+      this.cropperSettings.canvasHeight = 100;
+      console.log(image.src, this.cropperSettings.canvasWidth);
       this.cropper.setImage(image);
       formData.append('image', file);
       this.productService.addCustomProductImage(formData)
@@ -291,26 +296,26 @@ export class AddNewProductComponent implements OnInit {
   }
 
 
-  rotateBase64Image(base64data) {
+rotateBase64Image(base64data) {
 
-    const canvas: any = document.createElement('canvas');
-    canvas.setAttribute('width', 200);
-    canvas.setAttribute('height', 200);
-    const ctx = canvas.getContext("2d");
-    ctx.clearRect(0, 0, canvas.width, canvas.height);
-    ctx.moveTo(0,0);
-    canvas.width=canvas.width;
-    const image = new Image();
-    image.src = base64data;
-    image.onload =  () =>{
-      ctx.translate(canvas.width/2, canvas.height/2);
-      ctx.rotate(90* Math.PI / 180);
-      ctx.drawImage(image, -100,-100, canvas.width,canvas.height);
-      //console.log(canvas.toDataURL("image/jpeg"), canvas.width,canvas.height, image.width,image.height);
-      this.data1.image = canvas.toDataURL("image/jpeg");
-    };
+  const canvas: any = document.createElement('canvas');
+  canvas.setAttribute('width', 200);
+  canvas.setAttribute('height', 200);
+  const ctx = canvas.getContext("2d");
+  ctx.clearRect(0, 0, canvas.width, canvas.height);
+  ctx.moveTo(0,0);
+  canvas.width=canvas.width;
+  const image = new Image();
+  image.src = base64data;
+  image.onload =  () =>{
+    ctx.translate(canvas.width/2, canvas.height/2);
+    ctx.rotate(90* Math.PI / 180);
+    ctx.drawImage(image, -100,-100, canvas.width,canvas.height);
+    //console.log(canvas.toDataURL("image/jpeg"), canvas.width,canvas.height, image.width,image.height);
+    this.dataCropImg.image = canvas.toDataURL("image/jpeg");
+  };
 
-  }
+}
 
   saveBlob(dataURI){
     const byteString = atob(dataURI.split(',')[1]);
@@ -330,4 +335,5 @@ export class AddNewProductComponent implements OnInit {
   }
 
 }
+
 

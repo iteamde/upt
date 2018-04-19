@@ -23,12 +23,17 @@
       </button>
     </div>
   </div>
-  <div *ngIf="show">
-    <img-cropper  #cropper [image]="data1" [settings]="cropperSettings1" (onCrop)="cropped($event)"></img-cropper>
-    <button class="uptracker-form-btn  waves-effect waves-light" style="color:#fff" (click) = "rotateBase64Image(data1.image)">Rotate logo</button>
-    <button class="uptracker-form-btn  waves-effect waves-light" style="color:#fff" (click)="show = false; saveBlob(data1.image)">
-      Save logo
-    </button>
+
+  <div *ngIf="showEditArea" class = "edit-logo-img">
+    <div class="">
+      <img-cropper  #cropper [image]="dataCropImg" [settings]="cropperSettings" (onCrop)="cropped($event)"></img-cropper>
+      <div class="edit-btn-group">
+        <button class="uptracker-form-btn  waves-effect waves-light" style="color:#fff" (click) = "rotateBase64Image(dataCropImg.image)">Rotate logo</button>
+        <button class="uptracker-form-btn  waves-effect waves-light" style="color:#fff" (click)="showEditArea = false; saveBlob(dataCropImg.image)">
+          Save logo
+        </button>
+      </div>
+    </div>
   </div>
 
 
@@ -41,8 +46,8 @@
               <!--<i class="material-icons">delete</i>-->
             <!--</div>-->
           <!--</div>-->
-          <div class="img" *ngIf="data1.image" [ngStyle]="{ 'background-image': 'url(' + data1.image + ')' }">
-            <div class="del-img-btn" (click)="data1.image = ''">
+          <div class="img" *ngIf="dataCropImg.image" [ngStyle]="{ 'background-image': 'url(' + dataCropImg.image + ')' }">
+            <div class="del-img-btn" (click)="dataCropImg.image = ''">
               <i class="material-icons">delete</i>
             </div>
           </div>
