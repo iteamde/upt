@@ -28,8 +28,10 @@
     <div class="">
       <img-cropper  #cropper [image]="dataCropImg" [settings]="cropperSettings" (onCrop)="cropped($event)"></img-cropper>
       <div class="edit-btn-group">
-        <button class="uptracker-form-btn  waves-effect waves-light" style="color:#fff" (click) = "rotateBase64Image(dataCropImg.image)">Rotate logo</button>
-        <button class="uptracker-form-btn  waves-effect waves-light" style="color:#fff" (click)="showEditArea = false; saveBlob(dataCropImg.image)">
+        <button class="uptracker-form-btn  waves-effect waves-light" (click) = "rotateBase64Image(dataCropImg.image)">
+          Rotate logo
+        </button>
+        <button class="uptracker-form-btn  waves-effect waves-light" (click)="showEditArea = false; saveBlob(dataCropImg.image)">
           Save logo
         </button>
       </div>

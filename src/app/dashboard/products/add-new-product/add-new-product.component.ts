@@ -283,8 +283,6 @@ export class AddNewProductComponent implements OnInit {
     const myReader: FileReader = new FileReader();
     myReader.onloadend = (loadEvent: any) => {
       image.src = loadEvent.target.result;
-      this.cropperSettings.canvasWidth = 100;
-      this.cropperSettings.canvasHeight = 100;
       console.log(image.src, this.cropperSettings.canvasWidth);
       this.cropper.setImage(image);
       formData.append('image', file);
