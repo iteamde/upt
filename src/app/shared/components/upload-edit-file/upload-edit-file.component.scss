@@ -1,0 +1,17 @@
+:host /deep/ {
+
+  .edit-logo-img{
+    display:inline-block;
+    margin-bottom: 20px;
+    .edit-btn-group{
+      button{
+      color: #fff;
+    }
+      button:first-child{
+        margin-right: 20px;
+        color: #fff;
+      }
+    }
+  }
+}
+
