@@ -63,6 +63,7 @@ import { AddVendorModalComponent } from './modals/add-vendor-modal/add-vendor-mo
 import { ChipsInputModule } from './components/chips-input/chips-input.module';
 import { ChipsModule } from './components/chips/chips.module';
 
+
 const modalsArr = [
   EditUserModal,
   EditLocationModal,

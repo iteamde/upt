@@ -2,21 +2,6 @@
 
 :host /deep/ {
 
-  .edit-logo-img{
-    display:inline-block;
-    margin-bottom: 20px;
-    .edit-btn-group{
-      text-align: center;
-      button{
-      color: #fff;
-    }
-      button:first-child{
-        margin-right: 20px;
-        color: #fff;
-      }
-    }
-  }
-
   .close {
     transition: opacity .3s;
     width: 40px;

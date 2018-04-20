@@ -4,17 +4,19 @@ import { AddNewProductComponent } from './add-new-product.component';
 import {AppSharedModule} from '../../../shared/shared.module';
 import {ProductVariantModule} from "../../../shared/components/product-variant/product-variant.module";
 
-import {ImageCropperComponent, CropperSettings} from 'ng2-img-cropper';
+import {UploadEditFileModule} from "../../../shared/components/upload-edit-file/upload-edit-file.module";
+import {UploadEditImageModalModule} from "../../../shared/modals/upload-edit-image-modal/upload-edit-image-modal.module";
 
 @NgModule({
   declarations: [
     AddNewProductComponent,
-    ImageCropperComponent
-
   ],
   imports: [
     AppSharedModule,
-    ProductVariantModule
+    ProductVariantModule,
+    UploadEditFileModule,
+    UploadEditImageModalModule
+
   ],
   providers: [],
   exports: [

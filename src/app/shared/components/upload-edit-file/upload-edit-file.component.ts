@@ -38,7 +38,7 @@ export class UploadEditFileComponent implements OnInit {
     this.cropperSettings.minHeight = 10;
 
     this.cropperSettings.rounded = false;
-    this.cropperSettings.keepAspect = false;
+    this.cropperSettings.keepAspect = true;
 
     this.cropperSettings.cropperDrawSettings.strokeColor = '#33c6d9';
     this.cropperSettings.cropperDrawSettings.strokeWidth = 2;
@@ -54,6 +54,19 @@ export class UploadEditFileComponent implements OnInit {
   }
 
   ngOnInit() {
+
+    // const image = new Image();
+    // image.onload =  () =>{
+    //
+    //  this.cropper.setImage(image);
+    //  console.log(canvas.toDataURL("image/jpeg"), canvas.width,canvas.height, image.width,image.height);
+    //  this.dataCropImg.image = canvas.toDataURL("image/jpeg");
+    //  console.log(this.dataCropImg.image)
+    // };
+    // image.crossOrigin = "Use-Credentials";
+    // image.src = this.product.image;
+
+
   }
 
   cropped(bounds: Bounds) {
@@ -69,10 +82,11 @@ export class UploadEditFileComponent implements OnInit {
     const myReader: FileReader = new FileReader();
     myReader.onloadend = (loadEvent: any) => {
       image.src = loadEvent.target.result;
+      console.log('image',image,$event.target.files[0])
       this.cropper.setImage(image);
       formData.append('image', file);
       this.productService.addCustomProductImage(formData)
-      .subscribe(url => this.product.image = url);
+      .subscribe(url => {this.product.image = url; console.log("SUBSCRIBE URL")});
     };
     myReader.readAsDataURL(file);
   }
