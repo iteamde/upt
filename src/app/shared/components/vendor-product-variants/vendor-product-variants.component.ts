@@ -36,9 +36,23 @@ export class VendorProductVariantsComponent implements OnInit {
         }
       };
     }
+
+    // his.variantsModify1 = [...this.variants];
+
+    // this.variantsModify = [..._.uniqBy(this.variants, 'common')];
+    this.variantsModify = _.uniqBy(this.variants, 'common');
+    console.log('variantsModify ', this.variantsModify);
+    this.variants.splice(0);
+
+    this.variantsModify.forEach(item => {
+      if (item.common) delete item.common;
+      this.variants.push(item);
+    });
+
+
     console.log('VAriants ', this.variants);
 
-    this.variants = _.uniqBy(this.variants, 'common');
+
 
     console.log('variantsModify ', this.variants);
 

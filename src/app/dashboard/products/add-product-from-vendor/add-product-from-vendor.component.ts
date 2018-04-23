@@ -64,7 +64,7 @@ export class AddProductFromVendorComponent implements OnInit {
         this.formatVendors(this.variants);
       })*/
 
-    console.log("My Variants", this.variants)
+
   }
 
   getProducts() {
