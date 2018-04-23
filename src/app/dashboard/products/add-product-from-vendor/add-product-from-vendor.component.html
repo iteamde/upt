@@ -1,4 +1,5 @@
 <div class="row">
+  {{vendorVariants | json}}
   <div class="col s2">
     <div class="close fa fa-chevron-left" (click)="goBack()" *ngIf="step==0"></div>
     <button class="uptracker-form-btn back-btn tealish tealish-text waves-effect waves-light"

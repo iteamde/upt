@@ -63,6 +63,8 @@ export class AddProductFromVendorComponent implements OnInit {
       .subscribe(() => {
         this.formatVendors(this.variants);
       })*/
+
+    console.log("My Variants", this.variants)
   }
 
   getProducts() {
@@ -107,6 +109,7 @@ export class AddProductFromVendorComponent implements OnInit {
   formatProduct(product) {
     const attachments = map(product.attachments, 'public_url');
     const vendor_variants = reduce(this.vendorVariants, (result: any[], value) => result.concat(value));
+
     return {...product, attachments, account_category: "Supplies", vendor_variants};
   }
 

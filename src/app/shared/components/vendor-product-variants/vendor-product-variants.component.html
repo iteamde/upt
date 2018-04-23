@@ -8,7 +8,7 @@
     <a class="add-button" (click)="onAddPackageClick()">+ Add Packaging</a>
   </div>
 </div>
-
+{{variants | json}}
 <app-product-variant
   *ngFor="let vendor of variants; let i = index"
   [vendor]="vendor"
