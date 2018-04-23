@@ -25,6 +25,7 @@
         [name]="(sort$ | async)?.order === asc ? 'chevron-up' : 'chevron-down'"
       ></fa>
       <app-order-table-header-action
+        *ngIf="headerCol.actions && showHeaderMenu$ | async"
         [orders]="checkedOrders$ | async"
         [isShow]="headerCol.actions && showHeaderMenu$ | async"
         [listName]="_listName"
@@ -54,11 +55,24 @@
         [class.pointer]="headerCol?.filterBy"
         [class.expanded]="item.statusHistoryVisibility"
       >
-        <div [ngClass]="{'col-flex-content': headerCol.showChevron}">
+        <div
+          [class.col-content-wrapper]="headerCol.wrap <= 1 || !headerCol.wrap"
+          [class.col-wrap-multiline]="headerCol.wrap > 1"
+          [class.col-flex-content]="headerCol.showChevron"
+          [ngStyle]="{'-webkit-line-clamp': headerCol.wrap > 1 && headerCol.wrap}"
+        >
           <span
             *ngIf="headerCol.alias && item[headerCol.alias]"
+            [title]="item[headerCol.alias]"
             [ngClass]="{'black-text cursor-default': headerCol.showChevron && item.statusHistoryVisibility, 'red-text':  (filterByObj$ | async)[headerCol.alias] === item[headerCol.alias]}">
             {{item[headerCol.alias]}}
+          </span>
+          <span
+            *ngIf="headerCol.aliasArray && headerCol.aliasArray.length"
+          >
+            <ng-template ngFor let-alias [ngForOf]="headerCol.aliasArray" let-last="last">
+              {{ item[alias] }}{{ last ? '' : headerCol.join }}
+            </ng-template>
           </span>
           <fa
             *ngIf="headerCol.showChevron && item.status_int === orderStatus.multiple"
@@ -68,13 +82,15 @@
           ></fa>
         </div>
 
-
         <app-order-table-item-action
+          *ngIf="headerCol.actions"
           [item]="item"
           [isShow]="headerCol.actions"
           [listName]="_listName"
           [uniqueField]="uniqueField"
           [i]="i"
+          (onFavorite)="onFavorite($event)"
+          (onFlagged)="onFlagged($event)"
         ></app-order-table-item-action>
 
       </div>

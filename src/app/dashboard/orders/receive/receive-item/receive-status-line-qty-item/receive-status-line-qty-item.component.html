@@ -1,0 +1,13 @@
+<div class="col s3">
+  {{ item?.status }}
+</div>
+<div class="col s1">
+  {{ item?.qty }}
+  <a (click)="onEditClick($event)" *ngIf="showEditIcon">
+    <fa name="pencil" class="tealish-text"></fa>
+  </a>
+</div>
+<div class="col s8">
+  {{ item?.note }}
+</div>
+<div class="col s12" [class.strikethrough-line]="lineThrough"></div>

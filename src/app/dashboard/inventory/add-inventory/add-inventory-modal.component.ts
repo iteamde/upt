@@ -7,7 +7,7 @@ import { BehaviorSubject } from 'rxjs/BehaviorSubject';
 import { Observable } from 'rxjs/Observable';
 import { ReplaySubject } from 'rxjs/ReplaySubject';
 
-import { DialogRef, ModalComponent, CloseGuard, Modal } from 'angular2-modal';
+import { DialogRef, ModalComponent, Modal } from 'angular2-modal';
 import { BSModalContext } from 'angular2-modal/plugins/bootstrap';
 import { DestroySubscribers } from 'ngx-destroy-subscribers';
 import { UserService, AccountService } from '../../../core/services/index';
@@ -25,6 +25,7 @@ export class AddInventoryModalContext extends BSModalContext {
   inventoryItems: any[] = [];
   inventoryGroup: any = null;
   selectedProduct: any = null;
+  modalMode: boolean;
 }
 
 @Component({
@@ -34,7 +35,7 @@ export class AddInventoryModalContext extends BSModalContext {
 })
 
 @DestroySubscribers()
-export class AddInventoryModal implements OnInit, OnDestroy, CloseGuard, ModalComponent<AddInventoryModalContext> {
+export class AddInventoryModal implements OnInit, OnDestroy, ModalComponent<AddInventoryModalContext> {
   public subscribers: any = {};
   public scrollConfig = {
     suppressScrollY: true,
@@ -123,7 +124,6 @@ export class AddInventoryModal implements OnInit, OnDestroy, CloseGuard, ModalCo
     public modal: Modal,
   ) {
     this.context = dialog.context;
-    dialog.setCloseGuard(this);
   }
 
   ngOnInit() {
@@ -238,10 +238,11 @@ export class AddInventoryModal implements OnInit, OnDestroy, CloseGuard, ModalCo
       updateItems$
     ).publishReplay(1).refCount();
 
-    this.subscribers.itemsSubscription = this.items$.subscribe(res => {
+    this.subscribers.itemsSubscription = this.items$.filter(i => i).subscribe(res => {
       this.newInventory.products = res.map((el: any) => new InventoryProductModel(el));
       this.showSelect = false;
       if (res.length && !this.context.inventoryGroup) {
+        console.log(res)
         const findedCategory: any = _.find(res, 'category');
         const searchedCategory = (findedCategory) ? this.productCategoriesCollection.indexOf(findedCategory.category) : null;
         this.newInventory.name = res[0].name;
@@ -384,7 +385,6 @@ export class AddInventoryModal implements OnInit, OnDestroy, CloseGuard, ModalCo
         });
       })
     }
-
   }
 
   ngOnDestroy() {
@@ -426,6 +426,7 @@ export class AddInventoryModal implements OnInit, OnDestroy, CloseGuard, ModalCo
       this.typeIn$.next(null);
     }
   }
+
   observableSource(keyword: any) {
     return Observable.of(this.autocompleteProducts).take(1);
   }
@@ -480,7 +481,6 @@ export class AddInventoryModal implements OnInit, OnDestroy, CloseGuard, ModalCo
   }
 
   putCheckbox(item) {
-
     this.showSelect = false;
     item.checked = !item.checked;
 
@@ -643,6 +643,7 @@ export class AddInventoryModal implements OnInit, OnDestroy, CloseGuard, ModalCo
         this.saveAdded$.next();
       }
     }
+    this.dialog.close(this.newInventory)
   }
 
   nextPackage(value) {
@@ -789,14 +790,17 @@ export class AddInventoryModal implements OnInit, OnDestroy, CloseGuard, ModalCo
     };
     img.src = imgBase64;
   }
+
   onMSDCFileUpload(event) {
     this.onMsdsDrop(event.target.files[0]);
-    }
+  }
+
   onMsdsDrop(msds: any): void {
     let myReader: any = new FileReader();
     myReader.fileName = msds.name;
     this.addMsds(msds);
   }
+
   onFileDrop(file: any): void {
     let myReader: any = new FileReader();
     myReader.fileName = file.name;
@@ -810,6 +814,7 @@ export class AddInventoryModal implements OnInit, OnDestroy, CloseGuard, ModalCo
   addFile(file) {
     this.addFileToFile$.next([file]);
   }
+
   addMsds(msds) {
     this.addMsdsToMsds$.next([msds]);
   }
@@ -817,6 +822,7 @@ export class AddInventoryModal implements OnInit, OnDestroy, CloseGuard, ModalCo
   removeFile(file) {
     this.deleteFromFile$.next(file);
   }
+
   removeMsds(msds) {
     this.deleteFromMsds$.next(msds);
   }
