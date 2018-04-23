@@ -14,6 +14,7 @@ export class VendorProductVariantsComponent implements OnInit {
 
   public vendor: any = {};
   public variantsModify:any =[];
+  public variantsModify1:any =[];
   public commonPackage:any =[];
   public v:any =[];
 
@@ -25,37 +26,68 @@ export class VendorProductVariantsComponent implements OnInit {
       vendor_id: this.variants[0].vendor_id
     }
 
-    // console.log('Variants', this.variants);
+
+    for (let i = 0; i < this.variants.length; i++) {
+      for (let j = i + 1; j < this.variants.length; j++){
+        if (_.isEqual(this.variants[i].inventory_by, this.variants[j].inventory_by)){
+          this.variants[i].variants.push(this.variants[j].variants[0]);
+          this.variants[i].common = 1;
+          this.variants[j].common = 1;
+        }
+      };
+    }
+    console.log('VAriants ', this.variants);
+
+    this.variants = _.uniqBy(this.variants, 'common');
+
+    console.log('variantsModify ', this.variants);
+
+
+
+
+    // this.variantsModify1 = [...this.variants];
+    // // console.log('Variants', this.variants);
     // this.variantsModify = this.variants.filter((item, index) =>{
-    //       if(_.isEqual(this.variants[0].inventory_by, item.inventory_by)){
-    //         this.commonPackage.push(item.variants[0]);
-    //         //this.variants.splice(index,1);
     //
-    //         console.log(item);
-    //         return false;
+    //       for (let i = 0; i < this.variantsModify1.length; i++ ) {
+    //         if (_.isEqual(this.variantsModify1[i].inventory_by, item.inventory_by)) {
+    //           this.commonPackage.push(item.variants[0]);
+    //           this.variantsModify1.splice(index,1);
+    //           return false;
+    //         }
+    //         return true;
     //       }
-    //       return true;
-    //     }
-    //   )
+    //   })
+    // console.log('variantsModify ', this.variantsModify);
     //
     // this.variants[0].variants = this.commonPackage;
     // this.variants = [].concat(this.variants[0], this.variantsModify);
     // console.log('Modify Variants', this.variants)
 
-    console.log('Variants', this.variants);
-    //this.variants.forEach(item => console.log(item));
+    //console.log('Variants', this.variants);
+    // this.variants.forEach(item => console.log(item));
+    //
+    // this.variantsModify = [...this.variants];
+    // console.log('variantsModify ', this.variantsModify);
 
+    // this.variants.forEach((item, index) => {
+    //   const a = item;
+    //   this.variants.forEach((item1, index1) => {
+    //     if (_.isEqual(a.inventory_by, item1.inventory_by)){
+    //       //item.variants.push(item1.variants[0]);
+    //       this.variants.splice(index1,1);
+    //      // delete this.variants[index1];
+    //       console.log("a");
+    //       if(this.variants.indexOf(a)) this.variants.push(a);
+    //     }
+    //
+    //
+    //
+    //   })
+    //
+    // })
 
-    this.variants.forEach((item, index) => {
-      this.variants.forEach((item1, index1) => {
-        if (_.isEqual(item.inventory_by, item1.inventory_by) && (index1 != index)){
-          item.variants.push(item1.variants[0]);
-          this.variants.splice(index1,1);
-        }
-
-      })
-
-    })
+    // console.log('Variants',this.variants)
    //  var indexArr = new Array();
    //  var newArr = [];
    //  for (var i = 0 ; i < this.variants.length; i++) {
