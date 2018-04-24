@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 import {ProductVariantModule} from "./product-variant/product-variant.module";
 import {VendorProductVariantsComponent} from "./vendor-product-variants.component";
 
+
 @NgModule({
   imports: [
     ProductVariantModule,

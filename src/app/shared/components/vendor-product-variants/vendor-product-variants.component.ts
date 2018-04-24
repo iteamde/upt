@@ -39,6 +39,7 @@ export class VendorProductVariantsComponent implements OnInit {
     // this.variantsModify = [..._.uniqBy(this.variants, 'common')];
 
     this.variantsModify = _.uniqBy(this.variants, 'common');
+
     console.log('variantsModify ', this.variantsModify);
     this.variants.splice(0);
 
