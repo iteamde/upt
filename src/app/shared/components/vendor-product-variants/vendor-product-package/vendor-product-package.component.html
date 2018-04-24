@@ -50,16 +50,24 @@
       </div>
       <div class="col s9 flex">
         <div class="input search select">
-          <input class="caret" auto-complete
-                 placeholder="N/A"
-                 [source]="autocompletePackage"
-                 [list-formatter] = '"plural_unit_name"'
-                 [tab-to-select] = 'false'
-                 [select-value-of] = "'plural_unit_name'"
-                 name="sub_package_type"
-                 [(ngModel)] = 'package[1].label'
-          >
-          <fa name="angle-down"></fa>
+          <!--<input class="caret" auto-complete-->
+                 <!--placeholder="N/A"-->
+                 <!--[source]="autocompletePackage"-->
+                 <!--[list-formatter] = '"plural_unit_name"'-->
+                 <!--[tab-to-select] = 'false'-->
+                 <!--[select-value-of] = "'plural_unit_name'"-->
+                 <!--name="sub_package_type"-->
+                 <!--[(ngModel)] = 'package[1].label'-->
+          <!--&gt;-->
+          <!--<fa name="angle-down"></fa>-->
+          <div class="select">
+            <select
+              [(ngModel)]="package[1].label"
+              materialize="material_select"
+              [materializeSelectOptions]="autocompletePackage">
+              <option *ngFor="let item of autocompletePackage" [value]="item.unit_name">{{item.unit_name}}(s)</option>
+            </select>
+          </div>
         </div>
         <div class="label">=</div>
       </div>
@@ -77,17 +85,25 @@
       </div>
       <div class="col s9">
         <div class="input search select">
-          <input class="caret" auto-complete
-                 placeholder="Type"
-                 [source]="autocompletePackage"
-                 [(ngModel)] = "package[2].label"
-                 [list-formatter] = "'unit_name'"
-                 [select-value-of] = "'unit_name'"
-                 [tab-to-select] = 'false'
-                 name="cons_package_type"
-                 required
-          >
-          <fa name="angle-down"></fa>
+          <!--<input class="caret" auto-complete-->
+                 <!--placeholder="Type"-->
+                 <!--[source]="autocompletePackage"-->
+                 <!--[(ngModel)] = "package[2].label"-->
+                 <!--[list-formatter] = "'unit_name'"-->
+                 <!--[select-value-of] = "'unit_name'"-->
+                 <!--[tab-to-select] = 'false'-->
+                 <!--name="cons_package_type"-->
+                 <!--required-->
+          <!--&gt;-->
+          <!--<fa name="angle-down"></fa>-->
+          <div class="select">
+            <select
+              [(ngModel)]="package[2].label"
+              materialize="material_select"
+              [materializeSelectOptions]="autocompletePackage">
+              <option *ngFor="let item of autocompletePackage" [value]="item.unit_name">{{item.unit_name}}(s)</option>
+            </select>
+          </div>
         </div>
       </div>
     </div>
