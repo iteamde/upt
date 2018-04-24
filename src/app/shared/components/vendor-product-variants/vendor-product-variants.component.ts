@@ -14,9 +14,6 @@ export class VendorProductVariantsComponent implements OnInit {
 
   public vendor: any = {};
   public variantsModify:any =[];
-  public variantsModify1:any =[];
-  public commonPackage:any =[];
-  public v:any =[];
 
   constructor() { }
 
@@ -31,15 +28,16 @@ export class VendorProductVariantsComponent implements OnInit {
       for (let j = i + 1; j < this.variants.length; j++){
         if (_.isEqual(this.variants[i].inventory_by, this.variants[j].inventory_by)){
           this.variants[i].variants.push(this.variants[j].variants[0]);
-          this.variants[i].common = 1;
-          this.variants[j].common = 1;
+          this.variants[i].common = this.variants[j].inventory_by[0][2].label;
+          this.variants[j].common = this.variants[j].inventory_by[0][2].label;
+          //console.log('Inventory_by', this.variants[j].inventory_by[0][2].label);
         }
       };
     }
 
     // his.variantsModify1 = [...this.variants];
-
     // this.variantsModify = [..._.uniqBy(this.variants, 'common')];
+
     this.variantsModify = _.uniqBy(this.variants, 'common');
     console.log('variantsModify ', this.variantsModify);
     this.variants.splice(0);
@@ -51,12 +49,7 @@ export class VendorProductVariantsComponent implements OnInit {
 
 
     console.log('VAriants ', this.variants);
-
-
-
     console.log('variantsModify ', this.variants);
-
-
 
 
     // this.variantsModify1 = [...this.variants];
