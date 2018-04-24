@@ -54,7 +54,7 @@ export class VendorProductPackageComponent implements OnInit {
   }
 
   packageSummary(pack): string {
-    const inner = `of ${pack[1].qty} ${pack[1].label}`;
-    return `1 ${pack[0].label} ${pack[1].label && pack[1].qty ? inner : ''} of ${pack[2].qty} ${pack[2].label}`;
+    const inner = `of ${pack[1].qty} ${pack[1].label}${pack[1].qty >1 ? 's' : ''}`;
+    return `1 ${pack[0].label} ${pack[1].label && pack[1].qty ? inner : ''} of ${pack[2].qty} ${pack[2].label}${pack[2].qty >1 ? 's' : ''}` ;
   }
 }
