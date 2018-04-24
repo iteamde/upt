@@ -4,10 +4,12 @@ import {ProductVariantModule} from "./product-variant/product-variant.module";
 import {VendorProductVariantsComponent} from "./vendor-product-variants.component";
 
 
+
 @NgModule({
   imports: [
     ProductVariantModule,
     CommonModule
+
   ],
   declarations: [
     VendorProductVariantsComponent

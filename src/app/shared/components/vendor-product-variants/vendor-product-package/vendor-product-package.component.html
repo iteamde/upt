@@ -11,29 +11,37 @@
         <div class="input select" [class.add-number-one]="!!package[0].label">
           <!--{{autocompletePackage | json}}-->
           <!--<ng-select [options]="autocompletePackage" multiple="true"></ng-select>-->
-          <!--<input auto-complete-->
+          <!--<input auto-complete autocomplete="off"-->
                  <!--placeholder="Type"-->
                  <!--[source]="autocompletePackage"-->
                  <!--[list-formatter] = '"unit_name"'-->
                  <!--[tab-to-select] = 'false'-->
                  <!--[select-value-of] = "'unit_name'"-->
-                 <!--name="package_type"-->
+                 <!--[accept-user-input] = 'false'-->
                  <!--[(ngModel)] = 'package[0].label'-->
                  <!--required-->
           <!--&gt;-->
 
-          <div class="select">
-            <select
-              [(ngModel)]="package[0].label"
-              materialize="material_select"
-              [materializeSelectOptions]="autocompletePackage">
-              <option *ngFor="let item of autocompletePackage" [value]="item.unit_name"> 1 {{item.unit_name}}</option>
-            </select>
-          </div>
 
+          <input #el [(ngModel)] = 'package[0].label' (click)="el.isOpen = !el.isOpen" (blur)="hideSubMenu(el)"/>
+          <ul *ngIf="el.isOpen" [ngClass]="{'fadeIn':el.isOpen}">
+            <li *ngFor="let item of autocompletePackage" (click) = "package[0].label = 1 + item.unit_name; el.isOpen = false">1 {{item.unit_name}}</li>
+          </ul>
+          <fa name="angle-down"></fa>
+
+
+
+          <!--<div class="select">-->
+            <!--<select-->
+              <!--[(ngModel)]="package[0].label"-->
+              <!--materialize="material_select"-->
+              <!--[materializeSelectOptions]="autocompletePackage">-->
+              <!--<option *ngFor="let item of autocompletePackage" [value]="item.unit_name"> 1 {{item.unit_name}}</option>-->
+            <!--</select>-->
+          <!--</div>-->
           <!--<fa name="angle-down"></fa>-->
         </div>
-        <div class="label">=</div>
+        <div class="label"></div>
       </div>
     </div>
   </div>
@@ -58,16 +66,23 @@
                  <!--[select-value-of] = "'plural_unit_name'"-->
                  <!--name="sub_package_type"-->
                  <!--[(ngModel)] = 'package[1].label'-->
+                 <!--[readonly]='false'-->
+                 <!--[autocomplete]='true'-->
           <!--&gt;-->
           <!--<fa name="angle-down"></fa>-->
-          <div class="select">
-            <select
-              [(ngModel)]="package[1].label"
-              materialize="material_select"
-              [materializeSelectOptions]="autocompletePackage">
-              <option *ngFor="let item of autocompletePackage" [value]="item.unit_name">{{item.unit_name}}(s)</option>
-            </select>
-          </div>
+          <!--<div class="select">-->
+            <!--<select-->
+              <!--[(ngModel)]="package[1].label"-->
+              <!--materialize="material_select"-->
+              <!--[materializeSelectOptions]="autocompletePackage">-->
+              <!--<option *ngFor="let item of autocompletePackage" [value]="item.unit_name">{{item.unit_name}}(s)</option>-->
+            <!--</select>-->
+          <!--</div>-->
+          <input #el1 [(ngModel)] = 'package[1].label' (click)="el1.isOpen = !el1.isOpen" (blur)="hideSubMenu(el1)"/>
+          <ul *ngIf="el1.isOpen" [ngClass]="{'fadeIn':el1.isOpen}">
+            <li *ngFor="let item of autocompletePackage" (click) = "package[1].label = item.unit_name; el1.isOpen = false">{{item.unit_name}}</li>
+          </ul>
+          <fa name="angle-down"></fa>
         </div>
         <div class="label">=</div>
       </div>
@@ -96,14 +111,21 @@
                  <!--required-->
           <!--&gt;-->
           <!--<fa name="angle-down"></fa>-->
-          <div class="select">
-            <select
-              [(ngModel)]="package[2].label"
-              materialize="material_select"
-              [materializeSelectOptions]="autocompletePackage">
-              <option *ngFor="let item of autocompletePackage" [value]="item.unit_name">{{item.unit_name}}(s)</option>
-            </select>
-          </div>
+          <!--<div class="select">-->
+            <!--<select-->
+              <!--[(ngModel)]="package[2].label"-->
+              <!--materialize="material_select"-->
+              <!--[materializeSelectOptions]="autocompletePackage">-->
+              <!--<option *ngFor="let item of autocompletePackage"  [value]="item.unit_name">{{item.unit_name}}(s)</option>-->
+              <!--&lt;!&ndash;<option disabled [value]="1">1</option>&ndash;&gt;-->
+              <!--&lt;!&ndash;<option  selected [value]="2">2</option>&ndash;&gt;-->
+            <!--</select>-->
+          <!--</div>-->
+          <input  #el2 [(ngModel)] = 'package[2].label' (click)="el2.isOpen = !el2.isOpen" (blur)="hideSubMenu(el2)"/>
+          <ul *ngIf="el2.isOpen" [ngClass]="{'fadeIn':el2.isOpen}">
+            <li *ngFor="let item of autocompletePackage" (click) = "package[2].label = item.unit_name; el2.isOpen = false">{{item.unit_name}}</li>
+          </ul>
+          <fa name="angle-down"></fa>
         </div>
       </div>
     </div>

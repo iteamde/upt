@@ -27,7 +27,9 @@ export class VendorProductVariantsComponent implements OnInit {
     for (let i = 0; i < this.variants.length; i++) {
       for (let j = i + 1; j < this.variants.length; j++){
         if (_.isEqual(this.variants[i].inventory_by, this.variants[j].inventory_by)){
+
           this.variants[i].variants.push(this.variants[j].variants[0]);
+
           this.variants[i].common = this.variants[j].inventory_by[0][2].label;
           this.variants[j].common = this.variants[j].inventory_by[0][2].label;
           //console.log('Inventory_by', this.variants[j].inventory_by[0][2].label);
