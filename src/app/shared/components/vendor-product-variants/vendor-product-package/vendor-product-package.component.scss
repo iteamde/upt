@@ -1,28 +1,28 @@
 @import "../../../../../colors";
 
-:host {
+:host /deep/ {
 
-  //.add-number-one {
-  //  position: relative;
-  //  input {
-  //    padding-left: 20px;
-  //  }
-  //  &:after {
-  //    font-size: 16px;
-  //    content: "1";
-  //    position: absolute;
-  //    left: 10px;
-  //    top: 4px;
-  //  }
-  //}
-  //
-  //fa[name="angle-down"] {
-  //  position: absolute;
-  //  right: 10px;
-  //  top: 0;
-  //  font-size: 20px;
-  //  pointer-events: none;
-  //}
+  .add-number-one {
+    position: relative;
+    input {
+      padding-left: 20px;
+    }
+    &:after {
+      font-size: 16px;
+      content: "1";
+      position: absolute;
+      left: 10px;
+      top: 4px;
+    }
+  }
+
+  fa[name="angle-down"] {
+    position: absolute;
+    right: 10px;
+    top: 0;
+    font-size: 20px;
+    pointer-events: none;
+  }
 
 @keyframes fadeIn {
   0%{max-height: 0; opacity:0;}

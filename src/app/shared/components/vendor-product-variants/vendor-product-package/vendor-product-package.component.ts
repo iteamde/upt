@@ -33,7 +33,9 @@ export class VendorProductPackageComponent implements OnInit {
   addSubscribers() {
     this.subscribers.autocompleteOuterPackSubscription = this.autocompletePackage$
       .switchMap((key: string) => this.inventoryService.autocompleteSearchPackage(key))
-      .subscribe((pack: any) => this.autocompletePackage = sortBy(pack, ['unit_name']));
+      .subscribe((pack: any) => {this.autocompletePackage = sortBy(pack, ['unit_name']);
+        console.log(this.autocompletePackage);
+    });
   }
 
   observableSourcePackage(keyword: any) {
@@ -55,7 +57,7 @@ export class VendorProductPackageComponent implements OnInit {
 
   packageSummary(pack): string {
     const inner = `of ${pack[1].qty} ${pack[1].label}${pack[1].qty >1 ? 's' : ''}`;
-    return `${pack[0].label} ${pack[1].label && pack[1].qty ? inner : ''} of ${pack[2].qty} ${pack[2].label}${pack[2].qty >1 ? 's' : ''}` ;
+    return `1 ${pack[0].label} ${pack[1].label && pack[1].qty ? inner : ''} of ${pack[2].qty} ${pack[2].label}${pack[2].qty >1 ? 's' : ''}` ;
   }
 
   // toggleSubMenu(e){
@@ -64,12 +66,20 @@ export class VendorProductPackageComponent implements OnInit {
   // }
 
 
-  hideSubMenu(el){
-    console.log(el);
-    setTimeout(()=>{
-      el.isOpen = false;
-    },100);
-  }
+  // hideSubMenu(el){
+  //   console.log(el);
+  //   setTimeout(()=>{
+  //     el.isOpen = false;
+  //   },100);
+  // }
+  //
+  // changePackege(e, param){
+  //   this[param] = e;
+  //   console.log('catch event', e, this[param] );
+  // }
 
+  onBlur(){
+    console.log("blur");
+  }
 
 }

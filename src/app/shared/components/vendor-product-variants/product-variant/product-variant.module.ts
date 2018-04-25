@@ -8,11 +8,15 @@ import {NguiAutoCompleteModule} from "@ngui/auto-complete";
 import {PriceInputModule} from "../../price-input/price-input.module";
 import {ScannerModule} from "../../../../dashboard/scanner/scanner.module";
 import {VendorProductPackageComponent} from "../vendor-product-package/vendor-product-package.component";
+import {DropdownPackageComponent} from "../vendor-product-package/dropdown-package/dropdown-package.component";
+
 
 @NgModule({
   declarations: [
     ProductVariantComponent,
-    VendorProductPackageComponent
+    VendorProductPackageComponent,
+    DropdownPackageComponent
+
   ],
   imports: [
     ScannerModule,

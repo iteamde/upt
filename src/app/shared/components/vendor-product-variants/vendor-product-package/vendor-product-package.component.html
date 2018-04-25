@@ -23,14 +23,16 @@
           <!--&gt;-->
 
 
-          <input #el [(ngModel)] = 'package[0].label' (click)="el.isOpen = !el.isOpen" (blur)="hideSubMenu(el)"/>
-          <ul *ngIf="el.isOpen" [ngClass]="{'fadeIn':el.isOpen}">
-            <li *ngFor="let item of autocompletePackage" (click) = "package[0].label = 1 + item.unit_name; el.isOpen = false">1 {{item.unit_name}}</li>
-          </ul>
-          <fa name="angle-down"></fa>
+          <!--<input #el [(ngModel)] = 'package[0].label' (click)="el.isOpen = !el.isOpen" (blur)="hideSubMenu(el)"/>-->
+          <!--<ul *ngIf="el.isOpen" [ngClass]="{'fadeIn':el.isOpen}">-->
+            <!--<li *ngFor="let item of autocompletePackage" (click) = "package[0].label = 1 + item.unit_name; el.isOpen = false">1 {{item.unit_name}}</li>-->
+          <!--</ul>-->
+          <!--<fa name="angle-down"></fa>-->
+          <app-dropdown-package [autocompletePackage] = 'autocompletePackage'
+                                [packageLabel] = 'package[0].label'
+                                (packageLabelChange) = 'package[0].label = $event'>
 
-
-
+          </app-dropdown-package>
           <!--<div class="select">-->
             <!--<select-->
               <!--[(ngModel)]="package[0].label"-->
@@ -78,11 +80,16 @@
               <!--<option *ngFor="let item of autocompletePackage" [value]="item.unit_name">{{item.unit_name}}(s)</option>-->
             <!--</select>-->
           <!--</div>-->
-          <input #el1 [(ngModel)] = 'package[1].label' (click)="el1.isOpen = !el1.isOpen" (blur)="hideSubMenu(el1)"/>
-          <ul *ngIf="el1.isOpen" [ngClass]="{'fadeIn':el1.isOpen}">
-            <li *ngFor="let item of autocompletePackage" (click) = "package[1].label = item.unit_name; el1.isOpen = false">{{item.unit_name}}</li>
-          </ul>
-          <fa name="angle-down"></fa>
+          <!--<input #el1 [(ngModel)] = 'package[1].label' (click)="el1.isOpen = !el1.isOpen" (blur)="hideSubMenu(el1)"/>-->
+          <!--<ul *ngIf="el1.isOpen" [ngClass]="{'fadeIn':el1.isOpen}">-->
+            <!--<li *ngFor="let item of autocompletePackage" (click) = "package[1].label = item.unit_name; el1.isOpen = false">{{item.unit_name}}</li>-->
+          <!--</ul>-->
+          <!--<fa name="angle-down"></fa>-->
+          <app-dropdown-package [autocompletePackage] = 'autocompletePackage'
+                                [packageLabel] = 'package[1].label'
+                                (packageLabelChange) = 'package[1].label = $event'>
+
+          </app-dropdown-package>
         </div>
         <div class="label">=</div>
       </div>
@@ -121,11 +128,16 @@
               <!--&lt;!&ndash;<option  selected [value]="2">2</option>&ndash;&gt;-->
             <!--</select>-->
           <!--</div>-->
-          <input  #el2 [(ngModel)] = 'package[2].label' (click)="el2.isOpen = !el2.isOpen" (blur)="hideSubMenu(el2)"/>
-          <ul *ngIf="el2.isOpen" [ngClass]="{'fadeIn':el2.isOpen}">
-            <li *ngFor="let item of autocompletePackage" (click) = "package[2].label = item.unit_name; el2.isOpen = false">{{item.unit_name}}</li>
-          </ul>
-          <fa name="angle-down"></fa>
+          <!--<input  #el2 [(ngModel)] = 'package[2].label' (click)="el2.isOpen = !el2.isOpen" (blur)="hideSubMenu(el2)"/>-->
+          <!--<ul *ngIf="el2.isOpen" [ngClass]="{'fadeIn':el2.isOpen}">-->
+            <!--<li *ngFor="let item of autocompletePackage" (click) = "package[2].label = item.unit_name; el2.isOpen = false">{{item.unit_name}}</li>-->
+          <!--</ul>-->
+          <!--<fa name="angle-down"></fa>-->
+          <app-dropdown-package [autocompletePackage] = 'autocompletePackage'
+                                [packageLabel] = 'package[2].label'
+                                (packageLabelChange) = 'package[2].label = $event'>
+
+          </app-dropdown-package>
         </div>
       </div>
     </div>

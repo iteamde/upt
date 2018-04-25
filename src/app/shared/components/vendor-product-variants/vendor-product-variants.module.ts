@@ -12,7 +12,7 @@ import {VendorProductVariantsComponent} from "./vendor-product-variants.componen
 
   ],
   declarations: [
-    VendorProductVariantsComponent
+    VendorProductVariantsComponent,
   ],
   exports: [
     VendorProductVariantsComponent
