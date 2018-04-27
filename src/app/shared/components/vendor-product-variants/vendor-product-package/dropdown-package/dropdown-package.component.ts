@@ -1,4 +1,5 @@
-import {Component, Input, OnInit, Output, EventEmitter} from '@angular/core';
+import {Component, Input, OnInit, Output, EventEmitter, ElementRef} from '@angular/core';
+import { trigger,style,transition,animate,keyframes,query,stagger,group, state, animateChild } from '@angular/animations';
 
 @Component({
   selector: 'app-dropdown-package',
@@ -6,7 +7,18 @@ import {Component, Input, OnInit, Output, EventEmitter} from '@angular/core';
   styleUrls: ['./dropdown-package.component.scss'],
   host: {
     "(document:click)": "onClick()"
-  }
+  },
+  animations: [
+    trigger('ngIfAnimation', [
+      transition(':enter', [   // :enter is alias to 'void => *'
+        style({opacity:0, height:0}),
+        animate(500, style({opacity:1, height:'200px'}))
+      ]),
+      transition(':leave', [   // :leave is alias to '* => void'
+        animate(500, style({opacity:0, height:0}))
+      ])
+    ])
+  ]
 })
 export class DropdownPackageComponent implements OnInit {
 
@@ -16,7 +28,7 @@ export class DropdownPackageComponent implements OnInit {
   @Output() packageLabelChange: EventEmitter<any> = new EventEmitter<any>();
 
   public isOpen: boolean = false;
-  constructor() { }
+  constructor(private ref: ElementRef) { }
 
   ngOnInit() {
   }
@@ -31,15 +43,20 @@ export class DropdownPackageComponent implements OnInit {
   packageChange(value){
     //console.log('emit event', value);
     this.packageLabelChange.emit(value);
+    this.toggleSubMenu();
   }
 
   onClick() {
     //console.log('document');
-    this.isOpen = false;
+    console.log(this.ref.nativeElement.contains(event.target))
+    if(!this.ref.nativeElement.contains(event.target)) this.isOpen = false;
+
+
+
   }
 
-  toggleSubMenu(e){
-    e.stopPropagation();
+  toggleSubMenu(){
+    //e.stopPropagation();
     this.isOpen = !this.isOpen;
   }
 
