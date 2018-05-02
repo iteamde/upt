@@ -738,24 +738,23 @@ button {
         top: 50%;
         transform: translateY(-50%);
       }
+    }
+    .del-img-btn {
+      position: absolute;
+      bottom: 10px;
+      right: 10px;
+      width: 30px;
+      height: 30px;
+      text-align: center;
+      background: #f1f1f1;
+      border: 1px solid #d6d6d6;
+      border-radius: 5px;
+      z-index: 4;
+      cursor: pointer;
+      opacity: .7;
 
-      .del-img-btn {
-        position: absolute;
-        bottom: 10px;
-        right: 10px;
-        width: 30px;
-        height: 30px;
-        text-align: center;
-        background: #f1f1f1;
-        border: 1px solid #d6d6d6;
-        border-radius: 5px;
-        z-index: 4;
-        cursor: pointer;
-        opacity: .7;
-
-        i {
-          line-height: 29px;
-        }
+      i {
+        line-height: 29px;
       }
     }
   }
@@ -1087,8 +1086,7 @@ modal-overlay {
 
     @media (max-width: 1024px) {
       .close {
-        left: 10px;
-        top: 10px;
+        position: relative;
       }
     }
 
@@ -1124,10 +1122,10 @@ modal-overlay {
 modal-overlay {
   &.transparent-bg {
     .modal-backdrop {
-      background-color: rgba(0, 0, 0, .3)
+      /*background-color: rgba(0, 0, 0, .3)*/
     }
     .modal {
-      border-color: #444;
+      /*border-color: #444;*/
       top: 20vh;
       margin: auto auto 30px;
       max-width: 400px;
