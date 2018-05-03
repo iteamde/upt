@@ -9,6 +9,7 @@ import {each} from 'lodash';
 
 export class ProductVariantComponent implements OnInit{
   @Input('vendor') public vendor;
+  @Input('unGroupedVariants') public unGroupedVariants: any;
   @Output('vendorDelete') public vendorDelete = new EventEmitter();
 
   public uniqueId: any = Math.random();
@@ -43,6 +44,39 @@ export class ProductVariantComponent implements OnInit{
 
   onFillOur(price, i) {
     this.vendor.variants[i].our_price = price;
+  }
+
+  updateProductDisplay(newVariant) {
+
+    console.log(this.unGroupedVariants);
+
+    each(this.unGroupedVariants, localVariant => {
+
+      // console.log(localVariant.id);
+      if (localVariant.catalog_number == newVariant.catalog_number) {
+        localVariant['name'] = newVariant['name'];
+        localVariant['club_price'] = newVariant['club_price'];
+        localVariant['list_price'] = newVariant['list_price'];
+        localVariant['our_price'] = newVariant['our_price'];
+        localVariant['upc'] = newVariant['upc'];
+      }
+
+      each(localVariant.vendor_variants, localVendorVariant => {
+        // console.log(localVariant.id);
+        if (localVendorVariant.catalog_number == newVariant.catalog_number) {
+          localVendorVariant['name'] = newVariant['name'];
+          localVendorVariant['club_price'] = newVariant['club_price'];
+          localVendorVariant['list_price'] = newVariant['list_price'];
+          localVendorVariant['our_price'] = newVariant['our_price'];
+          localVendorVariant['upc'] = newVariant['upc'];
+        }
+      })
+
+    })
+
+
+
+
   }
 
 }

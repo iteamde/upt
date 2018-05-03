@@ -14,6 +14,7 @@ import {AddProductManager} from "../../../../core/services/add-product.manager";
 export class AddProductFromVendorStep2Component {
 
   @Input('product') public product: any;
+  @Input('unGroupedVariants') public unGroupedVariants: any;
   @Input('vendorVariants') public vendorVariants: any;
 
   constructor(

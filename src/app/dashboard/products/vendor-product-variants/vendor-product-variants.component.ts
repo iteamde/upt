@@ -10,6 +10,7 @@ import {AddProductManager} from "../../../core/services/add-product.manager";
 export class VendorProductVariantsComponent implements OnInit {
 
   @Input('variants') public variants: any[];
+  @Input('unGroupedVariants') public unGroupedVariants: any;
   @Output('addVendor') public addVendor = new EventEmitter();
   @Output('vendorDelete') public vendorDelete = new EventEmitter();
 

@@ -26,6 +26,8 @@
 
 </div>
 
+
+
 <app-add-product-from-vendor-step1
   *ngIf="step == 0"
   [product]="product"
@@ -36,5 +38,6 @@
 <app-add-product-from-vendor-step2
   *ngIf="step == 1"
   [product]="product"
-  [vendorVariants]="vendorVariants">
+  [vendorVariants]="vendorVariants"
+  [unGroupedVariants]="variants">
 </app-add-product-from-vendor-step2>

@@ -15,7 +15,8 @@ import {AppSharedModule} from "../../../../shared/shared.module";
 
   ],
   exports: [
-    ProductVariantComponent
+    ProductVariantComponent,
+    VendorProductPackageComponent
   ],
   providers: [],
 })

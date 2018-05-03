@@ -17,5 +17,6 @@
   *ngFor="let variants of vendorVariants; let i = index"
   (vendorDelete)="onVendorDelete(i)"
   [variants]="variants"
+  [unGroupedVariants]="unGroupedVariants"
   (addVendor)="onVendorChosen($event)">
 </app-vendor-product-variants>

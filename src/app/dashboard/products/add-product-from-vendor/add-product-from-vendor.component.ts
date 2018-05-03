@@ -88,30 +88,33 @@ export class AddProductFromVendorComponent implements OnInit {
   };
 
   updateVendors(variants) {
-    this.vendorVariants = cloneDeep(this.vendorVariantsCopy);
-    const checkedVariants = filter(variants, 'checked');
-    const checkedVariantsName = map(checkedVariants, 'name');
-    this.productManager.productVariants = map(checkedVariants, v => this.productManager.formatVariants(v));
-    each(this.vendorVariants, (vendors, i) => {
-      const rejected = reject(vendors, (vendor: any) => {
-        return some(vendor.variants, (variant: any) => {
-          return !includes(checkedVariantsName, variant.name);
-        });
-      });
-      rejected.length ? this.vendorVariants[i] = rejected : this.vendorVariants.splice(i, 1);
-    });
+    this.formatVendors(variants);
+    // this.vendorVariants = cloneDeep(this.vendorVariantsCopy);
+    // const checkedVariants = filter(variants, 'checked');
+    // const checkedVariantsName = map(checkedVariants, 'name');
+    // this.productManager.productVariants = map(checkedVariants, v => this.productManager.formatVariants(v));
+    //
+    // each(this.vendorVariants, (vendors, i) => {
+    //   const rejected = reject(vendors, (vendor: any) => {
+    //     return some(vendor.variants, (variant: any) => {
+    //       return !includes(checkedVariantsName, variant.name);
+    //     });
+    //   });
+    //   rejected.length ? this.vendorVariants[i] = rejected : this.vendorVariants.splice(i, 1);
+    // });
+    //
+    // each(this.productManager.additionalVariantsArr, (v: any) => {
+    //   v.variants = this.productManager.productVariants;
+    //
+    //   const isExists = some(this.vendorVariants, (vendors: any, i) => {
+    //     if (v.vendor_name == vendors[0].vendor_name) {
+    //       this.vendorVariants[i].unshift(cloneDeep(v));
+    //       return true;
+    //     }
+    //   });
+    //   if (!isExists) this.vendorVariants.unshift([cloneDeep(v)]);
+    // });
 
-    each(this.productManager.additionalVariantsArr, (v: any) => {
-      v.variants = this.productManager.productVariants;
-
-      const isExists = some(this.vendorVariants, (vendors: any, i) => {
-        if (v.vendor_name == vendors[0].vendor_name) {
-          this.vendorVariants[i].unshift(cloneDeep(v));
-          return true;
-        }
-      });
-      if (!isExists) this.vendorVariants.unshift([cloneDeep(v)]);
-    });
   }
 
   formatProduct(product) {

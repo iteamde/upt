@@ -114,6 +114,7 @@ export class AddProductFromVendorStep1Component implements OnInit {
   }
 
   onVariantChanged() {
+
     this.productManager.changeVariants$.next();
   }
 

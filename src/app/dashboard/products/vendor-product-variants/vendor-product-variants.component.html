@@ -12,5 +12,6 @@
 <app-product-variant
   *ngFor="let vendor of variants; let i = index"
   [vendor]="vendor"
+  [unGroupedVariants]="unGroupedVariants"
   (vendorDelete)="onVendorDelete(i)">
 </app-product-variant>

@@ -43,7 +43,13 @@
       <input type="checkbox" class="checkbox-input" [(ngModel)]="variant.enabled" id={{uniqueId+i}}/>
       <label for={{uniqueId+i}}></label>
     </div>
-    <input type="text" [(ngModel)]="variant.name" title="{{variant.name}}">
+    <input
+      type="text"
+      [(ngModel)]="variant.name"
+      title="{{variant.name}}"
+      (ngModelChange)='updateProductDisplay(variant)'
+
+    >
   </div>
   <div class="col s8">
     <div class="col s2 row-input">
@@ -61,19 +67,21 @@
       <app-price-input
         [placeholder]="'List $'"
         [(ngModel)]="variant.list_price"
-        (ngModelChange)='onFillOur(variant.list_price, i)'>
+        (ngModelChange)='onFillOur(variant.list_price, i); updateProductDisplay(variant)'>
       </app-price-input>
     </div>
     <div class="col s2 row-input">
       <app-price-input
         [placeholder]="'Our $'"
-        [(ngModel)]="variant.our_price">
+        [(ngModel)]="variant.our_price"
+        (ngModelChange)='updateProductDisplay(variant)'>
       </app-price-input>
     </div>
     <div class="col s2 row-input">
       <app-price-input
         [placeholder]="'Club $'"
-        [(ngModel)]="variant.club_price">
+        [(ngModel)]="variant.club_price"
+        (ngModelChange)='updateProductDisplay(variant)'>
       </app-price-input>
     </div>
   </div>
