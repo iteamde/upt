@@ -47,23 +47,19 @@ export class ProductVariantComponent implements OnInit{
   }
 
   updateProductDisplay(newVariant) {
-
-    console.log(this.unGroupedVariants);
-
     each(this.unGroupedVariants, localVariant => {
 
-      // console.log(localVariant.id);
-      if (localVariant.catalog_number == newVariant.catalog_number) {
-        localVariant['name'] = newVariant['name'];
-        localVariant['club_price'] = newVariant['club_price'];
-        localVariant['list_price'] = newVariant['list_price'];
-        localVariant['our_price'] = newVariant['our_price'];
-        localVariant['upc'] = newVariant['upc'];
-      }
 
-      each(localVariant.vendor_variants, localVendorVariant => {
-        // console.log(localVariant.id);
-        if (localVendorVariant.catalog_number == newVariant.catalog_number) {
+      // if (localVariant.catalog_number == newVariant.catalog_number) {
+      //   localVariant['name'] = newVariant['name'];
+      //   localVariant['club_price'] = newVariant['club_price'];
+      //   localVariant['list_price'] = newVariant['list_price'];
+      //   localVariant['our_price'] = newVariant['our_price'];
+      //   localVariant['upc'] = newVariant['upc'];
+      // }
+
+       each(localVariant.vendor_variants, localVendorVariant => {
+        if (localVendorVariant.id == newVariant.id) {
           localVendorVariant['name'] = newVariant['name'];
           localVendorVariant['club_price'] = newVariant['club_price'];
           localVendorVariant['list_price'] = newVariant['list_price'];

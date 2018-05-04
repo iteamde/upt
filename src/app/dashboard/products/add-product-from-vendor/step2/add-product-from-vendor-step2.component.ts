@@ -1,7 +1,7 @@
 import {Component, Input} from '@angular/core';
 import {Modal} from 'angular2-modal';
 import {ModalWindowService} from '../../../../core/services/modal-window.service';
-import {map, findIndex, cloneDeep} from 'lodash';
+import {each, map, findIndex, cloneDeep} from 'lodash';
 import {PackageModel, inventoryExample} from "../../../../models/inventory.model";
 import {AddVendorModalComponent} from "../../../../shared/modals/add-vendor-modal/add-vendor-modal.component";
 import {AddProductManager} from "../../../../core/services/add-product.manager";
@@ -28,6 +28,21 @@ export class AddProductFromVendorStep2Component {
     this.productManager.additionalVariantsAdd(vendor);
     const i = findIndex(this.vendorVariants, (arr) => arr[0].vendor_name == vendor['vendor_name']);
     i > -1 ? this.vendorVariants[i].unshift(vendor) : this.vendorVariants.unshift([vendor]);
+
+
+    each(vendor.variants, newPackageVariant => {
+      newPackageVariant.unit_type = vendor.inventory_by[0][2].label;
+      newPackageVariant.package_type = vendor.inventory_by[0][0].label;
+      newPackageVariant.units_per_package = vendor.inventory_by[0][2].qty;
+      each(this.unGroupedVariants, localVariant => {
+        if (localVariant.name == newPackageVariant.name) {
+          localVariant.vendor_variants.push(newPackageVariant)
+        }
+      })
+    })
+
+    console.log(vendor);
+    console.log(this.unGroupedVariants);
   }
 
   onVendorDelete(i) {

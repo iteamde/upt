@@ -43,6 +43,8 @@ export class AddProductManager {
 
   formatVariants(v: any) {
     return {
+      id: v['id'],
+      product_id: v['product_id'],
       name: v['name'],
       catalog_number: v['catalog_number'],
       club_price: v['club_price'],

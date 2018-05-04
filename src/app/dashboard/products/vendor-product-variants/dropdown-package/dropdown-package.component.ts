@@ -22,7 +22,7 @@ export class DropdownPackageComponent {
     this.isOpen = true;
   }
 
-  onClick() {
+  onClick(event) {
     if (!this.ref.nativeElement.contains(event.target))
       this.isOpen = false;
   }

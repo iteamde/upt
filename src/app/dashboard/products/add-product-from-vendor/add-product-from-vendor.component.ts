@@ -114,7 +114,6 @@ export class AddProductFromVendorComponent implements OnInit {
     //   });
     //   if (!isExists) this.vendorVariants.unshift([cloneDeep(v)]);
     // });
-
   }
 
   formatProduct(product) {
