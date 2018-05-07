@@ -1,12 +1,10 @@
-import {ChangeDetectorRef, Component, OnInit} from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {BSModalContext} from 'angular2-modal/plugins/bootstrap';
 import {DialogRef} from 'angular2-modal';
 import {Observable} from 'rxjs/Observable';
 import {BehaviorSubject} from 'rxjs/BehaviorSubject';
-import {Vendor} from '../../../models/inventory.model';
 import {InventoryService} from '../../../core/services/inventory.service';
 import {DestroySubscribers} from 'ngx-destroy-subscribers';
-import {AccountVendorModel} from '../../../models/account-vendor.model';
 import {NewVendorModel} from '../../../models/new-vendor.model';
 import {VendorService} from '../../../core/services/vendor.service';
 import {Router} from '@angular/router';
@@ -14,7 +12,7 @@ import {PhoneMaskService} from '../../../core/services/phone-mask.service';
 import * as _ from 'lodash';
 
 export class AddVendorModalContext extends BSModalContext {
-
+  modalMode: boolean;
 }
 
 @Component({
@@ -35,7 +33,7 @@ export class AddVendorModalComponent implements OnInit {
   public step: number = 1;
   public uploadName: string = '';
   public formData: FormData = new FormData();
-  public logo: File;
+  public logo: any;
   public logoPreview: string = '';
 
   public phoneMask: any = this.phoneMaskService.defaultTextMask;
@@ -53,6 +51,7 @@ export class AddVendorModalComponent implements OnInit {
   }
 
   ngOnInit() {
+    this.vendor.vendor_name = this.vendorService.vendorSearch;
   }
 
   dismissModal() {
@@ -131,7 +130,18 @@ export class AddVendorModalComponent implements OnInit {
 
     this.vendorService.addAccountVendor(this.formData)
       .do(res => this.vendorService.addToCollection$.next(res))
-      .subscribe(res => this.router.navigate(['/vendors/edit/' + res.id]) && this.closeModal(true))
+      .subscribe(res => this.router.navigate(['/vendors/edit/' + res.id]) && this.closeModal(true));
+    /*this.vendorService.addAccountVendor(this.formData).subscribe(
+      (res: any) => {
+        this.dialog.context.modalMode ?
+          this.dialog.close(res) :
+          this.router.navigate(['/vendors/edit/' + res.id]) && this.dismissModal();
+      }
+    );*/
+  }
+
+  deleteLogo() {
+    this.logo = this.logoPreview = '';
   }
 
   uploadLogo(file: any) {

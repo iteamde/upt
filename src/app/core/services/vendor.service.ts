@@ -38,6 +38,7 @@ export class VendorService extends ModelService {
   public vendorsData$: Observable<any>;
   public requestParams: any;
   public vendorsList: string;
+  public vendorSearch: string;
 
   constructor(
     public injector: Injector,
@@ -187,6 +188,7 @@ export class VendorService extends ModelService {
   getVendor(id) {
     return this.restangular.one('vendors', id).get().map(vendor => {
       this.globalVendor$.next(vendor.data.vendor);
+      return vendor.data.vendor;
     });
   }
 
