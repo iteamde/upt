@@ -1002,6 +1002,15 @@ button {
 /*** Modal
 **************************************************/
 
+.modal-open {
+  overflow: hidden;
+
+  modal-overlay {
+    overflow-y: auto;
+    height: 100vh;
+  }
+}
+
 modal-overlay {
   position: absolute !important;
 }

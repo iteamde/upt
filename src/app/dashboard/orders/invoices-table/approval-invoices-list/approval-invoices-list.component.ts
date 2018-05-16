@@ -20,7 +20,7 @@ export class ApprovalInvoicesListComponent implements OnInit, OnDestroy {
 
   public listName: string = OrderListType.approval;
   public tableHeader: any = [
-    {name: 'Invoice #', className: 's1', alias: 'invoice_id', filterBy: false, linkToReconcile: true, },
+    {name: 'Invoice #', className: 's1', alias: 'invoice_number', filterBy: true, linkToReconcile: false, },
     {name: 'Vendor', className: 's2', alias: 'vendor', filterBy: true, wrap: 2, },
     {name: 'Status', className: 's1', alias: 'status', filterBy: true, showChevron: true, },
     {name: 'Location', className: 's2', alias: 'location_name', filterBy: true, },
@@ -28,7 +28,7 @@ export class ApprovalInvoicesListComponent implements OnInit, OnDestroy {
     {name: 'Reconciled by', className: 's2', alias: 'reconciled_by_name', filterBy: true, },
     {name: '# of Items', className: 's1 bold underline-text center-align', alias: 'item_count'},
     {name: 'Total', className: 's1 bold underline-text right-align', alias: 'total'},
-    // {name: '', className: 's1', actions: true},
+    {name: '', className: 's1', actions: true},
   ];
 
   public invoices$: Observable<Invoice[]>;

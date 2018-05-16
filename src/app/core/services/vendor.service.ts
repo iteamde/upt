@@ -180,7 +180,6 @@ export class VendorService extends ModelService {
   }
 
   getNextVendors(page?) {
-
     const reset: boolean = page ? false : true;
     this.requestParams.page = this.current_page;
     return this.getVendorsData(this.vendorsList, this.requestParams, reset);

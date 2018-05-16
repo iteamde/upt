@@ -81,11 +81,11 @@ export class OrderTableComponent implements OnInit, OnDestroy, OnChanges {
       this.sort$.startWith(null),
       this.orderTableService.toggleSelect$.startWith(null),
     )
-    .map(([orders, sort]: [any, any]) => {
+    .map(([orders, sort, toggleSelect]: [any, any, any]) => {
       if (!sort) {
         return orders;
       }
-        return _.orderBy(orders, [sort.alias], [sort.order]);
+      return _.orderBy(orders, [sort.alias], [sort.order]);
     });
 
     this.checkedOrders$ = this.filteredOrders$
@@ -113,6 +113,16 @@ export class OrderTableComponent implements OnInit, OnDestroy, OnChanges {
     const uniqueField: SimpleChange = changes.uniqueField;
     if (uniqueField) {
       this.orderTableService.uniqueField = uniqueField.currentValue;
+    }
+  }
+
+  onColClick(item, value, headerCol, event) {
+    if (headerCol.filterBy && !(headerCol.showChevron && item.statusHistoryVisibility)) {
+      this.onFilterBy(item[value], headerCol);
+    }
+    if (headerCol.showChevron && item.status_int === this.orderStatus.multiple) {
+      this.toggleStatusHistoryDetail(item);
+      event.stopPropagation();
     }
   }
 
@@ -158,4 +168,5 @@ export class OrderTableComponent implements OnInit, OnDestroy, OnChanges {
   goToReconcile(item) {
     this.pastOrderService.goToReconcile(item.invoice_id);
   }
+
 }

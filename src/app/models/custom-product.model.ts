@@ -12,6 +12,7 @@ export class CustomProductModel {
   manufacturer: string = null;
   mfg_number: string|number = '';
 
+  attributes: any[] = [];
   image: string = null;
   attachments: any[] = [];
   proper_name: string = null;
@@ -36,6 +37,7 @@ export class CustomProductModel {
 
 export class CustomProductVariantModel {
   name: string = null;
+  original_name: string = null;
   catalog_number: number | string  = null;
   list_price: string = null;
   our_price: string = null;
