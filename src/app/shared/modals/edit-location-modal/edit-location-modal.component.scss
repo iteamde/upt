@@ -11,7 +11,53 @@ $tealish: #33c6d9;
 
   .location-type {
     position: relative;
+
+    location-tooltip {
+      z-index: 999;
+    }
+
+    .helper {
+      z-index: 100;
+      position: absolute;
+      transition: transform 0.3s;
+    }
+
+    .location-tooltip:hover .helper {
+      color: #fff;
+      transform: translate3d(0,0,0);
+    }
+
+    .location-tooltip-content {
+      position: absolute;
+      z-index: 99;
+      width: 700px;
+      right: 0;
+      bottom: 100%;
+      opacity: 0;
+      visibility: hidden;
+      transform: translate3d(0, 0.5em, 0);
+      transition: opacity 0.3s, transform 0.3s;
+      border: 1px solid #9a9c9e;
+      text-align: left;
+      background-color: #fff;
+      padding: 20px;
+    }
+
+    .location-tooltip:hover .location-tooltip-content {
+      opacity: 1;
+      visibility: visible;
+      transform: translate3d(0,0,0);
+    }
+
+    @media (max-width: 800px) {
+      .location-tooltip-content {
+        width: 500px;
+      }
+    }
+
   }
+
+
 
   .location-image {
     .img-container {

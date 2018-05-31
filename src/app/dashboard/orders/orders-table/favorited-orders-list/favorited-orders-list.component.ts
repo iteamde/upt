@@ -21,7 +21,7 @@ export class FavoritedOrdersListComponent implements OnInit, OnDestroy {
 
   public listName: string = OrderListType.favorited;
   public tableHeader: any = [
-    {name: 'Order #', className: 's1', alias: 'order_number', filterBy: true, },
+    {name: 'Order #', className: 's1', alias: 'order_number', filterBy: false, viewDetail: true, },
     {name: 'Vendor', className: 's2', alias: 'vendor_name', filterBy: true, wrap: 2, },
     {name: 'Status', className: 's1', alias: 'status', filterBy: true, showChevron: true, },
     {name: 'Location', className: 's1', alias: 'location_name', filterBy: true, },

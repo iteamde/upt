@@ -10,11 +10,12 @@ import { ReceiveOrderModel } from './models/order-form.model';
 import { ReceiveFormModel } from './models/receive-form.model';
 import { ReceivedInventoryGroupModel } from './models/received-inventory-group.model';
 import { BehaviorSubject } from 'rxjs/BehaviorSubject';
+import { ConnectableObservable } from 'rxjs/Rx';
 
 @Injectable()
 export class ReceiveService {
 
-  public invoice$: Observable<ReceiveFormModel>;
+  public invoice$: ConnectableObservable<ReceiveFormModel>;
   public invoiceOrders$: Observable<ReceiveOrderModel[]>;
   public invoiceItems$: Observable<ReceiveOrderItemModel[]>;
   public inventoryGroups$: Observable<ReceivedInventoryGroupModel[]>;
@@ -34,7 +35,8 @@ export class ReceiveService {
     .switchMap((param) =>
       this.receivedOrderService.getReceiveProduct(param.queryParams)
     )
-    .shareReplay(1);
+    .publishReplay(1);
+    this.invoice$.connect();
 
     this.invoiceOrders$ = this.invoice$
     .map((invoice) => invoice.orders);

@@ -21,7 +21,9 @@ export class PastOrderService {
   reorder(data) {
     return this.restangular.all('reorder').customPOST(data);
   }
-
+  reorderInvoice(data) {
+    return this.restangular.all('invoice/reorder').customPOST(data);
+  }
   updateSortBy(param) {
     this.sortBy$.next(param);
   }

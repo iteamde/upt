@@ -1,7 +1,8 @@
-import {Component, Output, EventEmitter, Input} from '@angular/core';
+import {Component, Output, EventEmitter, Input, ViewChild} from '@angular/core';
 import {CustomProductVariantModel} from "../../../../models/custom-product.model";
 import {InventoryService} from "../../../../core/services/inventory.service";
 import {DestroySubscribers} from "ngx-destroy-subscribers";
+import {el} from '@angular/platform-browser/testing/src/browser_util';
 
 @Component({
   selector: 'app-vendor-product-package',
@@ -16,6 +17,8 @@ export class VendorProductPackageComponent {
   @Input('additional') public additional: boolean = true;
   @Output('fillColumn') fillColumn = new EventEmitter();
   @Output('fillAll') fillAll = new EventEmitter();
+
+  @ViewChild('qty') public qty: boolean;
 
   public subscribers: any = {};
   public mainPrices: any = new CustomProductVariantModel();
@@ -38,4 +41,14 @@ export class VendorProductPackageComponent {
     const total = pack[2].units_per_package || (1 * (pack[1].qty || 1) * pack[2].qty);
     return `1 ${pack[0].label} ${pack[1].label && pack[1].qty ? inner : ''} ${pack[2].label && pack[2].qty ? consumable : ''}, 1 ${pack[0].label} = ${total} ${pack[2].label}(s)`;
   }
+
+  qtyValid(): boolean {
+    const qtyValue = parseInt(this.qty['value'], 10);
+    if (isNaN(qtyValue)) {
+      return false;
+    } else {
+      return qtyValue <= 0;
+    }
+  }
+
 }

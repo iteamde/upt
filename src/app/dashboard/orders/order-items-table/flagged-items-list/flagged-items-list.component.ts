@@ -22,7 +22,7 @@ export class FlaggedItemsListComponent implements OnInit, OnDestroy {
 
   public listName: string = OrderListType.flagged;
   public tableHeader: any = [
-    {name: 'Order #', className: 's1', alias: 'po_number', filterBy: true, },
+    {name: 'Order #', className: 's1', alias: 'po_number', filterBy: false, viewDetail: true, },
     {name: 'Product Name', className: 's2', alias: 'item_name', filterBy: true, wrap: 2, },
     {name: 'Status', className: 's1', alias: 'status', filterBy: false, showChevron: true, },
     {name: 'Location', className: 's1', alias: 'location_name', filterBy: true, },

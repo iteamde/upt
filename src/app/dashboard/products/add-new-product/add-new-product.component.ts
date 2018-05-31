@@ -16,6 +16,7 @@ import { ToasterService } from '../../../core/services/toaster.service';
 import { Router } from '@angular/router';
 import { AddVendorModalComponent } from '../../../shared/modals/add-vendor-modal/add-vendor-modal.component';
 import { UploadEditImageModalComponent } from '../../../shared/modals/upload-edit-image-modal/upload-edit-image-modal.component';
+import { ReplaySubject } from 'rxjs/ReplaySubject';
 
 @Component({
   selector: 'app-add-new-product',
@@ -50,6 +51,7 @@ export class AddNewProductComponent implements OnInit {
   ];
 
   public showWarning: boolean = true;
+  private updateCollectionCustomProduct$: ReplaySubject<any> = new ReplaySubject(1);
 
   constructor(
     private accountService: AccountService,
@@ -78,6 +80,17 @@ export class AddNewProductComponent implements OnInit {
 
     this.subscribers.productCategoriesCollection = this.productCategoriesCollection$
       .subscribe(productsCat => this.productCategoriesCollection = productsCat);
+
+    this.subscribers.addCustomProductSubscription = this.updateCollectionCustomProduct$
+    .switchMap((product) =>
+      this.productService.addCustomProduct(product)
+      .map(() => {
+        this.toasterService.pop('', 'Product successfully added');
+        this.router.navigate(['/products']);
+        this.productService.getMarketplaceData$.next('my');
+      })
+    )
+    .subscribe();
   }
 
   onNextClick() {
@@ -170,12 +183,7 @@ export class AddNewProductComponent implements OnInit {
 
   onSubmit() {
     const product = this.formatProduct(this.product);
-    this.productService.addCustomProduct(product)
-      .subscribe((product) => {
-        this.toasterService.pop('', 'Product successfully added');
-        this.productService.addToCollection$.next([product]);
-        this.router.navigate(['/products']);
-      });
+    this.updateCollectionCustomProduct$.next(product);
   }
 
   canProceed() {

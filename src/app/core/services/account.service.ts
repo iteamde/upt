@@ -28,6 +28,7 @@ export class AccountService extends ModelService{
   departmentCollection$ = Observable.empty();
   productCategoriesCollection$ = Observable.empty();
   productAccountingCollection$ = Observable.empty();
+  shippingMethodsCollection$ = Observable.empty();
   roleCollection$ = Observable.empty();
 
   onboardacc: any = {
@@ -137,6 +138,18 @@ export class AccountService extends ModelService{
         .shareReplay(1);
       }
       return this.departmentCollection$;
+    });
+  }
+  getShippingMethods() {
+    return this.shippingMethodsCollection$.isEmpty().switchMap((isEmpty) => {
+      if (isEmpty) {
+        this.shippingMethodsCollection$ = this.restangular.all('config').all('shipping_methods').customGET('')
+          .map((res: any) => {
+              return res.data;
+          })
+          .shareReplay(1);
+      }
+      return this.shippingMethodsCollection$;
     });
   }
 

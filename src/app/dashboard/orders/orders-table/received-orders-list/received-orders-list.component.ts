@@ -22,7 +22,7 @@ export class ReceivedOrdersListComponent implements OnInit, OnDestroy {
   public subscribers: any = {};
   public listName: string = OrderListType.received;
   public tableHeaderReceived: any = [
-    {name: 'Order #', className: 's1', alias: 'order_number', filterBy: true, },
+    {name: 'Order #', className: 's1', alias: 'order_number', filterBy: false, viewDetail: true, },
     {name: 'Vendor', className: 's2', alias: 'vendor_name', filterBy: true, wrap: 2, },
     {name: 'Status', className: 's1', alias: 'status', filterBy: true, showChevron: true, },
     {name: 'Location', className: 's1', alias: 'location_name', filterBy: true, },

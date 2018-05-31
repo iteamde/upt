@@ -114,7 +114,7 @@ export class EditLocationModal implements OnInit, ModalComponent<EditLocationMod
 
       this.locationFormFax = this.phoneMaskService.getPhoneByIntlPhone(this.location.fax);
       this.selectedFaxCountry = this.phoneMaskService.getCountryArrayByIntlPhone(this.location.fax);
-      
+
       this.locationFormPhoneExt = this.location.phone_ext;
       this.locationFormFaxExt = this.location.fax_ext;
     }
@@ -170,7 +170,7 @@ export class EditLocationModal implements OnInit, ModalComponent<EditLocationMod
   onFaxCountryChange($event) {
     this.selectedFaxCountry = $event;
   }
-  
+
   onCountryChangeExt($event) {
     this.selectedCountryExt = $event;
   }
@@ -219,12 +219,11 @@ export class EditLocationModal implements OnInit, ModalComponent<EditLocationMod
     this.location.phone = this.selectedCountry[2] + ' ' + this.locationFormPhone;
     this.location.phone_ext =  this.locationFormPhoneExt;
     this.location.fax = this.locationFormFax ? this.selectedFaxCountry[2] + ' ' + this.locationFormFax : null;
-    this.location.fax_ext =this.locationFormFaxExt ;
-    let address = {location: this.location.formattedAddress};
+    this.location.fax_ext = this.locationFormFaxExt ;
+    let address = {location: this.location.formattedAddress}
     this.location.image = this.uploadedImage;
     if (!this.location.image) {
       // TODO: move logic to location service;
-
       this.locationService.getLocationStreetView(address)
         .map((res: any) => JSON.parse(res._body))
         .subscribe(res => {
@@ -349,6 +348,35 @@ export class EditLocationModal implements OnInit, ModalComponent<EditLocationMod
     }
   }
 
+  setUserAddress(event) {
+    let postalFlag = false;
+    const eventName = event.name;
+    this.location.street_1 = eventName;
+    this.location.city = eventName;
+    this.location.zip_code = eventName;
+    this.location.state = eventName;
+    this.location.country = eventName;
+    this.location.formattedAddress = eventName;
+    this.location.image = null;
+    if (!postalFlag) {
+      this.zone.run(() => {
+        this.location.zip_code = null;
+      });
+    }
+    this.location.formattedAddress = eventName;
+  }
+
+  focusOut(event) {
+    if (event.address_components) {
+      this.addGoogleAddress(event);
+    } else {
+      this.setUserAddress({
+        name: event.target.value,
+        inputValue: event.target.value
+      });
+    }
+  }
+
   addGoogleAddress(event) {
     let postalFlag = false;
     if (event.address_components) {
@@ -383,11 +411,25 @@ export class EditLocationModal implements OnInit, ModalComponent<EditLocationMod
           this.location.zip_code = null;
         });
       }
+    } else {
+      this.setUserAddress(event);
     }
 
 
     this.location.formattedAddress = event.inputValue;
-
-
+    const address = {location: this.location.formattedAddress};
+    this.locationService.getLocationStreetView(address)
+      .map((res: any) => JSON.parse(res._body))
+      .subscribe(res => {
+        if (res.status === 'OK') {
+          this.location.image = this.locationService.getLocationStreetViewUrl(address);
+          this.uploadedImage = this.location.image;
+        } else {
+          this.location.image = null;
+          this.uploadedImage = null;
+        }
+      });
   }
 }
+
+

@@ -1,4 +1,4 @@
-import { Component, HostListener, OnInit } from '@angular/core';
+import { Component, HostListener, OnDestroy, OnInit } from '@angular/core';
 
 import { DestroySubscribers } from 'ngx-destroy-subscribers';
 import * as _ from 'lodash';
@@ -20,7 +20,7 @@ import { AddMarketProductModalComponent } from './add-market-product-modal/add-m
   styleUrls: ['./marketplace-tab.component.scss'],
 })
 @DestroySubscribers()
-export class MarketplaceTabComponent implements OnInit {
+export class MarketplaceTabComponent implements OnInit, OnDestroy {
   public subscribers: any = {};
   public nothingChecked: boolean;
   public sortBy: string = 'A-Z';
@@ -131,6 +131,10 @@ export class MarketplaceTabComponent implements OnInit {
       this.productService.current_page = 1;
       return this.productService.getNextProducts(0);
     }).subscribe();
+  }
+
+  ngOnDestroy() {
+    console.log('unsubscribe');
   }
 
   toggleProductVisibility(product) {

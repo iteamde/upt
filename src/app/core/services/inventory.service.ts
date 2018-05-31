@@ -184,6 +184,10 @@ export class InventoryService extends ModelService {
       }
     );
   }
+  changeDefaultProduct(inventoryGroupId, data) {
+    return this.restangular.one('inventory', inventoryGroupId).all('default').customPUT({inventory_product_id: data.inventory_product_id})
+      .map((res: any) => res.data);
+  }
 
   search(keyword: string) {
     //GET /api/v1/inventory/search?q={keyword,upc,catalog number}

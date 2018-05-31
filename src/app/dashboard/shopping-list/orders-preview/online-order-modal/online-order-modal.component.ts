@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit, NgZone} from '@angular/core';
 import {ModalComponent, DialogRef, Modal} from 'angular2-modal';
 import { BSModalContext } from 'angular2-modal/plugins/bootstrap';
 import { SpinnerService, OrderService, VendorService } from '../../../../core/services';
@@ -6,6 +6,8 @@ import { ActivatedRoute, Router, Params } from '@angular/router';
 import {UserService} from '../../../../core/services/user.service';
 import {EditEmailDataModal} from '../purchase-order/edit-email-data-modal/edit-email-data-modal.component';
 import {ModalWindowService} from '../../../../core/services/modal-window.service';
+import {ToasterService} from "../../../../core/services/toaster.service";
+import {Observable} from "rxjs";
 
 export class OnlineOrderModalContext extends BSModalContext {
   public order_id: string;
@@ -37,7 +39,8 @@ export class OnlineOrderModalComponent implements OnInit, ModalComponent<OnlineO
     public router: Router,
     private userService: UserService,
     public modal: Modal,
-    public modalWindowService: ModalWindowService
+    public modalWindowService: ModalWindowService,
+    public toasterService: ToasterService
   ) {
     this.context = dialog.context;
   }
@@ -54,11 +57,12 @@ export class OnlineOrderModalComponent implements OnInit, ModalComponent<OnlineO
         this.convertOrder()
           .subscribe(order => {
             this.orderService.sendOrderRequestFinal(order.id, {})
+              .do(() => this.onDismiss())
+              .delay(1000)
               .subscribe(() => {
                 if (this.website) {
                   this.checkAndOpen(this.website);
                 }
-                this.dialog.close();
               })
           });
         break;
@@ -68,6 +72,7 @@ export class OnlineOrderModalComponent implements OnInit, ModalComponent<OnlineO
             this.orderService.sendOrderRequest(order.id)
               .take(1)
               .subscribe((status: any) => {
+                this.dialog.close();
                 this.showEmailDataEditModal({
                   order_method: order['order_method'],
                   attachments: order['attachments'],
@@ -105,6 +110,12 @@ export class OnlineOrderModalComponent implements OnInit, ModalComponent<OnlineO
       url = 'http://' + url;
     }
     window.open(url);
+  }
+
+  onDismiss() {
+    this.dialog.dismiss();
+    this.router.navigate(['/shoppinglist']);
+    this.toasterService.pop('success', 'Your order was finalized. Please go to the Orders screen to view or make changes to your order');
   }
 
   dismissModal() {

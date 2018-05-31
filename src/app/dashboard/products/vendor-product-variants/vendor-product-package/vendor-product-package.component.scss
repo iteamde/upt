@@ -65,4 +65,18 @@
     animation-name: fadeIn;
     animation-duration: 0.5s;
   }
+
+  .qty-error {
+    font-size: 10px;
+  }
+
+  .validate-qty {
+    border-color: #F44336!important;
+    box-shadow: none!important;
+
+    &.ng-valid {
+      border-color: #d6d6d6!important;
+    }
+  }
+
 }

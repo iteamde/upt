@@ -55,6 +55,7 @@ export class InventorySearchResults {
   product_id:string  = null;
   upc:string = "";
   variant_id:string = null;
+  image: any = null;
 
   inventory_by: any[] = [];
 

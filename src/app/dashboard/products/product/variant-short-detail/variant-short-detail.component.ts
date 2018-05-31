@@ -12,11 +12,11 @@ import { AccountService } from '../../../../core/services/account.service';
 @DestroySubscribers()
 export class VariantShortDetailComponent implements OnInit {
   public locationArr: any;
-  public selectedPrice = 'unit_price';
 
   @Input('variant') public variant;
   @Input('product_id') public product_id;
   @Input('showEdit') public showEdit;
+  @Input('selectedPrice') public selectedPrice;
 
   @Output() addToOrderWithVendor: EventEmitter<any> = new EventEmitter();
 

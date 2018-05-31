@@ -16,6 +16,8 @@ import { OrderListType } from '../../../../models/order-list-type';
 import { OrderItem } from '../../../../models/order-item';
 import { OrdersService } from '../../../../orders.service';
 import { Observable } from 'rxjs/Observable';
+import { Router } from '@angular/router';
+import { ReconcileService } from '../../../../../../core/services/reconcile.service';
 
 @Component({
   selector: 'app-order-table-item-action',
@@ -28,12 +30,15 @@ export class OrderTableItemActionComponent implements OnInit, OnDestroy {
   private subscribers: any = {};
 
   private reorderProductSubject$:  Subject<any> = new Subject<any>();
+  private reorderInvoiceSubject$:  Subject<any> = new Subject<any>();
   private reorderProducts$:  Observable<any>;
 
   private voidProductSubject$:  Subject<any> = new Subject<any>();
 
   private receiveProductSubject$:  Subject<any> = new Subject<any>();
   private receiveProducts$:  Observable<any>;
+
+  private reconcileProductSubject$:  Subject<any> = new Subject<any>();
 
   @Input() i: any;
   @Input() item: any;
@@ -52,6 +57,8 @@ export class OrderTableItemActionComponent implements OnInit, OnDestroy {
     public toasterService: ToasterService,
     public orderTableOnVoidService: OrderTableOnVoidService,
     public ordersService: OrdersService,
+    private router: Router,
+    public reconcileService: ReconcileService,
   ) {
   }
 
@@ -82,7 +89,6 @@ export class OrderTableItemActionComponent implements OnInit, OnDestroy {
       this.ordersService.tableRoute$,
       this.reorderProductSubject$,
     );
-
     this.receiveProducts$ = Observable.combineLatest(
       this.ordersService.tableRoute$,
       this.receiveProductSubject$,
@@ -124,15 +130,6 @@ export class OrderTableItemActionComponent implements OnInit, OnDestroy {
             }
           ]
         };
-      } else if (url === '/orders/invoices') {
-        data = {
-          orders: [
-            {
-              order_id: '',
-              items_ids: [],
-            }
-          ]
-        };
       } else if (url === '/orders/packing-slips') {
         data = {
           orders: [
@@ -143,10 +140,18 @@ export class OrderTableItemActionComponent implements OnInit, OnDestroy {
           ]
         };
       }
-
       return this.pastOrderService.reorder(data);
     })
     .subscribe((res: any) => this.toasterService.pop('', res.msg));
+
+    this.subscribers.reorderInvoiceFromOrderSubscription = this.reorderInvoiceSubject$
+      .switchMap((item) => {
+        const data = {
+          invoice_id: item.invoice_id,
+        };
+        return this.pastOrderService.reorderInvoice(data);
+      })
+      .subscribe((res: any) => this.toasterService.pop('', res.msg));
 
     this.subscribers.receiveProductSubscription = this.receiveProducts$
     .map(([url, item]) => {
@@ -166,6 +171,13 @@ export class OrderTableItemActionComponent implements OnInit, OnDestroy {
     })
     .subscribe();
 
+    this.subscribers.reconcileSubscription = this.reconcileProductSubject$
+    .switchMap((invoice) => this.reconcileService.getReconcile(invoice.invoice_id, []))
+    .subscribe((res: any) => {
+      this.reconcileService.invoice$.next(res.data);
+      this.router.navigate(['/orders/reconcile']);
+    });
+
   }
 
   setFavorite(item) {
@@ -174,6 +186,9 @@ export class OrderTableItemActionComponent implements OnInit, OnDestroy {
 
   buyAgainOrder(item) {
     this.reorderProductSubject$.next(item);
+  }
+  buyAgainOrderInvoice(item) {
+    this.reorderInvoiceSubject$.next(item);
   }
 
   openResendDialog(item) {
@@ -226,7 +241,7 @@ export class OrderTableItemActionComponent implements OnInit, OnDestroy {
     this.receiveProductSubject$.next({item, type});
   }
 
-  viewInvoice(invoice) {
-    debugger;
+  editInvoice(invoice) {
+    this.reconcileProductSubject$.next(invoice);
   }
 }

@@ -73,7 +73,8 @@ export class ReceiveComponent implements OnInit, OnDestroy {
         .take(1)
       ),
     )
-    .switchMap((params) => this.receiveService.takeInvoiceData(params));
+    .switchMap((params) => this.receiveService.takeInvoiceData(params))
+    .shareReplay(1);
 
     this.formSubmitted$ = this.receiveService.formSubmitted$;
 

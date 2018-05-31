@@ -45,7 +45,10 @@
         </div>
         <div class="input row">
           <div class="col s12 m6 with-helper">
-            <div class="helper"></div>
+            <div class="income-tooltip">
+              <div class="helper"></div>
+              <div class="income-tooltip-content">Total sales less sales adjustments. Sales adjustments would be refunds given to patients.</div>
+            </div>
             <div class="label">Annual Gross Income</div>
             <div class="prefix-input">
               <div class="prefix" [innerHTML]="viewCurrencySign()"></div>
@@ -67,7 +70,16 @@
             </div>
           </div>
           <div class="col s12 m6 with-helper">
-            <div class="helper"></div>
+            <div class="budget-tooltip">
+              <div class="helper"></div>
+              <div class="budget-tooltip-content">
+                Your annual budget for all departments should be determined by the percentage of gross income that you are trying to achieve. For example if you office goal is to only spend 10% of gross income on the whole inventory budget (including clinic, marketing, office, lab and staff) then you would times 0.10 x gross income = $ Budget.
+                <br>
+                It is important to put your gross income into UPtracker each month so that you can see if you are truly on budget. If for some reason the gross income is projecting to be lower the budget should also decrease accordingly. Alternatively, if your gross income is trending much higher because you are seeing more patients than expected then the budget should also increase.
+                <br>
+                The only way to truly stay on budget is to monitor spending percentage based on gross income after adjustments.
+              </div>
+            </div>
             <div class="label">Annual Inventory Budget</div>
             <div class="prefix-input">
               <div class="prefix" [innerHTML]="viewCurrencySign()"></div>

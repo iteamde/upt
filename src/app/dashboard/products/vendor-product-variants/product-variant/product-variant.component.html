@@ -17,6 +17,9 @@
     Product Variant Name
   </div>
   <div class="col s8">
+    <div class="col s1">
+      Image
+    </div>
     <div class="col s2">
       Manufacturer #
     </div>
@@ -32,7 +35,7 @@
     <div class="col s2">
       Our $
     </div>
-    <div class="col s2">
+    <div class="col s1">
       Club $
     </div>
   </div>
@@ -43,9 +46,33 @@
       <input type="checkbox" class="checkbox-input" [(ngModel)]="variant.enabled" id={{uniqueId+i}}/>
       <label for={{uniqueId+i}}></label>
     </div>
-    <input type="text" [(ngModel)]="variant.name" title="{{variant.name}}">
+    <div class="wrap-variant-name">
+      <input type="text" [(ngModel)]="variant.name" title="{{variant.name}}" class="validate-variant-name col s12" required #variantName="ngModel">
+    </div>
   </div>
   <div class="col s8">
+    <div class="col s1 row-input">
+      <div class="container-variants-image">
+        <div class="input add-attachment container-variants">
+          <div class="file-field">
+            <div class="upload-link">
+              <div class="upload-link image-variants-input">
+                <div *ngIf="variant.image">
+                  <img src={{variant.image}} alt="" class="image-variants" (click)="showImage(variant)">
+                </div>
+                <div *ngIf="!variant.image">
+                  <input type="file" (change)="openUploadImageModal($event, variant)">
+                  <a class="image-variants-link">Upload</a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div *ngIf="variant.image" class="del-img-btn del-img-variants-icon" (click)="variant.image = null">
+          <i class="material-icons">delete</i>
+        </div>
+      </div>
+    </div>
     <div class="col s2 row-input">
       <input type="text" [(ngModel)]="variant.mfg_number" placeholder="Manufacturer #">
     </div>
@@ -70,7 +97,7 @@
         [(ngModel)]="variant.our_price">
       </app-price-input>
     </div>
-    <div class="col s2 row-input">
+    <div class="col s1 row-input">
       <app-price-input
         [placeholder]="'Club $'"
         [(ngModel)]="variant.club_price">
@@ -78,3 +105,14 @@
     </div>
   </div>
 </div>
+<div class="variant-image-wrapper" *ngIf="selectedVariant">
+  <div class="variant-image-wrap-box">
+    <div class="close close-image-selected-variants" (click)="closeImage()"></div>
+    <div class="box">
+      <img src={{selectedVariant.image}} alt="Vendor image" class="image-selected-variants">
+    </div>
+  </div>
+</div>
+
+
+

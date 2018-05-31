@@ -6,6 +6,9 @@ import {
 import { DestroySubscribers } from 'ngx-destroy-subscribers';
 import * as _ from 'lodash';
 import { Observable } from 'rxjs/Observable';
+import { Subject } from 'rxjs/Subject';
+import { Router } from '@angular/router';
+import { Modal } from 'angular2-modal';
 
 import { OrderTableSortService } from './order-table-sort.service';
 import { OrderTableService } from './order-table.service';
@@ -13,7 +16,9 @@ import { OrderTableOnVoidService } from './order-table-on-void.service';
 import { OrderStatus } from '../../models/order-status';
 import { OrderTableFilterByService } from './order-table-filter-by.service';
 import { OrdersService } from '../../orders.service';
-import { PastOrderService } from '../../../../core/services/pastOrder.service';
+import { ModalWindowService } from '../../../../core/services/modal-window.service';
+import { ReconcileService } from '../../../../core/services/reconcile.service';
+import { ToasterService } from '../../../../core/services/toaster.service';
 
 @Component( {
   selector: 'app-order-table',
@@ -38,6 +43,8 @@ export class OrderTableComponent implements OnInit, OnDestroy, OnChanges {
   public sort$: Observable<any>;
 
   public _listName: string;
+
+  private viewDetailSubject$:  Subject<any> = new Subject<any>();
 
   @Input('uniqueField') public uniqueField: string;
   @Input('header') public header: any = [];
@@ -68,7 +75,8 @@ export class OrderTableComponent implements OnInit, OnDestroy, OnChanges {
     public orderTableService: OrderTableService,
     public ordersService: OrdersService,
     private orderTableFilterByService: OrderTableFilterByService,
-    private pastOrderService: PastOrderService,
+    private router: Router,
+    private reconcileService: ReconcileService,
   ) {
   }
 
@@ -102,6 +110,29 @@ export class OrderTableComponent implements OnInit, OnDestroy, OnChanges {
     .filter((obj) => !!obj)
     .startWith({});
 
+  }
+
+  addSubscribers() {
+    this.subscribers.viewDetailSubscription = this.viewDetailSubject$
+    .switchMap((item) => {
+      return this.ordersService.tableRoute$
+      .map((url) => {
+        if (url === '/orders' || url === '/orders/items') {
+          this.router.navigate(['/', 'orders', item.order_id]);
+        } else if (url === '/orders/invoices') {
+          // TODO It needs only navigate to reconcile page without additional requests here
+          this.subscribers.reconcileSubscription = this.reconcileService.getReconcile(item.invoice_id, [])
+          .subscribe(res => {
+              this.reconcileService.invoice$.next(res.data);
+              this.router.navigate(['/orders/reconcile']);
+          });
+        }
+      });
+    })
+    .subscribe();
+
+    this.subscribers.lookInvoicesSubscription = this.reconcileService.lookInvoices(null)
+    .subscribe();
   }
 
   ngOnDestroy() {
@@ -165,8 +196,8 @@ export class OrderTableComponent implements OnInit, OnDestroy, OnChanges {
     this.onVoidItem.emit(event);
   }
 
-  goToReconcile(item) {
-    this.pastOrderService.goToReconcile(item.invoice_id);
+  goToViewScreen(item) {
+    this.viewDetailSubject$.next(item);
   }
 
 }

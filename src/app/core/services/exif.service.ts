@@ -707,6 +707,8 @@ export class ExifService {
     return tags;
   }
 
+  // TODO - remove as unused
+  /*
   public getData(img: IImageExtended | HTMLImageElement, callback: Function) {
 
     if ((img instanceof Image || img instanceof HTMLImageElement) && !img.complete) {
@@ -722,6 +724,7 @@ export class ExifService {
     }
     return true;
   }
+  */
 
   public getTag(img: any, tag: string) {
     if (!this.imageHasData(img)) {

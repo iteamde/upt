@@ -410,7 +410,7 @@
           </a>
         </div>
         <div class="col s3 tealish-text right-align">
-          <a>
+          <a (click)='changeDefaultProduct()'>
             <fa name="pencil"></fa>
             Change
           </a>
@@ -419,7 +419,7 @@
       <div class="row">
         <div class="col s12 white all-product-info">
           <div *ngFor="let item of (product$ | async)?.inventory_products">
-            <div *ngIf="item.default_product || (product$ | async)?.inventory_products[0].id === item.id">
+            <div *ngIf="item.default_product">
               <div class="row default-product-info">
                 <div class="col s5">
                   <div class="img left img-container" *ngIf="item.images"
@@ -491,7 +491,7 @@
         </div>
       </div>
       <div *ngFor="let item of (product$ | async)?.inventory_products">
-        <div class="row border-btm mrg-btm-0 flex-middle" *ngIf="!item.default_product && (product$ | async)?.inventory_products[0].id !== item.id">
+        <div class="row border-btm mrg-btm-0 flex-middle" *ngIf="!item.default_product">
           <div class="col s5">
             <div class="tealish-text prod-name" [title]="item.name">
               <a *ngIf="!item.custom_product" [routerLink]="['/', 'products', item.product_id]">{{item.name}}</a>

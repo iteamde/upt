@@ -28,7 +28,7 @@
     <div class="row relative">
       <div class="col s3">
         <div class="input">
-          <input [readonly]="!additional" [(ngModel)]="package[1].qty" type="text" placeholder="Qty">
+          <input [readonly]="!additional" [(ngModel)]="package[1].qty" type="number" placeholder="Qty" #qty="ngModel" class="validate-qty" [ngClass]="{'ng-invalid': qtyValid(), 'ng-valid': !qtyValid()}" min="1" required>
         </div>
       </div>
       <div class="col s9 input flex">
@@ -49,7 +49,7 @@
     <div class="row relative">
       <div class="col s3">
         <div class="input">
-          <input [readonly]="!additional" [(ngModel)]="package[2].qty" type="text" placeholder="Qty">
+          <input [readonly]="!additional" [(ngModel)]="package[2].qty" type="text" placeholder="Qty" required>
         </div>
       </div>
       <div class="col s9 input">

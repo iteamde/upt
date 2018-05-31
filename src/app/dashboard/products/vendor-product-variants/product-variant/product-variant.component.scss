@@ -111,6 +111,21 @@
     position: relative;
   }
 
+  .wrap-variant-name {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+  }
+
+  .validate-variant-name.ng-invalid.ng-touched {
+    border-color: #F44336!important;
+  }
+
+  .error-variant-name {
+    font-size: 11px;
+    margin-left: 5px;
+  }
+
 }
 
 :host {
@@ -124,5 +139,77 @@
   &:first-of-type {
     padding-top: 0;
   }
+
+  .container-variants-image {
+    display: flex;
+  }
+
+  .image-variants {
+    margin-right: 10px;
+    width: 25px;
+    height: 25px;
+    border: 1px dashed #d6d6d6;
+    border-radius: 1.5px;
+  }
+
+  .image-variants-input {
+    display: flex;
+    justify-content: space-around;
+  }
+
+  .del-img-variants-icon {
+    cursor: pointer;
+  }
+
+  .container-variants {
+    margin-bottom: 0;
+  }
+
+  .variant-image-wrapper {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: fixed;
+    top: 0;
+    right: 0;
+    left: 0;
+    bottom: 0;
+    z-index: 1500;
+    background: #f5f6f7;
+  }
+
+  .close-image-selected-variants {
+    position: absolute;
+    top: 5px;
+    left: 5px;
+    background: url(/assets/img/onboard/close-button.svg) no-repeat;
+    cursor: pointer;
+  }
+
+  .variant-image-wrap-box {
+    position: relative;
+    border: 1px solid #dedede;
+    border-radius: 5px;
+    padding: 50px 40px;
+    background: #ffffff;
+    width: 350px;
+    height: 350px;
+  }
+
+  .box {
+    border: 1px dashed #d6d6d6;
+    max-width: 100%;
+    max-height: 100%;
+  }
+
+  .image-selected-variants {
+    width: 100%;
+  }
+
+
+
+
 }
 

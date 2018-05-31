@@ -38,6 +38,7 @@ export class OrdersPreviewComponent implements OnInit, OnDestroy {
   public saveOrderSubject$: Subject<any> = new Subject<any>();
   public location_id: string;
   public apiUrl: string;
+  public shippingMethodsCollection: any;
 
   constructor(
     public modal: Modal,
@@ -84,9 +85,12 @@ export class OrdersPreviewComponent implements OnInit, OnDestroy {
   }
 
   addSubscribers() {
+
+    this.subscribers.getShippingMethodsSubscription = this.accountService.getShippingMethods().take(1)
+      .subscribe(res => this.shippingMethodsCollection = res );
     this.subscribers.confirmModalSubscription = this.modalWindowService.confirmModal$
       .subscribe(() => {
-        this.confirmModalService.confirmModal('Success', 'Order is finalized ', [{text: 'Ok', value: 'ok', cancel: true}])
+        this.confirmModalService.confirmModal('Success', 'Your order has been finalized. To make changes to an order or resend please go to the orders section.', [{text: 'Ok', value: 'ok', cancel: true}])
           .subscribe(() => this.router.navigate(['/shoppinglist']));
       });
 
@@ -111,7 +115,7 @@ export class OrdersPreviewComponent implements OnInit, OnDestroy {
   }
 
   saveOrder(key: string, val, vendorId: string) {
-    if (key !== 'ship_to' && key !== 'order_method') {
+    if (key !== 'ship_to' && key !== 'order_method' && key !== 'shipping_method' ) {
       const regex = /[\d\.]*/g;
       const m: any = regex.exec(val);
       regex.lastIndex++;

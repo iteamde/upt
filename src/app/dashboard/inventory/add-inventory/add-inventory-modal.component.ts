@@ -645,7 +645,6 @@ export class AddInventoryModal implements OnInit, OnDestroy, ModalComponent<AddI
         this.saveAdded$.next();
       }
     }
-    this.dialog.close(this.newInventory)
   }
 
   nextPackage(value) {

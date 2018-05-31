@@ -3,7 +3,6 @@
     class="tealish-text pointer"
     [class.show-hover-elem]="!item.flagged"
     (click)="openAddCommentModal(item)"
-    *ngIf="(ordersService.tableRoute$ | async) !== '/orders/invoices'"
   >
     <fa name="flag-o" *ngIf="!item?.flagged"></fa>
     <fa name="flag" *ngIf="item?.flagged"></fa>
@@ -12,7 +11,6 @@
     class="tealish-text pointer"
     [class.show-hover-elem] = "!item.favorite"
     (click)="setFavorite(item)"
-    *ngIf="(ordersService.tableRoute$ | async) !== '/orders/invoices'"
   >
     <fa name="star-o" *ngIf="!item?.favorite"></fa>
     <fa name="star" *ngIf="item?.favorite"></fa>
@@ -61,7 +59,10 @@
   </ul>
   <ul [id]='item[uniqueField] + listName + i' class='dropdown-content' *ngIf="(ordersService.tableRoute$ | async) === '/orders/invoices'">
     <li>
-      <a class="tealish-text" (click)="viewInvoice(item)">View Invoice</a>
+      <a class="tealish-text" (click)="editInvoice(item)">Edit</a>
+    </li>
+    <li>
+      <a class="tealish-text" (click)="buyAgainOrderInvoice(item)">Buy Again</a>
     </li>
   </ul>
 </ng-template>

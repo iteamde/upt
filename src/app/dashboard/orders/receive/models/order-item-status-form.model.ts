@@ -51,13 +51,13 @@ export class OrderItemStatusFormGroup extends FormGroup {
       location_name: new FormControl(location_name),
       storage_location_name: new FormControl(storage_location_name),
       delete: new FormControl(false),
-    });
+    }, orderItemStatusFormGroupValidator);
   }
 }
 
 export function orderItemStatusFormGroupValidator(ctrl: FormGroup) {
   if (ctrl.get('type').value === OrderStatusValues.receive) {
-    return ctrl.get('location_id').value && ctrl.get('storage_location_id').value ? null : {locationRequired: true};
+    return ctrl.get('location_id').value ? null : {locationRequired: true};
   }
   return null;
 }

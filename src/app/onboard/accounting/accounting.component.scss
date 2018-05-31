@@ -27,5 +27,61 @@
         }
       }
     }
+
+
+    .income-tooltip, .budget-tooltip {
+      z-index: 999;
+    }
+    .helper {
+      z-index: 100;
+      position: absolute;
+      transition: transform 0.3s;
+    }
+    .income-tooltip:hover .helper, .budget-tooltip:hover .helper {
+      color: #fff;
+      transform: translate3d(0, 0, 0);
+    }
+    .income-tooltip-content, .budget-tooltip-content {
+      position: absolute;
+      z-index: 99;
+      width: 300px;
+      left: 35%;
+      bottom: 110%;
+      opacity: 0;
+      transform: translate3d(0, 0.5em, 0);
+      transition: opacity 0.3s, transform 0.3s;
+      border: 1px solid #9a9c9e;
+      text-align: left;
+      background-color: #fff;
+      padding: 20px;
+      visibility: hidden;
+    }
+
+    .budget-tooltip-content {
+      width: 320px;
+    }
+
+    .income-tooltip:hover .income-tooltip-content, .budget-tooltip:hover .budget-tooltip-content {
+      opacity: 1;
+      visibility: visible;
+      transform: translate3d(0, 0, 0);
+    }
+
+    @media (max-width: 800px) {
+      .budget-tooltip-content {
+        width: 300px;
+      }
+    }
+    @media (max-width: 600px) {
+      .budget-tooltip-content {
+        width: 300px;
+        left: 48%;
+      }
+    }
+
   }
+}
+
+#budget, #income {
+  padding-left: 42px;
 }

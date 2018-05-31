@@ -129,10 +129,27 @@
                   </div>
                 </div>
               </div>
+              <div class="row">
+                <div class="col s12 grey-text">Shipping Method</div>
+                <div class="col s12 grey-text">
+                  <div class="select low-height mysel">
+                    <select
+                            name="sel3"
+                            id="sel3"
+                            materialize="material_select"
+                            (change)="saveOrder('shipping_method',order.shipping_method,order.vendor_id)"
+                            [(ngModel)]="order.shipping_method">
+                      <ng-container *ngFor="let method of shippingMethodsCollection">
+                        <option [value]="method">{{method}}</option>
+                      </ng-container>
+                    </select>
+                  </div>
+                </div>
+              </div>
 
             </div>
             <div class="col rcol s6 offset-s2">
-              <div class="row">
+              <div class="row offset-s2_margin_bottom">
                 <div class="col s6 grey-text">Subtotal</div>
                 <div class="col s6 bold grey-text nopad">{{ order.sub_total }}</div>
               </div>

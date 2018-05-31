@@ -10,6 +10,7 @@ import { UserService } from "../../../../core/services/user.service";
 import { EditEmailDataModal } from "../purchase-order/edit-email-data-modal/edit-email-data-modal.component";
 import { ModalWindowService } from "../../../../core/services/modal-window.service";
 import { OrderItems } from '../models/converted-order';
+import {OrderService} from "../../../../core/services/order.service";
 
 export class WarningOrderModalContext extends BSModalContext {
   public order: OrderItems;
@@ -36,7 +37,8 @@ export class WarningOrderModalComponent implements OnInit, ModalComponent<Warnin
     public spinner: SpinnerService,
     public userService: UserService,
     public modalWindowService: ModalWindowService,
-    public modal: Modal
+    public modal: Modal,
+    public orderService: OrderService
   ) {
     this.context = dialog.context;
   }
@@ -91,10 +93,12 @@ export class WarningOrderModalComponent implements OnInit, ModalComponent<Warnin
         w = window.open(pdfUrl);
         w.print();
       }
-
-      this.spinner.hide();
-      this.dialog.close();
-      this.modalWindowService.confirmModal$.next(true);
+      this.orderService.sendOrderRequestFinal(this.context.order.id,{})
+        .subscribe((res) => {
+          this.spinner.hide();
+          this.dialog.close();
+          this.modalWindowService.confirmModal$.next(true);
+        })
     });
   }
 

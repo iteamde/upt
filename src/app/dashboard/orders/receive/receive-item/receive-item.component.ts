@@ -64,6 +64,7 @@ export class ReceiveItemComponent implements OnInit, OnDestroy {
   @Input() orderItemForm: OrderItemFormGroup;
   @Input() orderId: string;
   @Input() itemId: string;
+  @Input() allLocations: any[];
 
   @Output() createInventoryEvent = new EventEmitter();
 
@@ -185,16 +186,24 @@ export class ReceiveItemComponent implements OnInit, OnDestroy {
     this.selectedInventoryGroup$.connect();
 
     this.locations$ = this.selectedInventoryGroup$
-    .map((inventoryGroup) => (inventoryGroup && inventoryGroup.locations) || [])
+    .map((inventoryGroup) => (inventoryGroup && inventoryGroup.locations) || this.allLocations)
     .map((locations) =>
       locations.reduce((acc, location) => {
-        const combinedLocations = location.storage_locations
-        .map((storageLocation) => ({
-          label: `${location.name}: ${storageLocation.name}`,
-          storage_location_id: storageLocation.id,
-          location_id: location.id
-        }));
-        return [...acc, ...combinedLocations];
+        if (location.storage_locations) {
+          const combinedLocations = location.storage_locations
+          .map((storageLocation) => ({
+            label: `${location.name}: ${storageLocation.name}`,
+            storage_location_id: storageLocation.id,
+            location_id: location.id
+          }));
+          return [...acc, ...combinedLocations];
+        } else {
+          return locations
+          .map((loc) => ({
+            label: loc.location_name,
+            location_id: loc.location_id,
+          }));
+        }
       }, [])
     );
 

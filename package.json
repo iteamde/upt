@@ -57,12 +57,12 @@
     "zone.js": "^0.8.4"
   },
   "devDependencies": {
-    "@angular/cli": "^1.0.0",
+    "@angular/cli": "^1.7.4",
     "@angular/compiler-cli": "^4.0.0",
     "@types/googlemaps": "^3.25.38",
     "@types/jasmine": "2.5.38",
     "@types/jquery": "^3.3.0",
-    "@types/lodash": "4.14.73",
+    "@types/lodash": "^4.14.108",
     "@types/node": "~6.0.60",
     "codelyzer": "~2.0.0",
     "jasmine-core": "~2.5.2",
@@ -76,6 +76,7 @@
     "protractor": "~5.1.0",
     "ts-node": "^2.0.0",
     "tslint": "^4.5.0",
-    "typescript": "2.4.2"
+    "typescript": "^2.4.2",
+    "webpack": "3.10.0"
   }
 }

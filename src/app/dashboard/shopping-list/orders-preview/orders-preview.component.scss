@@ -154,12 +154,14 @@
     .lcol {
       font-size: 12px;
       .row {
-        min-height: 70px;
+        //min-height: 70px;
         &:first-of-type {
-          min-height:50px;
+          //min-height:50px;
         }
       }
-
+    }
+    .offset-s2_margin_bottom {
+      margin-bottom: 30px;
     }
     .rcol > .row {
       & > .col {
@@ -200,4 +202,3 @@
     cursor:pointer;
   }
 }
-

@@ -10,11 +10,11 @@ $normal: 14px;
     width: 14px;
     height: 14px;
     border-radius: 50%;
-    background: #B2B4B6;
-    color: #4a4a4a;
+    background: #cbd0df;
+    color: #8c8f9a;
     line-height: 14px;
     margin-left: 5px;
-    font-size: 10px;
+    font-size: 8px;
   }
 
   .product-page {
@@ -246,7 +246,7 @@ $normal: 14px;
 
     .row.uptracker-form {
       margin-bottom: 0;
-      background: $light-grey;
+      background: #e8ecf0;
     }
     .row.table-head-filter {
       margin: 20px 0;
@@ -810,5 +810,31 @@ $normal: 14px;
   .inner.product .row-item {
     cursor: pointer;
   }
+  .product {
+    .input input[type=text]:not(.browser-default),
+    .select .select-wrapper input,
+    .select .select-wrapper input.select-dropdown,
+    div.input-checkbox [type="checkbox"] + label,
+    div.input-checkbox:disabled [type="checkbox"] + label {
+      border-radius: 0;
+    }
+    .select .select-wrapper .caret {
+      opacity: 1;
+    }
+    .select-wrapper span.caret {
+      right: 10px;
+    }
+    .select .select-wrapper .caret + input {
+      background: none;
+    }
+    .select .select-wrapper.ng-valid input.select-dropdown {
+      color: #9a9c9e;
+    }
+  }
+  .edbtn, .uptracker-form-btn {
+    border-radius: 0;
+    text-transform: uppercase;
+  }
+
 }
 

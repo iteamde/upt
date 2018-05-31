@@ -76,7 +76,7 @@ export class ProductComponent implements OnInit, AfterViewInit, OnDestroy {
 
   };
   public subscribers: any = {};
-
+  public selectedPrice = 'price_per_unit';
   public product: any;
   public productCopy: any;
   public variation: any = {};

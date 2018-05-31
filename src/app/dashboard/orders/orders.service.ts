@@ -24,7 +24,7 @@ export class OrdersService {
   public onChipsChange$ = new Subject<string[]>();
 
   public filterQueryParams$: Subject<any> = new Subject();
-  public tableRoute$: ReplaySubject<any> = new ReplaySubject();
+  public tableRoute$: ReplaySubject<any> = new ReplaySubject(1);
 
   constructor(
     public orderTableFilterByService: OrderTableFilterByService,

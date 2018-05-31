@@ -102,8 +102,14 @@ export class CartService extends ModelService {
   dividePrices(res: any): any {
     _.map(res, (r: any) => {
       if ((!r.selected_vendor || !r.selected_vendor.vendor_name) && r.vendors.length) {
-        r.selected_vendor = r.vendors[0];
-        r.price = r.selected_vendor.book_price;
+        if (r.vendors.length > 1) {
+          r.selected_vendor = {
+            'vendor_name': 'Auto',
+          };
+        } else {
+          r.selected_vendor = r.vendors[0];
+          r.price = r.selected_vendor.book_price;
+        }
       }
       r.price /= 100;
       r.selected_vendor.price /= 100;

@@ -71,6 +71,7 @@
               <app-receive-item
                 [orderId]="order.get('order_id')?.value"
                 [itemId]="item.get('id')?.value"
+                [allLocations]="(invoice$ | async).locations"
                 [orderItemForm]="item"
                 (createInventoryEvent)="updateInvoice()"
               ></app-receive-item>

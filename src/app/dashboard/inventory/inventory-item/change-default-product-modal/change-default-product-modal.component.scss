@@ -1,0 +1,17 @@
+.left {
+  width: 100%;
+}
+
+.inner .uptracker-form-btn:first-of-type {
+  border-color: red;
+  background-color: #fff;
+  color: red;
+  border: 1px solid red;
+  margin-right: 20px;
+}
+
+.inner .uptracker-form-btn:last-of-type {
+  border-color: #33c6d9;
+  background-color: #33c6d9;
+  color: #fff;
+}

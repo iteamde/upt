@@ -1,5 +1,8 @@
 import {Component, Input, Output, EventEmitter, OnInit} from '@angular/core';
 import {each} from 'lodash';
+import {Modal} from 'angular2-modal';
+import {UploadEditImageModalComponent} from '../../../../shared/modals/upload-edit-image-modal/upload-edit-image-modal.component';
+import {ModalWindowService} from '../../../../core/services';
 
 @Component({
   selector: 'app-product-variant',
@@ -13,8 +16,10 @@ export class ProductVariantComponent implements OnInit{
 
   public uniqueId: any = Math.random();
   public selected: boolean = true;
+  public selectedVariant: any = null;
 
-  constructor() {
+  constructor(private modal: Modal,
+              private modalWindowService: ModalWindowService) {
   }
 
   ngOnInit() {
@@ -27,7 +32,7 @@ export class ProductVariantComponent implements OnInit{
 
   selectAll() {
     each(this.vendor.variants, (v) => {
-      v.enabled = this.selected
+      v.enabled = this.selected;
     });
   }
 
@@ -43,6 +48,27 @@ export class ProductVariantComponent implements OnInit{
 
   onFillOur(price, i) {
     this.vendor.variants[i].our_price = price;
+  }
+
+  showImage(variant) {
+    this.selectedVariant = variant;
+  }
+
+  closeImage() {
+    this.selectedVariant = null;
+  }
+
+  openUploadImageModal(event, variant) {
+    this.modal.open(UploadEditImageModalComponent, this.modalWindowService
+      .overlayConfigFactoryWithParams({ variant: this.vendor.variant, event, product: variant }, true, 'normal'))
+      .then((resultPromise) => {
+        resultPromise.result.then(
+          (res) => {
+          return variant.image = res;
+        },
+          (err) => {}
+          );
+      });
   }
 
 }

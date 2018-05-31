@@ -14,6 +14,7 @@ import { InventoryService } from '../../../core/services/inventory.service';
 import { InfoModal } from './default-info-modal/info-modal-component';
 import { AddInventoryModal } from '../add-inventory/add-inventory-modal.component';
 import { AddInventory2OrderModal } from './add-inventory-2order-modal/add-inventory-2order-modal.component';
+import { ChangeDefaultProductModalComponent } from "./change-default-product-modal/change-default-product-modal.component";
 
 @Component({
   selector: 'app-inventory-item-modal',
@@ -319,6 +320,26 @@ export class InventoryItemComponent implements OnInit, OnDestroy {
       resultPromise.result.then(
         (res) => {},
         (err) => {}
+      );
+    });
+  }
+
+  changeDefaultProduct() {
+    this.modal
+    .open(
+      ChangeDefaultProductModalComponent,
+      this.modalWindowService.overlayConfigFactoryWithParams({'data': this.product$}, true, 'mid'))
+    .then((resultPromise) => {
+      resultPromise.result.then(
+        (res) => {
+          // this.product$.next(res);
+          // TODO don't make request again
+          // again request because not all fields are returned after updating
+          this.getCurrentInventory();
+        },
+        (err) => {
+          console.error(err);
+        }
       );
     });
   }
